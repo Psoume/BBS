@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
 <?php
 // EXEMPLE AVEC SIMPLE XML
 // $xml=simplexml_load_file("./XML/03 - AT_14-5_17-2279.xml") or die("Error: Cannot create object");
@@ -18,25 +25,30 @@
 //     }
 // }
 ?> 
-<form method='post' action='handlerXML.php'>
-    <label for="Titre_AT">Titre_AT:</label></br>
-    <input type='text' name="Titre_AT"/></br>
-    <input type="submit">
+<form id='XML_Form' method='post' action='#' enctype="multipart/form-data">
+<label for="Xml_File">Si vous souhaitez compléter un fichier XML déjà existant, entrez-le ici :</label>
+<input id="Xml_File" type="file" name="Xml_File" accept=".xml">
+<input type="submit">
 </form>
 
 
-<form method='post' action='writeXML.php'>
+<form method='post' action='./writeXML.php'>
     <label for="Titre_AT">Titre_AT:</label></br>
-    <input type='text' name="Titre_AT"/></br>
+    <input type='text' name="Titre_AT" id="Titre_AT"/></br>
     <label for="Titulaire">Titulaire:</label></br>
-    <input type='text' name="Titulaire"/></br>
+    <input type='text' name="Titulaire" id="Titulaire"/></br>
     <label for="Code_Titulaire">Code_Titulaire:</label></br>
-    <input type='text' name="Code_Titulaire"/></br>
+    <input type='text' name="Code_Titulaire" id="Code_Titulaire"/></br>
     <label for="Industriel">Industriel:</label></br>
-    <input type='text' name="Industriel"/></br>
+    <input type='text' name="Industriel" id="Industriel"/></br>
     <label for="Code_Industriel">Code_Industriel:</label></br>
-    <input type='text' name="Code_Industriel"/></br>
+    <input type='text' name="Code_Industriel" id="Code_Industriel"/></br>
     <label for="Num_AT">Num_AT:</label></br>
-    <input type='text' name="Num_AT"/></br>
+    <input type='text' name="Num_AT" id="Num_AT"/></br>
     <input type="submit">
 </form>
+<script type="text/javascript" src="script.js" ></script>
+</body>
+</html>
+
+
