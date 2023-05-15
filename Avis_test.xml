@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<Avis_Technique_Ventilation>
-    <Titre_AT>titulaire</Titre_AT>
-    <Titulaire>code</Titulaire>
-    <Code_Titulaire>indus</Code_Titulaire>
-    <Industriel>codeI</Industriel>
-    <Code_Industriel>num</Code_Industriel>
-    <Num_AT />
-</Avis_Technique_Ventilation>

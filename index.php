@@ -14,7 +14,7 @@
     <form id='XML_Form' method='post' action='#' enctype="multipart/form-data">
         <label for="Xml_File">Si vous souhaitez compléter un fichier XML déjà existant, entrez-le ici :</label>
         <input id="Xml_File" type="file" name="Xml_File" accept=".xml">
-        <input type="submit">
+        <input type="submit" value="Pré-remplir">
     </form>
 
     <form method='post' action='./writeXML.php'>
@@ -44,6 +44,15 @@
                         <input type='text' name="Code_Industriel" id="Code_Industriel" /></br>
                         <label for="Num_AT">Num_AT:</label></br>
                         <input type='text' name="Num_AT" id="Num_AT" /></br>
+
+                        <label for="Num_AT_Ancien">Num_AT_Anciens : Saisir des numéros séparés par des virgules</label><br/>    
+                        <input type='text' name="Num_AT_Ancien" id="Num_AT_Ancien" /></br>
+
+
+                        <label for="Date_Application">Date_Application:</label></br>
+                        <input type='text' name="Date_Application" id="Date_Application" /></br>
+                        <label for="Date_Fin_Application">Date_Fin_Application:</label></br>
+                        <input type='text' name="Date_Fin_Application" id="Date_Fin_Application" /></br>
                     </div>
                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">2</div>
                     <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
