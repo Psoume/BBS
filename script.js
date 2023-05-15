@@ -7,6 +7,7 @@ form.addEventListener("submit", function(event) {
 
     var fileInput = document.getElementById("Xml_File");
     var file = fileInput.files[0];
+    var XmlFileName =file['name'];
 
     if (file) {
     var reader = new FileReader();
@@ -14,6 +15,7 @@ form.addEventListener("submit", function(event) {
         var xmlContent = e.target.result;
         const parser = new DOMParser();
         xml = parser.parseFromString(xmlContent, "application/xml").documentElement;
+        document.getElementById("XML_Name").value=(XmlFileName);
         document.getElementById("Titre_AT").value=xml.getElementsByTagName('Titre_AT')[0].textContent;
         document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
         document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;

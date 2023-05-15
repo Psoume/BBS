@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Saisie d'avis techniques de ventilation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -33,6 +34,7 @@
 
 
 <form method='post' action='./writeXML.php'>
+    <input hidden type="text" id="XML_Name" name="XML_name"/>
     <label for="Titre_AT">Titre_AT:</label></br>
     <input type='text' name="Titre_AT" id="Titre_AT"/></br>
     <label for="Titulaire">Titulaire:</label></br>
@@ -47,6 +49,10 @@
     <input type='text' name="Num_AT" id="Num_AT"/></br>
     <input type="submit">
 </form>
+
+
+
+
 <script type="text/javascript" src="script.js" ></script>
 </body>
 </html>
