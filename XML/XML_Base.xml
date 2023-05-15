@@ -11,7 +11,6 @@
   </Liste_AT_Ancien>
   <Date_Application>21/01/2020</Date_Application>
   <Date_Fin_Application>31/12/2024</Date_Fin_Application>
-  <Usage_EA>Individuel</Usage_EA>
   <Usages>
     <Collectif>false</Collectif>
     <Individuel>true</Individuel>
@@ -29,13 +28,11 @@
     <AT>
       <REF_AT>ALIZE_TYPE_A</REF_AT>
       <LIBELLE>VMC HYGRO individuelle Atlantic Hygro A</LIBELLE>
-      <Type_Avis_Technique>Hygro_A</Type_Avis_Technique>
       <HYGRO_A>true</HYGRO_A>
       <HYGRO_B1>false</HYGRO_B1>
       <HYGRO_B2>false</HYGRO_B2>
       <GAZ>false</GAZ>
       <Type-EA>
-        <Presence_EA>Autoréglable</Presence_EA>
         <Presence_EA_Fixes>false</Presence_EA_Fixes>
         <Presence_EA_Autoreglables>true</Presence_EA_Autoreglables>
         <Dp1>20</Dp1>
@@ -50,7 +47,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -117,7 +113,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -184,7 +179,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -256,7 +250,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -328,7 +321,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -400,7 +392,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -472,7 +463,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -544,7 +534,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -616,7 +605,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -688,7 +676,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -760,7 +747,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -836,7 +822,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -907,7 +892,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -983,7 +967,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -1055,7 +1038,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -1126,7 +1108,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
             <EA_Fixes>false</EA_Fixes>
             <EA_Autoréglables>true</EA_Autoréglables>
           </Singularités>
@@ -1202,13 +1183,11 @@
     <AT>
       <REF_AT>ALIZE_TYPE_B</REF_AT>
       <LIBELLE>VMC HYGRO individuelle Atlantic Hygro B</LIBELLE>
-      <Type_Avis_Technique>Hygro_B</Type_Avis_Technique>
       <HYGRO_A>false</HYGRO_A>
       <HYGRO_B1>true</HYGRO_B1>
       <HYGRO_B2>false</HYGRO_B2>
       <GAZ>false</GAZ>
       <Type-EA>
-        <Presence_EA>Fixe</Presence_EA>
         <Presence_EA_Fixes>true</Presence_EA_Fixes>
         <Presence_EA_Autoreglables>false</Presence_EA_Autoreglables>
       </Type-EA>
@@ -1220,7 +1199,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1289,7 +1267,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1358,7 +1335,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1432,7 +1408,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1506,7 +1481,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1580,7 +1554,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1654,7 +1627,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1728,7 +1700,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1803,7 +1774,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1877,7 +1847,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -1951,7 +1920,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -2029,7 +1997,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -2101,7 +2068,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -2180,7 +2146,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -2258,7 +2223,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
@@ -2330,7 +2294,6 @@
           <Singularités>
             <Config_Optimisee>false</Config_Optimisee>
             <Changement_Bouche>false</Changement_Bouche>
-            <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
             <EA_Fixes>true</EA_Fixes>
             <EA_Autoréglables>false</EA_Autoréglables>
           </Singularités>
