@@ -1,2 +1,9 @@
 <?xml version="1.0"?>
-<Avis_Technique_Ventilation><Titre_AT>titre</Titre_AT><Titulaire>titulaire</Titulaire><Code_Titulaire>code</Code_Titulaire><Industriel>indus</Industriel><Code_Industriel>code</Code_Industriel><Num_AT>num</Num_AT></Avis_Technique_Ventilation>
+<Avis_Technique_Ventilation>
+    <Titre_AT>titre</Titre_AT>
+    <Titulaire>titulaire</Titulaire>
+    <Code_Titulaire>code</Code_Titulaire>
+    <Industriel>indus</Industriel>
+    <Code_Industriel>code</Code_Industriel>
+    <Num_AT>num</Num_AT>
+</Avis_Technique_Ventilation>
