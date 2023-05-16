@@ -56,6 +56,29 @@ function addCheckbox(name,lab,id) //crée un input dans un container id
     container.appendChild(input);
 };
 
+function addModal(name,target,id) 
+{
+    var button = document.createElement("button"); 
+    button.type = "button";
+    button.innerHTML = name;
+    button.className = "btn btn-primary";
+    button.setAttribute("data-bs-toggle", "modal")
+    button.setAttribute("data-bs-target", "#"+target)
+    var container = document.getElementById(id);
+    container.appendChild(button);
+};
+
+function addButton(description,onclick,id)
+{
+    var button = document.createElement("button"); 
+    button.type = "button";
+    button.innerHTML = description;
+    button.className = "btn btn-primary";
+    button.setAttribute("onclick", onclick)
+    var container = document.getElementById(id);
+    container.appendChild(button);
+}
+
 /////////////////////////////////////
 
 document.getElementById("NB_AT").value=0;
@@ -90,6 +113,11 @@ document.getElementById("NB_AT").onchange = function() {
             addField("R_f",'number','R_f',newDiv.id);
             addCheckbox('Optimisation','Optimisation',newDiv.id);
             addField("NB_CONFIG",'number','NB_CONFIG',newDiv.id);
+            var newDivConfig = document.createElement("div");
+            newDivConfig.className='Configs';
+            newDivConfig.id='ConfigsAT'+(parseInt(container.childElementCount));
+            newDiv.appendChild(newDivConfig);
+            addButton('+ Ajouter une config','addModal("Config1","Config1AT1","'+newDivConfig.id+'")',newDiv.id)
         };   
     }
 

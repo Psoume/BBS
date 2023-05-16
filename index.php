@@ -87,8 +87,11 @@
                     </div>
                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                         <div id='ATS'>
-
                         </div>
+                        
+                        
+                        <?php $config='Config1AT1';include './config.php';?>
+                        
                     </div>
                     <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
                     <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
