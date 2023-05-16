@@ -31,7 +31,7 @@
             <div class="content">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                        <input hidden type="text" id="XML_Name" name="XML_name" />
+                        
                         <label for="Titre_AT">Titre_AT:</label></br>
                         <input type='text' name="Titre_AT" id="Titre_AT" /></br>
                         <label for="Titulaire">Titulaire:</label></br>
@@ -54,8 +54,34 @@
                         <input type='text' name="Date_Application" id="Date_Application" /></br>
                         <label for="Date_Fin_Application">Date_Fin_Application:</label></br>
                         <input type='text' name="Date_Fin_Application" id="Date_Fin_Application" /></br>
+                        <label for="Usage_EA">Usage_EA:</label></br>
+                        <input type='text' name="Usage_EA" id="Usage_EA" /></br>
+                        <span>Usages :</span>
+                        <input class="form-check-input" type="checkbox" value="Individuel" name="Individuel">
+                        <label class="form-check-label" for="Individuel">Individuel</label>
+                        <input class="form-check-input" type="checkbox" valueCollectif name="Collectif">
+                        <label class="form-check-label" for="Collectif">Collectif</label>
+                        <input class="form-check-input" type="checkbox" value="Hotel" name="Hotel">
+                        <label class="form-check-label" for="Hotel">Hotel</label><br/>
+                        <span>Caractéristiques :</span>
+                        <input class="form-check-input" type="checkbox" value="Double_Flux" name="Double_Flux">
+                        <label class="form-check-label" for="Double_Flux">Double_Flux</label>
+                        <input class="form-check-input" type="checkbox" value="Autoreglable" name="Autoreglable">
+                        <label class="form-check-label" for="Autoreglable">Autoréglable</label>
+                        <input class="form-check-input" type="checkbox" value="Hygroreglable" name="Hygroreglable">
+                        <label class="form-check-label" for="Hygroreglable">Hygroréglable</label>
+                        <input class="form-check-input" type="checkbox" value="Basse_Pression" name="Basse_Pression">
+                        <label class="form-check-label" for="Basse_Pression">Basse_Pression</label><br/>
+                        <label for="Type_extraction">Type_extraction:</label></br>
+                        <input type='text' name="Type_extraction" /></br>
+                        <label for="NB_AT">NB_AT:</label></br>
+                        <input type='number' name="NB_AT" /></br>
                     </div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">2</div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div id='ATS'>
+
+                        </div>
+                    </div>
                     <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
                     <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
                 </div>
