@@ -27,3 +27,13 @@ form.addEventListener("submit", function(event) {
     reader.readAsText(file);
     }
 });
+
+
+function addField(field)
+{
+    var input = document.createElement("input");   
+    input.type = "text";
+    input.name = field;
+    var container = document.getElementById("NumATAncienField");
+    container.appendChild(input);
+};

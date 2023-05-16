@@ -1,2 +1,16 @@
 <?xml version="1.0"?>
-<Avis_Technique_Ventilation><Titre_AT>titre</Titre_AT><Titulaire>titulaire</Titulaire><Code_Titulaire>code</Code_Titulaire><Industriel>indus</Industriel><Code_Industriel>codeI</Code_Industriel><Num_AT>NumAT</Num_AT><Liste_AT_Ancien><Num_AT_Ancien>numATAnciens</Num_AT_Ancien></Liste_AT_Ancien><Date_Application>02/02/2022</Date_Application><Date_Fin_Application>02/02/2024</Date_Fin_Application></Avis_Technique_Ventilation>
+<Avis_Technique_Ventilation>
+    <Titre_AT>titre</Titre_AT>
+    <Titulaire>titulaire</Titulaire>
+    <Code_Titulaire>code</Code_Titulaire>
+    <Industriel>indus</Industriel>
+    <Code_Industriel>code</Code_Industriel>
+    <Num_AT>num</Num_AT>
+    <Liste_AT_Ancien>
+        <Num_AT_Ancien>numat</Num_AT_Ancien>
+        <Num_AT_Ancien>numat2</Num_AT_Ancien>
+        <Num_AT_Ancien>numat3</Num_AT_Ancien>
+    </Liste_AT_Ancien>
+    <Date_Application>02/02/2022</Date_Application>
+    <Date_Fin_Application>02/02/2024</Date_Fin_Application>
+</Avis_Technique_Ventilation>

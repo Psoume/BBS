@@ -23,7 +23,14 @@ $xml->addChild('Industriel', $Industriel);
 $xml->addChild('Code_Industriel', $Code_Industriel);
 $xml->addChild('Num_AT', $Num_AT);
 $Liste_AT_Anciens = $xml->addChild('Liste_AT_Ancien');
-$Liste_AT_Anciens->addChild('Num_AT_Ancien',$Num_AT_Ancien);
+
+$i=0;
+while (isset($Num_AT_Ancien[$i]))
+{
+    $Liste_AT_Anciens->addChild('Num_AT_Ancien',$Num_AT_Ancien[$i]);
+    $i++;
+}
+
 $xml->addChild('Date_Application', $Date_Application);
 $xml->addChild('Date_Fin_Application', $Date_Fin_Application);
 

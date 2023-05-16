@@ -45,9 +45,10 @@
                         <label for="Num_AT">Num_AT:</label></br>
                         <input type='text' name="Num_AT" id="Num_AT" /></br>
 
-                        <label for="Num_AT_Ancien">Num_AT_Anciens : Saisir des numéros séparés par des virgules</label><br/>    
-                        <input type='text' name="Num_AT_Ancien" id="Num_AT_Ancien" /></br>
-
+                        <label for="Num_AT_Ancien">Num_AT_Anciens :</label><br/>    
+                        <input type='text' name="Num_AT_Ancien[]" id="Num_AT_Ancien" /></br>
+                        <div id='NumATAncienField'></div>
+                        <button type='button' href='#'  onclick="addField('Num_AT_Ancien[]')">+</button></br>
 
                         <label for="Date_Application">Date_Application:</label></br>
                         <input type='text' name="Date_Application" id="Date_Application" /></br>
@@ -60,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <input type="submit">
+        <input value='Enregistrer' type="submit">
     </form>
 
 
