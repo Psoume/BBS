@@ -28,16 +28,85 @@ form.addEventListener("submit", function(event) {
 
 /////////////////////////////////////
 
-function addField(field)
+function addField(name,type,lab,id) //crée un input dans un container id
 {
     var input = document.createElement("input");   
-    input.type = "text";
-    input.name = field;
-    var container = document.getElementById("NumATAncienField");
+    var label = document.createElement("label");
+    input.type = type;
+    input.name = name;
+    label.innerHTML = lab;
+    label.htmlFor = name;
+    var container = document.getElementById(id);
+    container.appendChild(label);
+    container.appendChild(input);
+};
+
+function addCheckbox(name,lab,id) //crée un input dans un container id
+{
+    var input = document.createElement("input");   
+    var label = document.createElement("label");
+    input.type = 'checkbox';
+    input.name = name;
+    input.className="form-check-input";
+    label.innerHTML = lab;
+    label.htmlFor = name;
+    label.className = "form-check-label";
+    var container = document.getElementById(id);
+    container.appendChild(label);
     container.appendChild(input);
 };
 
 /////////////////////////////////////
 
-var NbATS = document.getElementById("Xml_File").value;
-console.log(NbATS);
+document.getElementById("NB_AT").value=0;
+
+document.getElementById("NB_AT").onchange = function() {
+
+    var NbAT = document.getElementById("NB_AT").value;
+    var container = document.getElementById("ATS");
+    
+    if(NbAT>container.childElementCount)
+    {
+        var diff = NbAT-container.childElementCount;
+        
+        for (var i=0; i<diff; i++)
+        { 
+            var newDiv = document.createElement("div");
+            newDiv.className='AT';
+            newDiv.id = 'AT'+(parseInt(container.childElementCount)+1);
+            container.appendChild(newDiv);
+            addField("REF_AT",'text','REF_AT',newDiv.id);
+            addField("LIBELLE",'text','LIBELLE',newDiv.id);
+            addField("Type_Avis_Technique",'text','Type_Avis_Technique',newDiv.id);
+            addCheckbox('HYGRO_A','HYGRO_A',newDiv.id);
+            addCheckbox('HYGRO_B1','HYGRO_B1',newDiv.id);
+            addCheckbox('HYGRO_B2','HYGRO_B2',newDiv.id);
+            addCheckbox('GAZ','GAZ',newDiv.id);
+            addField("Presence_EA",'text','Presence_EA',newDiv.id);
+            addCheckbox('Presence_EA_Fixes','Presence_EA_Fixes',newDiv.id);
+            addCheckbox('Presence_EA_Autoreglables','Presence_EA_Autoreglables',newDiv.id);
+            addField("Dp1",'number','Dp1',newDiv.id);
+            addField("Dp2",'number','Dp2',newDiv.id);
+            addField("R_f",'number','R_f',newDiv.id);
+            addCheckbox('Optimisation','Optimisation',newDiv.id);
+            addField("NB_CONFIG",'number','NB_CONFIG',newDiv.id);
+        };   
+    }
+
+    else if (NbAT<container.childElementCount)
+    {
+        var diff = container.childElementCount-NbAT;
+        for (var i=0; i<diff; i++)
+        {
+        var dernierElement = container.lastElementChild;
+
+        if (dernierElement) {
+            container.removeChild(dernierElement);
+            };
+        };
+    }; 
+
+};
+
+
+/////////////////////////////////////

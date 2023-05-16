@@ -48,7 +48,7 @@
                         <label for="Num_AT_Ancien">Num_AT_Anciens :</label><br/>    
                         <input type='text' name="Num_AT_Ancien[]" id="Num_AT_Ancien" /></br>
                         <div id='NumATAncienField'></div>
-                        <button type='button' href='#'  onclick="addField('Num_AT_Ancien[]')">+</button></br>
+                        <button type='button' href='#'  onclick="addField('Num_AT_Ancien[]','text','','NumATAncienField')">+</button></br>
 
                         <label for="Date_Application">Date_Application:</label></br>
                         <input type='text' name="Date_Application" id="Date_Application" /></br>
@@ -56,26 +56,34 @@
                         <input type='text' name="Date_Fin_Application" id="Date_Fin_Application" /></br>
                         <label for="Usage_EA">Usage_EA:</label></br>
                         <input type='text' name="Usage_EA" id="Usage_EA" /></br>
-                        <span>Usages :</span>
+                        <p>Usages :</p>
+                        <label class="form-check-label" for="Individuel">Individuel :</label>
                         <input class="form-check-input" type="checkbox" value="Individuel" name="Individuel">
-                        <label class="form-check-label" for="Individuel">Individuel</label>
-                        <input class="form-check-input" type="checkbox" valueCollectif name="Collectif">
-                        <label class="form-check-label" for="Collectif">Collectif</label>
+                        
+                        <label class="form-check-label" for="Collectif">Collectif :</label>
+                        <input class="form-check-input" type="checkbox" value='Collectif' name="Collectif">
+                        
+                        <label class="form-check-label" for="Hotel">Hotel :</label>
                         <input class="form-check-input" type="checkbox" value="Hotel" name="Hotel">
-                        <label class="form-check-label" for="Hotel">Hotel</label><br/>
-                        <span>Caractéristiques :</span>
+                        <br/>
+
+                        <p>Caractéristiques :</p>
+                        <label class="form-check-label" for="Double_Flux">Double_Flux :</label>
                         <input class="form-check-input" type="checkbox" value="Double_Flux" name="Double_Flux">
-                        <label class="form-check-label" for="Double_Flux">Double_Flux</label>
+                        
+                        <label class="form-check-label" for="Autoreglable">Autoréglable :</label>
                         <input class="form-check-input" type="checkbox" value="Autoreglable" name="Autoreglable">
-                        <label class="form-check-label" for="Autoreglable">Autoréglable</label>
+
+                        <label class="form-check-label" for="Hygroreglable">Hygroréglable :</label>
                         <input class="form-check-input" type="checkbox" value="Hygroreglable" name="Hygroreglable">
-                        <label class="form-check-label" for="Hygroreglable">Hygroréglable</label>
+
+                        <label class="form-check-label" for="Basse_Pression">Basse_Pression :</label>
                         <input class="form-check-input" type="checkbox" value="Basse_Pression" name="Basse_Pression">
-                        <label class="form-check-label" for="Basse_Pression">Basse_Pression</label><br/>
+<br/>
                         <label for="Type_extraction">Type_extraction:</label></br>
                         <input type='text' name="Type_extraction" /></br>
                         <label for="NB_AT">NB_AT:</label></br>
-                        <input type='number' name="NB_AT" /></br>
+                        <input type='number' name="NB_AT" id="NB_AT" /></br>
                     </div>
                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                         <div id='ATS'>

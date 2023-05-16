@@ -11,7 +11,15 @@ $Num_AT_Ancien = $_POST['Num_AT_Ancien']; //!\ Multiple
 $Date_Application = $_POST['Date_Application'];
 $Usage_EA = $_POST['Usage_EA'];
 $Date_Fin_Application = $_POST['Date_Fin_Application'];
-$checkboxesNames=['Collectif', 'Individuel', 'Hotel', 'Double_Flux', 'Autoreglable', 'Hygroreglable', 'Basse_Pression'];
+$Type_extraction = $_POST['Type_extraction'];
+$NB_AT = $_POST['NB_AT'];
+$REF_AT = $_POST['REF_AT'];
+$LIBELLE = $_POST['LIBELLE'];
+$Type_Avis_Technique = $_POST['Type_Avis_Technique'];
+
+$checkboxesNames=['Collectif', 'Individuel', 'Hotel', 'Double_Flux', 'Autoreglable', 'Hygroreglable', 
+'Basse_Pression', 'HYGRO_A', 'HYGRO_B1', 'HYGRO_B2', 'GAZ','Presence_EA_Fixes',
+'Presence_EA_Autoreglables','Optimisation'];
 $checkboxesValues=[];
 foreach($checkboxesNames as $cbn)
 {
@@ -20,8 +28,7 @@ foreach($checkboxesNames as $cbn)
     else{$checkboxesValues[$cbn]='false';}
 }
 
-$Type_extraction = $_POST['Type_extraction'];
-$NB_AT = $_POST['NB_AT'];
+
 
 
 
