@@ -1,30 +1,63 @@
+function chooseXML(at){
+    window.location.href = ("?AT="+at);
+};
+
+
+function loadXML(at){
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', '/TEMP/'+at);
+    xhr.send();
+
+    xhr.onerror = function() {
+        alert("La requête a échouée");
+    };
+    xhr.onload = function(){
+        if (xhr.responseXML != null)
+        {   
+            var xml = xhr.responseXML;
+            console.log(xml.getElementsByTagName('Titre_AT')[0].textContent);
+                // document.getElementById("Titre_AT").value=xml.getElementsByTagName('Titre_AT')[0].textContent;
+                // document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
+                // document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;
+                // document.getElementById("Industriel").value=xml.getElementsByTagName('Industriel')[0].textContent;
+                // document.getElementById("Code_Industriel").value=xml.getElementsByTagName('Code_Industriel')[0].textContent;
+                // document.getElementById("Num_AT").value=xml.getElementsByTagName('Num_AT')[0].textContent; 
+            };
+        }
+
+    };
+    
+
+
+
 //Pre-remplissage des champs si on lui fournit un fichier XML
 
-var form = document.getElementById("XML_Form");
+// var form = document.getElementById("XML_Form");
 
-form.addEventListener("submit", function(event) {
-    event.preventDefault(); 
+// form.addEventListener("submit", function(event) {
+//     event.preventDefault(); 
 
-    var fileInput = document.getElementById("Xml_File");
-    var file = fileInput.files[0];
+//     var fileInput = document.getElementById("Xml_File");
+//     var file = fileInput.files[0];
 
-    if (file) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        var xmlContent = e.target.result;
-        const parser = new DOMParser();
-        xml = parser.parseFromString(xmlContent, "application/xml").documentElement;
-        document.getElementById("Titre_AT").value=xml.getElementsByTagName('Titre_AT')[0].textContent;
-        document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
-        document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;
-        document.getElementById("Industriel").value=xml.getElementsByTagName('Industriel')[0].textContent;
-        document.getElementById("Code_Industriel").value=xml.getElementsByTagName('Code_Industriel')[0].textContent;
-        document.getElementById("Num_AT").value=xml.getElementsByTagName('Num_AT')[0].textContent;
+//     if (file) {
+//     var reader = new FileReader();
+//     reader.onload = function(e) {
+//         var xmlContent = e.target.result;
+//         const parser = new DOMParser();
+//         xml = parser.parseFromString(xmlContent, "application/xml").documentElement;
+//         document.getElementById("Titre_AT").value=xml.getElementsByTagName('Titre_AT')[0].textContent;
+//         document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
+//         document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;
+//         document.getElementById("Industriel").value=xml.getElementsByTagName('Industriel')[0].textContent;
+//         document.getElementById("Code_Industriel").value=xml.getElementsByTagName('Code_Industriel')[0].textContent;
+//         document.getElementById("Num_AT").value=xml.getElementsByTagName('Num_AT')[0].textContent;
 
-        };
-    reader.readAsText(file);
-    }
-});
+//         };
+//     reader.readAsText(file);
+//     }
+// });
 
 /////////////////////////////////////
 
@@ -123,64 +156,64 @@ function addButton(description,onclick,id)
     button.setAttribute("onclick", onclick)
     var container = document.getElementById(id);
     container.appendChild(button);
-}
+};
 
 /////////////////////////////////////
 
-document.getElementById("NB_AT").value=0;
+// document.getElementById("NB_AT").value=0;
 
-document.getElementById("NB_AT").onchange = function() {
+// document.getElementById("NB_AT").onchange = function() {
 
-    var NbAT = document.getElementById("NB_AT").value;
-    var container = document.getElementById("ATS"); // container = id=ATS
+//     var NbAT = document.getElementById("NB_AT").value;
+//     var container = document.getElementById("ATS"); // container = id=ATS
     
-    if(NbAT>container.childElementCount)
-    {
-        var diff = NbAT-container.childElementCount;
+//     if(NbAT>container.childElementCount)
+//     {
+//         var diff = NbAT-container.childElementCount;
         
-        for (var i=0; i<diff; i++)
-        { 
-            var newDiv = document.createElement("div"); //new div = bordure bleue
-            newDiv.className='AT';
-            newDiv.id = 'AT'+(parseInt(container.childElementCount)+1);
-            container.appendChild(newDiv);
-            addField("REF_AT",'text','REF_AT',newDiv.id);
-            addField("LIBELLE",'text','LIBELLE',newDiv.id);
-            addField("Type_Avis_Technique",'text','Type_Avis_Technique',newDiv.id);
-            addCheckbox('HYGRO_A','HYGRO_A',newDiv.id);
-            addCheckbox('HYGRO_B1','HYGRO_B1',newDiv.id);
-            addCheckbox('HYGRO_B2','HYGRO_B2',newDiv.id);
-            addCheckbox('GAZ','GAZ',newDiv.id);
-            addField("Presence_EA",'text','Presence_EA',newDiv.id);
-            addCheckbox('Presence_EA_Fixes','Presence_EA_Fixes',newDiv.id);
-            addCheckbox('Presence_EA_Autoreglables','Presence_EA_Autoreglables',newDiv.id);
-            addField("Dp1",'number','Dp1',newDiv.id);
-            addField("Dp2",'number','Dp2',newDiv.id);
-            addField("R_f",'number','R_f',newDiv.id);
-            addCheckbox('Optimisation','Optimisation',newDiv.id);
-            addField("NB_CONFIG",'number','NB_CONFIG',newDiv.id);
-            var newDivConfig = document.createElement("div"); //newDivConfig = ConfigsAT1
-            newDivConfig.className='Configs';
-            newDivConfig.id='ConfigsAT'+(parseInt(container.childElementCount));
-            newDiv.appendChild(newDivConfig);
-            addButton('+ Ajouter une config','addModal("'+newDivConfig.id+'")',newDiv.id)
-        };   
-    }
+//         for (var i=0; i<diff; i++)
+//         { 
+//             var newDiv = document.createElement("div"); //new div = bordure bleue
+//             newDiv.className='AT';
+//             newDiv.id = 'AT'+(parseInt(container.childElementCount)+1);
+//             container.appendChild(newDiv);
+//             addField("REF_AT",'text','REF_AT',newDiv.id);
+//             addField("LIBELLE",'text','LIBELLE',newDiv.id);
+//             addField("Type_Avis_Technique",'text','Type_Avis_Technique',newDiv.id);
+//             addCheckbox('HYGRO_A','HYGRO_A',newDiv.id);
+//             addCheckbox('HYGRO_B1','HYGRO_B1',newDiv.id);
+//             addCheckbox('HYGRO_B2','HYGRO_B2',newDiv.id);
+//             addCheckbox('GAZ','GAZ',newDiv.id);
+//             addField("Presence_EA",'text','Presence_EA',newDiv.id);
+//             addCheckbox('Presence_EA_Fixes','Presence_EA_Fixes',newDiv.id);
+//             addCheckbox('Presence_EA_Autoreglables','Presence_EA_Autoreglables',newDiv.id);
+//             addField("Dp1",'number','Dp1',newDiv.id);
+//             addField("Dp2",'number','Dp2',newDiv.id);
+//             addField("R_f",'number','R_f',newDiv.id);
+//             addCheckbox('Optimisation','Optimisation',newDiv.id);
+//             addField("NB_CONFIG",'number','NB_CONFIG',newDiv.id);
+//             var newDivConfig = document.createElement("div"); //newDivConfig = ConfigsAT1
+//             newDivConfig.className='Configs';
+//             newDivConfig.id='ConfigsAT'+(parseInt(container.childElementCount));
+//             newDiv.appendChild(newDivConfig);
+//             addButton('+ Ajouter une config','addModal("'+newDivConfig.id+'")',newDiv.id)
+//         };   
+//     }
 
-    else if (NbAT<container.childElementCount)
-    {
-        var diff = container.childElementCount-NbAT;
-        for (var i=0; i<diff; i++)
-        {
-        var dernierElement = container.lastElementChild;
+//     else if (NbAT<container.childElementCount)
+//     {
+//         var diff = container.childElementCount-NbAT;
+//         for (var i=0; i<diff; i++)
+//         {
+//         var dernierElement = container.lastElementChild;
 
-        if (dernierElement) {
-            container.removeChild(dernierElement);
-            };
-        };
-    }; 
+//         if (dernierElement) {
+//             container.removeChild(dernierElement);
+//             };
+//         };
+//     }; 
 
-};
+// };
 
 
 /////////////////////////////////////
