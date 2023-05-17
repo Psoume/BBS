@@ -77,6 +77,8 @@ else{
     echo "<a href='/TEMP/Avis.xml' download='Avis.xml'>Télécharger le fichier XML</a>";
 }
 
+// Nom des fichiers XML : Num_AT
+
 // RAJOUTER UN COMPORTEMENT SI LE FICHIER EXISTE DEJA DANS TEMP
 ?>
 

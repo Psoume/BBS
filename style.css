@@ -37,3 +37,7 @@ input{
 .tab-pane{
     padding: 2em;
 }
+
+.modalConfig{
+    display: inline;
+}

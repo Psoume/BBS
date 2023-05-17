@@ -33,7 +33,7 @@
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                         
                         <label for="Titre_AT">Titre_AT:</label></br>
-                        <input type='text' name="Titre_AT" id="Titre_AT" /></br>
+                        <input type='text' name="Titre_AT" id="Titre_AT" value='titre' /></br>
                         <label for="Titulaire">Titulaire:</label></br>
                         <input type='text' name="Titulaire" id="Titulaire" /></br>
                         <label for="Code_Titulaire">Code_Titulaire:</label></br>
@@ -90,7 +90,30 @@
                         </div>
                         
                         
-                        <?php $config='Config1AT1';include './config.php';?>
+                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                         
                     </div>
                     <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
