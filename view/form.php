@@ -25,7 +25,6 @@
                       </ul>  
                       <!-- ATS CONTENT -->
                       <div class="tab-content" id="at_content">
-                        
                       </div>
                     </div>
                     <!-- EQUIPEMENTS -->

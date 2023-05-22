@@ -28,7 +28,7 @@ function loadXML(at){
             loadFields(xml,'checkbox',['Collectif','Individuel','Hotel'],'list-generalites');
             addText('Caractéristiques :','list-generalites');
             loadFields(xml,'checkbox',['Double_Flux','Autoreglable','Hygroreglable','Basse_Pression'],'list-generalites');
-            addField(xml,'Type_Extraction','text','Type_Extraction','list-generalites')
+            addField(xml,'Type_Extraction','text','Type_Extraction',0,'list-generalites')
             // DEUXIEME PAGE
             loadATS(xml)
                 // document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
@@ -42,16 +42,16 @@ function loadXML(at){
     
 
     function loadFields(xml,type, fields,divId){
-        fields.forEach(element => addField(xml,element,type,element,divId));
+        fields.forEach(element => addField(xml,element,type,element,0,divId));
     }
 
-    function addField(xml,name,type,label,divId) //crée un input dans un container id
+    function addField(xml,name,type,label,position,divId) //crée un input dans un container id
     {
         var lab = document.createElement("label");
         var input = document.createElement("input");  
         
-        if(typeof(xml.getElementsByTagName(name)[0])!=='undefined' && xml.getElementsByTagName(name)[0]!==null)
-            {var value = xml.getElementsByTagName(name)[0].textContent;}
+        if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
+            {var value = xml.getElementsByTagName(name)[position].textContent;}
         else{var value ="";}
 
         input.type = type;
@@ -62,6 +62,9 @@ function loadXML(at){
 
         switch(type){
             case 'text':
+                input.value = value;
+                break;
+            case 'number':
                 input.value = value;
                 break;
             case 'checkbox':
@@ -162,11 +165,12 @@ const referenceNavButton = document.getElementById('addAT'); // bouton + at
 const containerContent = document.getElementById('at_content'); //contenu des ats
 var i = 0;
 while(typeof(xml.getElementsByTagName('AT')[i])!=='undefined' && xml.getElementsByTagName(('AT'))[i]!==null){
+    var AT = xml.getElementsByTagName('AT')[i];
     var index = parseInt(i+1);
     var navItem = document.createElement("li");
     var button = document.createElement("button"); 
     var div = document.createElement("div");
-    // Nav
+    // Nav AT
     navItem.setAttribute('class', 'nav-item');  
     button.id = "at_"+index+"-tab";
     button.type="button";
@@ -178,33 +182,133 @@ while(typeof(xml.getElementsByTagName('AT')[i])!=='undefined' && xml.getElements
     button.setAttribute('aria-selected','true');
     navItem.appendChild(button);
     containerNav.insertBefore(navItem,referenceNavButton);
-    // Content
+    // Content AT
     div.id="at_"+index+"-tab-pane";
     div.setAttribute('class','tab-pane fade');
     div.setAttribute('aria-labelledby','at_'+index+'-tab');
     div.setAttribute('tabindex','0');
     // on ajoute tout le contenu à la div
     containerContent.appendChild(div);
+    addField(xml,'REF_AT','text','REF_AT',i,div.id);
+    addField(xml,'LIBELLE','text','LIBELLE',i,div.id);
+    addField(xml,'Type_Avis_Technique','text','Type_Avis_Technique',i,div.id);
+    addField(xml,'HYGRO_A','checkbox','HYGRO_A',i,div.id);
+    addField(xml,'HYGRO_B1','checkbox','HYGRO_B1',i,div.id);
+    addField(xml,'HYGRO_B2','checkbox','HYGRO_B2',i,div.id);
+    addField(xml,'GAZ','checkbox','GAZ',i,div.id);
+    addText('Type EA :',div.id);
+    addField(xml,'Presence_EA','text','Presence_EA',i,div.id);
+    addField(xml,'Presence_EA_Fixes','checkbox','Presence_EA_Fixes',i,div.id);
+    addField(xml,'Presence_EA_Autoreglables','checkbox','Presence_EA_Autoreglables',i,div.id);
+    addField(xml,'Dp1','number','Dp1',i,div.id);
+    addField(xml,'Dp2','number','Dp2',i,div.id);
+    addField(xml,'R_f','number','R_f',i,div.id);
+    addField(xml,'Optimisation','checkbox','Optimisation',i,div.id);
+    // CONFIGURATIONS
+    var container = document.getElementById(div.id); //ok
+    // NAV CONFIG
+    var navConfig = document.createElement("ul"); 
+    navConfig.id = 'navConfigs_AT'+index;
+    navConfig.setAttribute('class', 'nav nav-pills');
+    // CONTENT CONFIG
+    div = document.createElement('div');
+    div.setAttribute('class', 'tab-content');
+    div.id = ('AT'+index+'configs-content');
+
+    var j = 0; //on itere sur les configs.
+    while(typeof(AT.getElementsByTagName('CONFIG')[j])!=='undefined' && AT.getElementsByTagName(('CONFIG'))[j]!==null)
+        {
+            // NavConfig : items
+            var indexConfig = parseInt(j+1);
+            var itemNavConfig = document.createElement("li");
+            itemNavConfig.setAttribute('class', 'nav-itemm');
+            itemNavConfig.id = "AT"+index+"Config"+indexConfig;
+            var buttonNavConfig = document.createElement("button");
+            buttonNavConfig.setAttribute('class', 'nav-link');
+            buttonNavConfig.setAttribute('data-bs-toggle', 'tab');
+            buttonNavConfig.setAttribute('data-bs-target', '#AT'+index+"Config"+indexConfig+'-tab-pane');
+            buttonNavConfig.setAttribute('aria-controls', 'AT'+index+"Config"+indexConfig+'-tab-pane');
+            buttonNavConfig.setAttribute('aria-selected', 'false');    
+            buttonNavConfig.type = 'button';
+            buttonNavConfig.id = "AT"+index+"Config"+indexConfig+"-tab";
+            buttonNavConfig.innerHTML = "Config"+indexConfig;
+            itemNavConfig.appendChild(buttonNavConfig);
+            navConfig.appendChild(itemNavConfig);
+            
+            // CONFIG : CONTENT
+            
+            config = document.createElement('div'); //formulaire de la config At1Congig1
+            config.id = "AT"+index+"Config"+indexConfig+"-tab-pane";
+            config.setAttribute('class','tab-pane fade');
+            config.setAttribute('aria-labelledby','AT'+index+'Config'+indexConfig+'-tab');
+            config.setAttribute('tabindex',"0");
+            addFormConfig(AT,'Type_Logement','text','Type_Logement',j,config)
+            addFormConfig(AT,'Config_Optimisee','checkbox','Config_Optimisee',j,config)
+            addFormConfig(AT,'Changement_Bouche','checkbox','Changement_Bouche',j,config)
+            addFormConfig(AT,'Singularite_EA','text','Singularite_EA',j,config)
+            addFormConfig(AT,'EA_Fixes','checkbox','EA_Fixes',j,config)
+            addFormConfig(AT,'EA_Autoréglables','checkbox','EA_Autoréglables',j,config)
+            addFormConfig(AT,'Nb_Sdb_WC','number','Nb_Sdb_WC',j,config)            
+            addFormConfig(AT,'Nb_Sdb','number','Nb_Sdb',j,config)            
+            addFormConfig(AT,'Nb_WC','number','Nb_WC',j,config)            
+            addFormConfig(AT,'Nb_Sde','number','Nb_Sde',j,config)   
+            addFormConfig(AT,'Cdep','number','Cdep',j,config) 
+            addFormConfig(AT,'Qv_Rep','number','Qv_Rep',j,config)
+            addFormConfig(AT,'Smea_Existant','number','Smea_Existant',j,config)  
+            addFormConfig(AT,'Module_1','number','Module_1',j,config)  
+            addFormConfig(AT,'Module_2','number','Module_2',j,config)  
+            addFormConfig(AT,'Qsupp_Sdb','number','Qsupp_Sdb',j,config)  
+            addFormConfig(AT,'Qsupp_WC','number','Qsupp_WC',j,config)  
+            addFormConfig(AT,'Qsupp_Sdb_WC','number','Qsupp_Sdb_WC',j,config)  
+            addFormConfig(AT,'Qsupp_Cellier','number','Qsupp_Cellier',j,config)            
+            div.appendChild(config);
+            j++;
+        }  
+
+    container.appendChild(navConfig); 
+    container.appendChild(div); 
     i++;
-    }
+    }//end while
 };
-// function loadConfig(id) 
-// {
-//     // On crée le container pour le modalContent
-//     var container = document.getElementById(id);
-//     // On rajoute le reste du contenu
-//     fetch("config.html")
-//     .then(response => response.text())
-//     .then(contenu => {
-//         container.innerHTML = contenu;
-//         console.log(contenu);
-//     })
-//     .catch(error => {
-//         console.log("Erreur : " + error);
-//     });
-// }
 
+function addFormConfig(xml,name,type,label,position,config){
 
+    if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
+            {var value = xml.getElementsByTagName(name)[position].textContent;}
+    else{var value ="";}
+
+    var lab = document.createElement("label");
+    var input = document.createElement("input");  
+    input.type = type;  
+    input.name = name+'[]';      
+    input.id = name+config.id;
+    lab.innerHTML = label;
+    lab.htmlFor = name;
+    
+    switch(type){
+        case 'text':
+            input.value = value;
+            break;
+        case 'number':
+            input.value = value;
+            break;
+        case 'checkbox':
+            input.value = name;
+            lab.setAttribute('class','form-check-label');
+            input.setAttribute('class','form-check-input');
+            switch(value){
+                case 'true':
+                    input.checked = true;
+                    break;
+                case 'false':
+                    input.checked = false;
+                    break;
+            }
+            break;
+    } 
+    config.appendChild(lab);
+    config.appendChild(input);
+};
 // function addModal(id) // id étant le nom du container dans lequel on crée le bouton modal (ex : ConfigsAT1)
 // {
 //     var container = document.getElementById(id);
