@@ -18,18 +18,14 @@
                     <!-- ATS -->
                     <div class="tab-pane fade" id="list-ats" aria-labelledby="list-ats-list">
                       <!-- ATS NAV -->
-                      <ul class="nav nav-pills">
-                      <li class="nav-item">
-                        <button class="nav-link active" id="at_1-tab" data-bs-toggle="tab" data-bs-target="#at_1-tab-pane" type="button" aria-controls="at_1-tab-pane" aria-selected="true">At_1</button>
-                      </li>
-                      <li class="nav-item">
+                      <ul class="nav nav-pills" id="nav_ats">
+                      <li class="nav-item" id="addAT">
                         <button class="nav-link" id="addAT-tab" data-bs-toggle="tab" data-bs-target="#addAT-tab-pane" type="button" aria-controls="addAT-tab-pane" aria-selected="false">+</button>
                       </li>
                       </ul>  
                       <!-- ATS CONTENT -->
-                      <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="at_1-tab-pane" aria-labelledby="at_1-tab" tabindex="0">...</div>
-                        <div class="tab-pane fade" id="addAT-tab-pane" aria-labelledby="addAT-tab" tabindex="0">...</div>
+                      <div class="tab-content" id="at_content">
+                        
                       </div>
                     </div>
                     <!-- EQUIPEMENTS -->

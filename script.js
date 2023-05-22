@@ -17,16 +17,20 @@ function loadXML(at){
         if (xhr.responseXML != null)
         {   
             var xml = xhr.responseXML; // le fichier XML choisi
-            console.log(xml.getElementsByTagName('Titre_AT')[0].textContent); //comment on accède aux éléments
-            loadFields(xml,'text',['Titre_AT','Titulaire','Code_Titulaire','Industriel','Code_Industriel','Num_AT','Num_AT_Ancien[]'],'list-generalites');
+            // console.log(xml.getElementsByTagName('Titre_AT')[0].textContent); 
+            // PREMIERE PAGE
+            loadFields(xml,'text',['Titre_AT','Titulaire','Code_Titulaire','Industriel','Code_Industriel','Num_AT'],'list-generalites');
+            addArrayField(xml,'Num_AT_Ancien','Num_AT_Ancien','list-generalites');
             addEmptyDiv('NumATAncienField','list-generalites');
             addButton("addEmptyField('Num_AT_Ancien[]','text','NumATAncienField')",'+','list-generalites');
             loadFields(xml,'text',['Date_Application','Date_Fin_Application','Usage_EA'],'list-generalites');
             addText('Usages :','list-generalites');
-            loadFields(xml,'checkbox',['Individuel','Collectif','Hotel'],'list-generalites');
+            loadFields(xml,'checkbox',['Collectif','Individuel','Hotel'],'list-generalites');
             addText('Caractéristiques :','list-generalites');
             loadFields(xml,'checkbox',['Double_Flux','Autoreglable','Hygroreglable','Basse_Pression'],'list-generalites');
-            addField(xml,'Type_extraction','text','Type_extraction','list-generalites')
+            addField(xml,'Type_Extraction','text','Type_Extraction','list-generalites')
+            // DEUXIEME PAGE
+            loadATS(xml)
                 // document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
                 // document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;
                 // document.getElementById("Industriel").value=xml.getElementsByTagName('Industriel')[0].textContent;
@@ -51,7 +55,7 @@ function loadXML(at){
         else{var value ="";}
 
         input.type = type;
-        input.name = name;
+        input.name = name;        
         input.id = name;
         lab.innerHTML = label;
         lab.htmlFor = name;
@@ -61,8 +65,9 @@ function loadXML(at){
                 input.value = value;
                 break;
             case 'checkbox':
-                lab.htmlclass ='form-check-label' ;
-                input.htmlclass = 'form-check-input';
+                input.value = name;
+                lab.setAttribute('class','form-check-label');
+                input.setAttribute('class','form-check-input');
                 switch(value){
                     case 'true':
                         input.checked = true;
@@ -71,20 +76,35 @@ function loadXML(at){
                         input.checked = false;
                         break;
                 }
-                input.value = name;
                 break;
-        }
-        
-        
+        } 
         var container = document.getElementById(divId);
         container.appendChild(lab);
         container.appendChild(input);
     };
 
-    function addEmptyField(name,type,divId) //crée un input dans un container id
+    function addArrayField(xml,name,label,divId)
+    {    
+        var lab = document.createElement("label");
+        lab.innerHTML = label;
+        lab.htmlFor = name;
+        var container = document.getElementById(divId);
+        container.appendChild(lab);
+        var i = 0;
+        while(typeof(xml.getElementsByTagName(name)[i])!=='undefined' && xml.getElementsByTagName(name)[i]!==null){
+            var input = document.createElement("input");
+            input.type = 'text';
+            input.name = name+'[]';
+            input.id = name;
+            input.value = xml.getElementsByTagName(name)[i].textContent; ; 
+            container.appendChild(input);  
+            i++;
+        }
+    };
+
+    function addEmptyField(name,type,divId)
     {
         var input = document.createElement("input");   
-
         input.type = type;
         input.name = name;
         input.id = name;
@@ -134,7 +154,40 @@ function addCheckbox(name,lab,id) //crée un input dans un container id
     container.appendChild(input);
 };
 
+// ATS
 
+function loadATS(xml){
+const containerNav = document.getElementById('nav_ats'); //navbar des ats
+const referenceNavButton = document.getElementById('addAT'); // bouton + at
+const containerContent = document.getElementById('at_content'); //contenu des ats
+var i = 0;
+while(typeof(xml.getElementsByTagName('AT')[i])!=='undefined' && xml.getElementsByTagName(('AT'))[i]!==null){
+    var index = parseInt(i+1);
+    var navItem = document.createElement("li");
+    var button = document.createElement("button"); 
+    var div = document.createElement("div");
+    // Nav
+    navItem.setAttribute('class', 'nav-item');  
+    button.id = "at_"+index+"-tab";
+    button.type="button";
+    button.innerHTML = "At_"+index;
+    button.setAttribute('class', 'nav-link');
+    button.setAttribute('data-bs-toggle','tab');
+    button.setAttribute('data-bs-target',"#at_"+index+"-tab-pane");
+    button.setAttribute('aria-controls',"at_"+index+"-tab-pane");
+    button.setAttribute('aria-selected','true');
+    navItem.appendChild(button);
+    containerNav.insertBefore(navItem,referenceNavButton);
+    // Content
+    div.id="at_"+index+"-tab-pane";
+    div.setAttribute('class','tab-pane fade');
+    div.setAttribute('aria-labelledby','at_'+index+'-tab');
+    div.setAttribute('tabindex','0');
+    // on ajoute tout le contenu à la div
+    containerContent.appendChild(div);
+    i++;
+    }
+};
 // function loadConfig(id) 
 // {
 //     // On crée le container pour le modalContent
