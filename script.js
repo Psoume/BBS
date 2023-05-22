@@ -30,12 +30,7 @@ function loadXML(at){
             loadFields(xml,'checkbox',['Double_Flux','Autoreglable','Hygroreglable','Basse_Pression'],'list-generalites');
             addField(xml,'Type_Extraction','text','Type_Extraction',0,'list-generalites')
             // DEUXIEME PAGE
-            loadATS(xml)
-                // document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
-                // document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;
-                // document.getElementById("Industriel").value=xml.getElementsByTagName('Industriel')[0].textContent;
-                // document.getElementById("Code_Industriel").value=xml.getElementsByTagName('Code_Industriel')[0].textContent;
-                // document.getElementById("Num_AT").value=xml.getElementsByTagName('Num_AT')[0].textContent; 
+            loadATS(xml);
             };
         }
     };
@@ -242,25 +237,14 @@ while(typeof(xml.getElementsByTagName('AT')[i])!=='undefined' && xml.getElements
             config.setAttribute('class','tab-pane fade');
             config.setAttribute('aria-labelledby','AT'+index+'Config'+indexConfig+'-tab');
             config.setAttribute('tabindex',"0");
-            addFormConfig(AT,'Type_Logement','text','Type_Logement',j,config)
-            addFormConfig(AT,'Config_Optimisee','checkbox','Config_Optimisee',j,config)
-            addFormConfig(AT,'Changement_Bouche','checkbox','Changement_Bouche',j,config)
-            addFormConfig(AT,'Singularite_EA','text','Singularite_EA',j,config)
-            addFormConfig(AT,'EA_Fixes','checkbox','EA_Fixes',j,config)
-            addFormConfig(AT,'EA_Autoréglables','checkbox','EA_Autoréglables',j,config)
-            addFormConfig(AT,'Nb_Sdb_WC','number','Nb_Sdb_WC',j,config)            
-            addFormConfig(AT,'Nb_Sdb','number','Nb_Sdb',j,config)            
-            addFormConfig(AT,'Nb_WC','number','Nb_WC',j,config)            
-            addFormConfig(AT,'Nb_Sde','number','Nb_Sde',j,config)   
-            addFormConfig(AT,'Cdep','number','Cdep',j,config) 
-            addFormConfig(AT,'Qv_Rep','number','Qv_Rep',j,config)
-            addFormConfig(AT,'Smea_Existant','number','Smea_Existant',j,config)  
-            addFormConfig(AT,'Module_1','number','Module_1',j,config)  
-            addFormConfig(AT,'Module_2','number','Module_2',j,config)  
-            addFormConfig(AT,'Qsupp_Sdb','number','Qsupp_Sdb',j,config)  
-            addFormConfig(AT,'Qsupp_WC','number','Qsupp_WC',j,config)  
-            addFormConfig(AT,'Qsupp_Sdb_WC','number','Qsupp_Sdb_WC',j,config)  
-            addFormConfig(AT,'Qsupp_Cellier','number','Qsupp_Cellier',j,config)            
+            
+            addFormConfig(AT,'Type_Logement','text','Type_Logement',j,config);
+            addFormConfig(AT,'Config_Optimisee','checkbox','Config_Optimisee',j,config);
+            addFormConfig(AT,'Changement_Bouche','checkbox','Changement_Bouche',j,config);
+            addFormConfig(AT,'Singularite_EA','text','Singularite_EA',j,config);
+            addFormConfig(AT,'EA_Fixes','checkbox','EA_Fixes',j,config);
+            addFormConfig(AT,'EA_Autoréglables','checkbox','EA_Autoréglables',j,config);
+            loadFormConfig(AT,'number',['Nb_Sdb_WC', 'Nb_Sdb', 'Nb_WC', 'Nb_Sde','Cdep', 'Cdep', 'Qv_Rep', 'Smea_Existant', 'Module_1', 'Module_2', 'Qsupp_Sdb', 'Qsupp_WC', 'Qsupp_Sdb_WC', 'Qsupp_Cellier'],j,config);         
             div.appendChild(config);
             j++;
         }  
@@ -270,6 +254,11 @@ while(typeof(xml.getElementsByTagName('AT')[i])!=='undefined' && xml.getElements
     i++;
     }//end while
 };
+
+function loadFormConfig(xml,type, fields,position,config){
+    fields.forEach(element => addFormConfig(xml,element,type,element,position,config));
+};
+
 
 function addFormConfig(xml,name,type,label,position,config){
 
@@ -309,131 +298,3 @@ function addFormConfig(xml,name,type,label,position,config){
     config.appendChild(lab);
     config.appendChild(input);
 };
-// function addModal(id) // id étant le nom du container dans lequel on crée le bouton modal (ex : ConfigsAT1)
-// {
-//     var container = document.getElementById(id);
-//     var NbrConfigs = container.childElementCount+1;
-
-//     // On crée la div ConfigsAT1_1
-//     var newDiv = document.createElement("div");
-//     var newDivId = id+"_"+NbrConfigs; //newDivId = ConfigsAT1_1
-//     newDiv.className = "modalConfig";
-//     newDiv.id = newDivId;
-//     container.appendChild(newDiv);
-
-//     // On crée le bouton dans ConfigsAT1_1
-//     var button = document.createElement("button"); 
-//     button.type = "button";
-//     button.innerHTML = "Config"+NbrConfigs;
-//     button.className = "btn btn-primary";
-//     button.setAttribute("data-bs-toggle", "modal");
-//     button.setAttribute("data-bs-target", "#Modal_"+newDivId );
-//     newDiv.appendChild(button);
-
-//     // On crée le modal à la suite du bouton
-//     // On crée d'abord la div qui va contenir le modal
-
-//     var divModalContent = document.createElement("div");
-//     divModalContent.className = "modal fade";
-//     divModalContent.id = "Modal_"+newDivId;
-//     divModalContent.setAttribute("tabindex","-1");
-//     divModalContent.setAttribute("aria-labelledby","Modal_"+newDivId+"Label");
-//     divModalContent.setAttribute("aria-hidden","true");
-//     newDiv.appendChild(divModalContent);
-//     newDivModal = document.createElement("div");
-
-
-//     loadConfig("Modal_"+newDivId);
-//     // D'abord on charge le modal puis on modifie le contenu
-
-    
-// };
-
-
-
-/////////////////////////////////////
-
-// document.getElementById("NB_AT").value=0;
-
-// document.getElementById("NB_AT").onchange = function() {
-
-//     var NbAT = document.getElementById("NB_AT").value;
-//     var container = document.getElementById("ATS"); // container = id=ATS
-    
-//     if(NbAT>container.childElementCount)
-//     {
-//         var diff = NbAT-container.childElementCount;
-        
-//         for (var i=0; i<diff; i++)
-//         { 
-//             var newDiv = document.createElement("div"); //new div = bordure bleue
-//             newDiv.className='AT';
-//             newDiv.id = 'AT'+(parseInt(container.childElementCount)+1);
-//             container.appendChild(newDiv);
-//             addField("REF_AT",'text','REF_AT',newDiv.id);
-//             addField("LIBELLE",'text','LIBELLE',newDiv.id);
-//             addField("Type_Avis_Technique",'text','Type_Avis_Technique',newDiv.id);
-//             addCheckbox('HYGRO_A','HYGRO_A',newDiv.id);
-//             addCheckbox('HYGRO_B1','HYGRO_B1',newDiv.id);
-//             addCheckbox('HYGRO_B2','HYGRO_B2',newDiv.id);
-//             addCheckbox('GAZ','GAZ',newDiv.id);
-//             addField("Presence_EA",'text','Presence_EA',newDiv.id);
-//             addCheckbox('Presence_EA_Fixes','Presence_EA_Fixes',newDiv.id);
-//             addCheckbox('Presence_EA_Autoreglables','Presence_EA_Autoreglables',newDiv.id);
-//             addField("Dp1",'number','Dp1',newDiv.id);
-//             addField("Dp2",'number','Dp2',newDiv.id);
-//             addField("R_f",'number','R_f',newDiv.id);
-//             addCheckbox('Optimisation','Optimisation',newDiv.id);
-//             addField("NB_CONFIG",'number','NB_CONFIG',newDiv.id);
-//             var newDivConfig = document.createElement("div"); //newDivConfig = ConfigsAT1
-//             newDivConfig.className='Configs';
-//             newDivConfig.id='ConfigsAT'+(parseInt(container.childElementCount));
-//             newDiv.appendChild(newDivConfig);
-//             addButton('+ Ajouter une config','addModal("'+newDivConfig.id+'")',newDiv.id)
-//         };   
-//     }
-
-//     else if (NbAT<container.childElementCount)
-//     {
-//         var diff = container.childElementCount-NbAT;
-//         for (var i=0; i<diff; i++)
-//         {
-//         var dernierElement = container.lastElementChild;
-
-//         if (dernierElement) {
-//             container.removeChild(dernierElement);
-//             };
-//         };
-//     }; 
-
-// };
-
-
-/////////////////////////////////////
-//Pre-remplissage des champs si on lui fournit un fichier XML
-
-// var form = document.getElementById("XML_Form");
-
-// form.addEventListener("submit", function(event) {
-//     event.preventDefault(); 
-
-//     var fileInput = document.getElementById("Xml_File");
-//     var file = fileInput.files[0];
-
-//     if (file) {
-//     var reader = new FileReader();
-//     reader.onload = function(e) {
-//         var xmlContent = e.target.result;
-//         const parser = new DOMParser();
-//         xml = parser.parseFromString(xmlContent, "application/xml").documentElement;
-//         document.getElementById("Titre_AT").value=xml.getElementsByTagName('Titre_AT')[0].textContent;
-//         document.getElementById("Titulaire").value=xml.getElementsByTagName('Titulaire')[0].textContent;
-//         document.getElementById("Code_Titulaire").value=xml.getElementsByTagName('Code_Titulaire')[0].textContent;
-//         document.getElementById("Industriel").value=xml.getElementsByTagName('Industriel')[0].textContent;
-//         document.getElementById("Code_Industriel").value=xml.getElementsByTagName('Code_Industriel')[0].textContent;
-//         document.getElementById("Num_AT").value=xml.getElementsByTagName('Num_AT')[0].textContent;
-
-//         };
-//     reader.readAsText(file);
-//     }
-// });
