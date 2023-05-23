@@ -11,19 +11,33 @@
 
 .nav { 
     grid-area: nav; 
+    max-width: 100%;
 }
 
 .content { 
     grid-area: content; 
+    max-width: inherit;
 }
 
 
-input[type='text']{
+input[type='text'],input[type='number']{
     display: block;
 }
-
 
 .AT{
     border: 1px solid var(--bs-blue);
     margin-bottom: 1em;
 }
+
+
+
+#table_bouches input,#table_entrees input,#table_extracteurs input #table_solutions input{
+    max-width: 5vw;
+    display: inline;
+}
+
+/* #table_entrees input{
+    max-width: 5vw;
+    display: inline;
+} */
+

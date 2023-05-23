@@ -1,6 +1,29 @@
+
 // Choix du fichier XML parmi ceux disponibles + chargement
 function chooseXML(at){
     window.location.href = ("?AT="+at);
+};
+
+function createXML(){
+
+    var name = document.getElementById('XML_name').value;
+    if (name.slice(-4)!=='.xml')
+    {
+        name = name+'.xml'; 
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', 'createXML.php?name='+name);
+    xhr.send();
+    xhr.onerror = function() 
+    {
+        alert("La requête a échouée");
+    };
+    xhr.onload = function()
+    {
+        chooseXML(name)
+    }
+    
 };
 
 
@@ -14,30 +37,32 @@ function loadXML(at){
         alert("La requête a échouée");
     };
     xhr.onload = function(){
-        if (xhr.responseXML != null)
-        {   
-            var xml = xhr.responseXML; // le fichier XML choisi
-            
-            // PREMIERE PAGE
-            loadFields(xml,'text',['Titre_AT','Titulaire','Code_Titulaire','Industriel','Code_Industriel','Num_AT'],'list-generalites');
-            addEmptyDiv('NumATAncienField','list-generalites');
-            addArrayField(xml,'Num_AT_Ancien','Num_AT_Ancien','NumATAncienField');
-            
-            addButton("addEmptyField('Num_AT_Ancien','text','NumATAncienField')",'+','list-generalites');
-            loadFields(xml,'text',['Date_Application','Date_Fin_Application','Usage_EA'],'list-generalites');
-            addText('Usages :','list-generalites');
-            loadFields(xml,'checkbox',['Collectif','Individuel','Hotel'],'list-generalites');
-            addText('Caractéristiques :','list-generalites');
-            loadFields(xml,'checkbox',['Double_Flux','Autoreglable','Hygroreglable','Basse_Pression'],'list-generalites');
-            addField(xml,'Type_Extraction','text','Type_Extraction',0,'list-generalites')
-            // DEUXIEME PAGE
-            loadATS(xml);
-            };
-        }
-    };
+    if (xhr.responseXML != null)
+    {   
+        var xml = xhr.responseXML; // le fichier XML choisi
+        
+        // PREMIERE PAGE
+        loadFields(xml,'text',['Titre_AT','Titulaire','Code_Titulaire','Industriel','Code_Industriel','Num_AT'],'list-generalites');
+        addEmptyDiv('NumATAncienField','list-generalites');
+        addArrayField(xml,'Num_AT_Ancien','Num_AT_Ancien','NumATAncienField');
+        
+        addButton("addEmptyField('Num_AT_Ancien','text','NumATAncienField')",'+','list-generalites');
+        loadFields(xml,'text',['Date_Application','Date_Fin_Application','Usage_EA'],'list-generalites');
+        addText('Usages :','list-generalites');
+        loadFields(xml,'checkbox',['Collectif','Individuel','Hotel'],'list-generalites');
+        addText('Caractéristiques :','list-generalites');
+        loadFields(xml,'checkbox',['Double_Flux','Autoreglable','Hygroreglable','Basse_Pression'],'list-generalites');
+        addField(xml,'Type_Extraction','text','Type_Extraction',0,'list-generalites')
+        // DEUXIEME PAGE
+        loadATS(xml);
+        // TROISIEME PAGE
+        loadEquipements(xml);
+        };
+    }
+};
     
 
-// ATS
+// DEUXIEME PAGE : ATS
 function loadATS(xml){
     const containerNav = document.getElementById('nav_ats'); //navbar des ats
     const referenceNavButton = document.getElementById('addAT'); // bouton + at
@@ -89,236 +114,241 @@ function loadATS(xml){
     
         var j = 0; //on itere sur les configs.
         while(typeof(AT.getElementsByTagName('CONFIG')[j])!=='undefined' && AT.getElementsByTagName(('CONFIG'))[j]!==null)
-            {
-                var configXML = AT.getElementsByTagName('CONFIG')[j];
-                // NavConfig : items
-                var indexConfig = parseInt(j+1);
-                var itemNavConfig = document.createElement("li");
-                itemNavConfig.setAttribute('class', 'nav-itemm');
-                itemNavConfig.id = "AT"+index+"Config"+indexConfig;
-                var buttonNavConfig = document.createElement("button");
-                buttonNavConfig.setAttribute('class', 'nav-link');
-                buttonNavConfig.setAttribute('data-bs-toggle', 'tab');
-                buttonNavConfig.setAttribute('data-bs-target', '#AT'+index+"Config"+indexConfig+'-tab-pane');
-                buttonNavConfig.setAttribute('aria-controls', 'AT'+index+"Config"+indexConfig+'-tab-pane');
-                buttonNavConfig.setAttribute('aria-selected', 'false');    
-                buttonNavConfig.type = 'button';
-                buttonNavConfig.id = "AT"+index+"Config"+indexConfig+"-tab";
-                buttonNavConfig.innerHTML = "Config"+indexConfig;
-                itemNavConfig.appendChild(buttonNavConfig);
-                navConfig.appendChild(itemNavConfig);
-                
-                // CONFIG : CONTENT
-                
-                config = document.createElement('div'); //formulaire de la config At1Config1
-                config.id = "AT"+index+"Config"+indexConfig+"-tab-pane";
-                config.setAttribute('class','tab-pane fade');
-                config.setAttribute('aria-labelledby','AT'+index+'Config'+indexConfig+'-tab');
-                config.setAttribute('tabindex',"0");
-                
-                addFieldConfig(AT,'Type_Logement','text','Type_Logement',j,config);
-                loadFieldsConfig(AT,'checkbox',['Config_Optimisee','Changement_Bouche'],j,config);  
-                addFieldConfig(AT,'Singularite_EA','text','Singularite_EA',j,config);
-                loadFieldsConfig(AT,'checkbox',['EA_Fixes','EA_Autoréglables'],j,config);         
-                loadFieldsConfig(AT,'number',['Nb_Sdb_WC', 'Nb_Sdb', 'Nb_WC', 'Nb_Sde'],j,config);  
-                loadFieldsConfig(AT,'number',['Qv_Rep', 'Smea_Existant', 'Module_1', 'Module_2', 'Qsupp_Sdb', 'Qsupp_WC', 'Qsupp_Sdb_WC', 'Qsupp_Cellier'],j,config);         
-                div.appendChild(config);
-                addTableConfig(configXML,"AT"+index+"Config"+indexConfig);
-                j++;
-            }  
-    
+        {
+            var configXML = AT.getElementsByTagName('CONFIG')[j];
+            // NavConfig : items
+            var indexConfig = parseInt(j+1);
+            var itemNavConfig = document.createElement("li");
+            itemNavConfig.setAttribute('class', 'nav-itemm');
+            itemNavConfig.id = "AT"+index+"Config"+indexConfig;
+            var buttonNavConfig = document.createElement("button");
+            buttonNavConfig.setAttribute('class', 'nav-link');
+            buttonNavConfig.setAttribute('data-bs-toggle', 'tab');
+            buttonNavConfig.setAttribute('data-bs-target', '#AT'+index+"Config"+indexConfig+'-tab-pane');
+            buttonNavConfig.setAttribute('aria-controls', 'AT'+index+"Config"+indexConfig+'-tab-pane');
+            buttonNavConfig.setAttribute('aria-selected', 'false');    
+            buttonNavConfig.type = 'button';
+            buttonNavConfig.id = "AT"+index+"Config"+indexConfig+"-tab";
+            buttonNavConfig.innerHTML = "Config"+indexConfig;
+            itemNavConfig.appendChild(buttonNavConfig);
+            navConfig.appendChild(itemNavConfig);
+            
+            // CONFIG : CONTENT
+            
+            config = document.createElement('div'); //formulaire de la config At1Config1
+            config.id = "AT"+index+"Config"+indexConfig+"-tab-pane";
+            config.setAttribute('class','tab-pane fade');
+            config.setAttribute('aria-labelledby','AT'+index+'Config'+indexConfig+'-tab');
+            config.setAttribute('tabindex',"0");
+            
+            addFieldConfig(AT,'Type_Logement','text','Type_Logement',j,config);
+            loadFieldsConfig(AT,'checkbox',['Config_Optimisee','Changement_Bouche'],j,config);  
+            addFieldConfig(AT,'Singularite_EA','text','Singularite_EA',j,config);
+            loadFieldsConfig(AT,'checkbox',['EA_Fixes','EA_Autoréglables'],j,config);         
+            loadFieldsConfig(AT,'number',['Nb_Sdb_WC', 'Nb_Sdb', 'Nb_WC', 'Nb_Sde'],j,config);  
+            loadFieldsConfig(AT,'number',['Qv_Rep', 'Smea_Existant', 'Module_1', 'Module_2', 'Qsupp_Sdb', 'Qsupp_WC', 'Qsupp_Sdb_WC', 'Qsupp_Cellier'],j,config);         
+            div.appendChild(config);
+            addTableConfig(configXML,"AT"+index+"Config"+indexConfig);
+            j++;
+        }  
         container.appendChild(navConfig); 
         container.appendChild(div); 
         i++;
-        }//end while
-    };
+    }//end while
+};
 
-    function loadFields(xml,type, fields,divId){
-        fields.forEach(element => addField(xml,element,type,element,0,divId));
+// TROISIEME PAGE : EQUIPEMENTS
+function loadEquipements(xml)
+{
+    const eqpmts = xml.getElementsByTagName('Equipements')[0];
+    const bouches = eqpmts.getElementsByTagName('Bouches');
+    const entrees = eqpmts.getElementsByTagName('Entrees');
+    const solutions = eqpmts.getElementsByTagName('Solutions');
+    const extracteurs = eqpmts.getElementsByTagName('Extracteurs');
+
+    const containerNav = document.getElementById('nav_eqpmt'); //navbar des ats
+    const containerContent = document.getElementById('eqpmt_content'); //contenu des ats
+
+
+};
+
+
+function loadFields(xml,type, fields,divId){
+    fields.forEach(element => addField(xml,element,type,element,0,divId));
     }
 
-    function addField(xml,name,type,label,position,divId) //crée un input dans un container id
-    {
-        var lab = document.createElement("label");
-        var input = document.createElement("input");  
-        
-        if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
+ function addField(xml,name,type,label,position,divId){ //crée un input dans un container id
+    var lab = document.createElement("label");
+    var input = document.createElement("input");  
+    
+    if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
+        {var value = xml.getElementsByTagName(name)[position].textContent;}
+    else{var value ="";}
+
+    input.type = type;
+    input.name = name;        
+    input.id = name;
+    lab.innerHTML = label;
+    lab.htmlFor = name;
+
+    switch(type){
+        case 'text':
+            input.value = value;
+            break;
+        case 'number':
+            input.value = value;
+            break;
+        case 'checkbox':
+            input.value = name;
+            lab.setAttribute('class','form-check-label');
+            input.setAttribute('class','form-check-input');
+            switch(value){
+                case 'true':
+                    input.checked = true;
+                    break;
+                case 'false':
+                    input.checked = false;
+                    break;
+            }
+            break;
+    } 
+    var container = document.getElementById(divId);
+    container.appendChild(lab);
+    container.appendChild(input);
+};
+
+
+function loadFieldsAT(xml,type, fields,position,div){
+    fields.forEach(element => addFieldAT(xml,element,type,element,position,div));
+};
+    
+    
+function addFieldAT(xml,name,type,label,position,div){
+
+    if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
             {var value = xml.getElementsByTagName(name)[position].textContent;}
-        else{var value ="";}
+    else{var value ="";}
 
-        input.type = type;
-        input.name = name;        
-        input.id = name;
-        lab.innerHTML = label;
-        lab.htmlFor = name;
+    var lab = document.createElement("label");
+    var input = document.createElement("input");  
+    input.type = type;  
+    input.name = name+'_AT'+parseInt(position+1);      
+    input.id = name+'_AT'+parseInt(position+1);
+    lab.innerHTML = label;
+    lab.htmlFor = name;
+    
+    switch(type){
+        case 'text':
+            input.value = value;
+            break;
+        case 'number':
+            input.value = value;
+            break;
+        case 'checkbox':
+            input.value = name;
+            lab.setAttribute('class','form-check-label');
+            input.setAttribute('class','form-check-input');
+            switch(value){
+                case 'true':
+                    input.checked = true;
+                    break;
+                case 'false':
+                    input.checked = false;
+                    break;
+            }
+            break;
+    } 
+    div.appendChild(lab);
+    div.appendChild(input);
+};
 
-        switch(type){
-            case 'text':
-                input.value = value;
-                break;
-            case 'number':
-                input.value = value;
-                break;
-            case 'checkbox':
-                input.value = name;
-                lab.setAttribute('class','form-check-label');
-                input.setAttribute('class','form-check-input');
-                switch(value){
-                    case 'true':
-                        input.checked = true;
-                        break;
-                    case 'false':
-                        input.checked = false;
-                        break;
-                }
-                break;
-        } 
-        var container = document.getElementById(divId);
-        container.appendChild(lab);
-        container.appendChild(input);
-    };
+function loadFieldsConfig(xml,type, fields,position,config){
+    fields.forEach(element => addFieldConfig(xml,element,type,element,position,config));
+};
 
 
-    
-    // ADD MAIN FIELDS
+function addFieldConfig(xml,name,type,label,position,config){
 
-    function loadFieldsAT(xml,type, fields,position,div){
-        fields.forEach(element => addFieldAT(xml,element,type,element,position,div));
-    };
-    
-    
-    function addFieldAT(xml,name,type,label,position,div){
-    
-        if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
-                {var value = xml.getElementsByTagName(name)[position].textContent;}
-        else{var value ="";}
-    
-        var lab = document.createElement("label");
-        var input = document.createElement("input");  
-        input.type = type;  
-        input.name = name+'_AT'+parseInt(position+1);      
-        input.id = name+'_AT'+parseInt(position+1);
-        lab.innerHTML = label;
-        lab.htmlFor = name;
-        
-        switch(type){
-            case 'text':
-                input.value = value;
-                break;
-            case 'number':
-                input.value = value;
-                break;
-            case 'checkbox':
-                input.value = name;
-                lab.setAttribute('class','form-check-label');
-                input.setAttribute('class','form-check-input');
-                switch(value){
-                    case 'true':
-                        input.checked = true;
-                        break;
-                    case 'false':
-                        input.checked = false;
-                        break;
-                }
-                break;
-        } 
-        div.appendChild(lab);
-        div.appendChild(input);
-    };
+    if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
+            {var value = xml.getElementsByTagName(name)[position].textContent;}
+    else{var value ="";}
 
-    function loadFieldsConfig(xml,type, fields,position,config){
-        fields.forEach(element => addFieldConfig(xml,element,type,element,position,config));
-    };
+    var lab = document.createElement("label");
+    var input = document.createElement("input");  
+    input.type = type;  
+    input.name = (name+'_'+config.id).replace('-tab-pane','');     
+    input.id = (name+'_'+config.id).replace('-tab-pane','');
+    lab.innerHTML = label;
+    lab.htmlFor = name;
     
-    
-    function addFieldConfig(xml,name,type,label,position,config){
-    
-        if(typeof(xml.getElementsByTagName(name)[position])!=='undefined' && xml.getElementsByTagName(name)[position]!==null)
-                {var value = xml.getElementsByTagName(name)[position].textContent;}
-        else{var value ="";}
-    
-        var lab = document.createElement("label");
-        var input = document.createElement("input");  
-        input.type = type;  
-        input.name = (name+'_'+config.id).replace('-tab-pane','');     
-        input.id = (name+'_'+config.id).replace('-tab-pane','');
-        lab.innerHTML = label;
-        lab.htmlFor = name;
-        
-        switch(type){
-            case 'text':
-                input.value = value;
-                break;
-            case 'number':
-                input.value = value;
-                break;
-            case 'checkbox':
-                input.value = name;
-                lab.setAttribute('class','form-check-label');
-                input.setAttribute('class','form-check-input');
-                switch(value){
-                    case 'true':
-                        input.checked = true;
-                        break;
-                    case 'false':
-                        input.checked = false;
-                        break;
-                }
-                break;
-        } 
-        config.appendChild(lab);
-        config.appendChild(input);
-    };
-
-// END MAIN ADD FIELDS
-
-    function addArrayField(xml,name,label,divId)
-    {    
-        var lab = document.createElement("label");
-        lab.innerHTML = label;
-        lab.htmlFor = name;
-        var container = document.getElementById(divId);
-        container.appendChild(lab);
-        var i = 0;
-        while(typeof(xml.getElementsByTagName(name)[i])!=='undefined' && xml.getElementsByTagName(name)[i]!==null){
-            var input = document.createElement("input");
-            input.type = 'text';
-            input.name = name+'_'+parseInt(i+1);
-            input.id = name+'_'+parseInt(i+1);
-            input.value = xml.getElementsByTagName(name)[i].textContent; ; 
-            container.appendChild(input);  
-            i++;
-        }
-    };
-
-    function addEmptyField(name,type,divId) // sert notamment pour Num_AT_Ancien
-    {
-        var container = document.getElementById(divId);
+    switch(type){
+        case 'text':
+            input.value = value;
+            break;
+        case 'number':
+            input.value = value;
+            break;
+        case 'checkbox':
+            input.value = name;
+            lab.setAttribute('class','form-check-label');
+            input.setAttribute('class','form-check-input');
+            switch(value){
+                case 'true':
+                    input.checked = true;
+                    break;
+                case 'false':
+                    input.checked = false;
+                    break;
+            }
+            break;
+    } 
+    config.appendChild(lab);
+    config.appendChild(input);
+};
+function addArrayField(xml,name,label,divId)
+{    
+    var lab = document.createElement("label");
+    lab.innerHTML = label;
+    lab.htmlFor = name;
+    var container = document.getElementById(divId);
+    container.appendChild(lab);
+    var i = 0;
+    while(typeof(xml.getElementsByTagName(name)[i])!=='undefined' && xml.getElementsByTagName(name)[i]!==null){
         var input = document.createElement("input");
-        index = container.children.length;  
-        input.type = type;
-        input.name = name+'_'+index;
-        input.id = name+'_'+index;
-        
-        container.appendChild(input);
-    };
+        input.type = 'text';
+        input.name = name+'_'+parseInt(i+1);
+        input.id = name+'_'+parseInt(i+1);
+        input.value = xml.getElementsByTagName(name)[i].textContent; ; 
+        container.appendChild(input);  
+        i++;
+    }
+};
+function addEmptyField(name,type,divId) // sert notamment pour Num_AT_Ancien
+{
+    var container = document.getElementById(divId);
+    var input = document.createElement("input");
+    index = container.children.length;  
+    input.type = type;
+    input.name = name+'_'+index;
+    input.id = name+'_'+index;
     
-    function addEmptyDiv(id,divId){
-        var div = document.createElement("div"); 
-        div.id = id;
-        var container = document.getElementById(divId);
-        container.appendChild(div);
-    };
+    container.appendChild(input);
+};
 
-    function addText(content,divId){
-        var p = document.createElement('p');
-        var text = document.createTextNode(content);
-        p.appendChild(text);
-        var container = document.getElementById(divId);
-        container.appendChild(p);
-    };
-
-    function addButton(onclick,content,divId)
+function addEmptyDiv(id,divId){
+    var div = document.createElement("div"); 
+    div.id = id;
+    var container = document.getElementById(divId);
+    container.appendChild(div);
+};
+function addText(content,divId){
+    var p = document.createElement('p');
+    var text = document.createTextNode(content);
+    p.appendChild(text);
+    var container = document.getElementById(divId);
+    container.appendChild(p);
+};
+function addButton(onclick,content,divId)
 {
     var button = document.createElement("button"); 
     button.type = "button";
