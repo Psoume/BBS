@@ -233,6 +233,7 @@ function addField(xml,nameXML,nameHTML,type,label,position,div,unite){
             break;
         case 'number':
             input.value = value;
+            input.setAttribute('step','any');
             break;
         case 'checkbox':
             input.value = nameXML;
@@ -260,8 +261,7 @@ function loadFieldsAT(xml,type, fields,position,div,unite){
     
 function addFieldAT(xml,nameXML,nameHTML,type,label,position,div,unite)
 {
-    nameHTML = nameHTML+'_AT'+parseInt(position+1);      
-    nameHTML = nameHTML+'_AT'+parseInt(position+1);
+    nameHTML = 'AT'+parseInt(position+1)+'_'+nameHTML;
     addField(xml,nameXML,nameHTML,type,label,position,div,unite);
 };
 
@@ -271,8 +271,7 @@ function loadFieldsConfig(xml,type, fields,position,div,unite){
 
 function addFieldConfig(xml,nameXML,nameHTML,type,label,position,div,unite){
 
-    nameHTML = (nameHTML+'_'+div.id).replace('-tab-pane','');      
-    nameHTML = (nameHTML+'_'+div.id).replace('-tab-pane','');
+    nameHTML = (div.id+'_'+nameHTML).replace('-tab-pane','');      
     addField(xml,nameXML,nameHTML,type,label,position,div,unite);
 };
 
@@ -294,14 +293,14 @@ function addArrayField(xml,name,label,divId)
         i++;
     }
 };
-function addEmptyField(name,type,container) // sert notamment pour Num_AT_Ancien
+function addEmptyField(name,type,containerId) // sert notamment pour Num_AT_Ancien
 {
+    var container = document.getElementById(containerId);
     var input = document.createElement("input");
     index = container.children.length;  
     input.type = type;
     input.name = name+'_'+index;
     input.id = name+'_'+index;
-    
     container.appendChild(input);
 };
 
@@ -369,13 +368,13 @@ function addTableConfig(Config,id)
         var tr = document.createElement('tr');
         var th = document.createElement('th');
         th.setAttribute('scope','row');
-        addFieldTableConfig(room,'Name',id,'text',th);
+        addFieldTableConfig(room,'Name',id,'text',th,i);
         tr.appendChild(th);
         var td = document.createElement('td');
-        addFieldTableConfig(room,'Code',id,'text',td);
+        addFieldTableConfig(room,'Code',id,'text',td,i);
         tr.appendChild(td);
         var td = document.createElement('td');
-        addFieldTableConfig(room,'Qvrep',id,'text',td);
+        addFieldTableConfig(room,'Qvrep',id,'text',td,i);
         tr.appendChild(td);
         tbody.appendChild(tr);
     i++;
@@ -386,20 +385,21 @@ function addTableConfig(Config,id)
     config.appendChild(table);
 };
 
-function addFieldTableConfig(room,name,id,type,div){
+function addFieldTableConfig(room,name,id,type,div,position){
     var input = document.createElement('input');
     switch (name){
         case 'Name':
-            input.value = room.nodeName;
+            var value = room.nodeName;
             break;
         default:
             if(typeof(room.getElementsByTagName(name)[0])!=='undefined' && room.getElementsByTagName(name)[0]!==null)
-            input.value = room.getElementsByTagName(name)[0].textContent;
+            var value = room.getElementsByTagName(name)[0].textContent;
             break;
     };
     
-    input.name = id+'_'+name;
-    input.id = id+'_'+name;
+    input.value = value;
+    input.name = id+'_Piece'+parseInt(position+1)+'_'+name;
+    input.id = id+'_'+parseInt(position+1)+'_'+name;
     input.type = type;
     div.appendChild(input);
 

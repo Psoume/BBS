@@ -1,4 +1,3 @@
-
 <h2 id='titleAT'></h2>
 <form method='post' action='./writeXML.php'>
     <input type='hidden' id='titleATForm' name='fileName'></input>
@@ -211,4 +210,3 @@
     </div>
     <button class='btn btn-primary' type="submit">Enregistrer</button>
 </form>
-

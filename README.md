@@ -1,15 +1,3 @@
-## FONCTIONS
+## Saisie d'avit techniques de ventilation
 
-- addField(name,type,lab,id)
-- addCheckbox(name,lab,id)
-- addModal(name,target,id) 
-- addButton(description,onclick,id)
-
-## ATS
-document.getElementById("NB_AT").onchange = function()
--> new div class='AT'
-    -> Fields/Checkboxes
-    -> new div class='Configs' id='ConfigsAT1'
-        -> new button modal trigger 'voir Config i AT y'
-        -> modal content
-    -> new button 'Ajouter une config'
+Warning: Unknown: Input variables exceeded 1000. To increase the limit change max_input_vars in php.ini (actuellement 2500 suffit)
