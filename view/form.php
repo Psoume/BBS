@@ -74,6 +74,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <button type='button' class='btn btn-dark' onclick="newEquipement('Bouche')">Ajouter</button>
                         </div>
                         <div id='entrees-tab-pane' class='tab-pane fade'>
                             <table class='table table-sm table-bordered' id='table_entrees'>
@@ -104,6 +105,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <button type='button' class='btn btn-dark' onclick="newEquipement('Entree')">Ajouter</button>
                         </div>
                         <div id='solutions-tab-pane' class='tab-pane fade'>
                             <table class='table table-sm table-bordered' id='table_solutions'>
@@ -174,6 +176,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <button type='button' class='btn btn-dark' onclick="newEquipement('Solution')">Ajouter</button>
                         </div>
                         <div id='extracteurs-tab-pane' class='tab-pane fade'>
                             <table class='table table-sm table-bordered' id='table_extracteurs'>
@@ -196,6 +199,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <button type='button' class='btn btn-dark' onclick="newEquipement('Extracteur')">Ajouter</button>
                         </div>
                     </div>
                 </div>    

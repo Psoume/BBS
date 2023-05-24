@@ -45,7 +45,6 @@ function loadXML(at){
         loadFields(xml,'text',['Titre_AT','Titulaire','Code_Titulaire','Industriel','Code_Industriel','Num_AT'],'list-generalites');
         addEmptyDiv('NumATAncienField','list-generalites');
         addArrayField(xml,'Num_AT_Ancien','Num_AT_Ancien','NumATAncienField');
-        
         addButton("addEmptyField('Num_AT_Ancien','text','NumATAncienField')",'+','list-generalites');
         loadFields(xml,'text',['Date_Application','Date_Fin_Application','Usage_EA'],'list-generalites');
         addText('Usages :','list-generalites');
