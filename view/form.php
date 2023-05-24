@@ -1,4 +1,7 @@
+
+<h2 id='titleAT'></h2>
 <form method='post' action='./writeXML.php'>
+    <input type='hidden' id='titleATForm' name='fileName'></input>
     <div class="container">
         <div class="nav">
             <div class="list-group" id="list-tab">
@@ -206,6 +209,6 @@
             </div>
         </div>
     </div>
-    <input value='Enregistrer' type="submit">
+    <button class='btn btn-primary' type="submit">Enregistrer</button>
 </form>
 

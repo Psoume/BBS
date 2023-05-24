@@ -1,6 +1,6 @@
 <?php
 
-
+$FILE_NAME = $_POST['fileName'];
 $Titre_AT = $_POST['Titre_AT'];
 $Titulaire = $_POST['Titulaire'];
 $Code_Titulaire = $_POST['Code_Titulaire'];
@@ -68,13 +68,12 @@ $xml->addChild('NB_AT', $NB_AT);
 
 
 if (isset($Titre_AT)) {
-    $xml->asXML("TEMP/".$Titre_AT.".xml");
-    echo "<a href='/TEMP/".$Titre_AT.".xml' download='".$Titre_AT.".xml'>Télécharger le fichier XML</a>";
+    $xml->asXML("TEMP/".$FILE_NAME);
+    echo "<a href='/TEMP/".$FILE_NAME."' download='".$FILE_NAME."'>Télécharger le fichier XML</a>";
 }
 
 else{
-    $xml->asXML("TEMP/Avis.xml");
-    echo "<a href='/TEMP/Avis.xml' download='Avis.xml'>Télécharger le fichier XML</a>";
+    echo "Echec de l'écriture du fichier";
 }
 
 // Nom des fichiers XML : Num_AT
