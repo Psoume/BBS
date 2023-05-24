@@ -18,8 +18,19 @@ foreach($scandir as $fichier){
 
 <label for='XML_name'>Nom du nouveau fichier :</label>
 <input style='display:inline;' type="text" id='XML_name' name="XML_name" placeholder="exemple.xml"><br/>
-<button id="createXML" onclick=createXML() type="button" class="btn btn-success ">Créer</button>
+<button id="createXML_Blank" onclick='createXML(true)' type="button" class="btn btn-success ">Créer</button>
 
+<h4>Ou créer à partir d'un fichier existant :</h4>
 
+<select id='createXMLFromFile'>
+    <?php
+    foreach($scandir as $fichier){
+    if($fichier!='.'&& $fichier!='..')
+    {
+        echo '<option value='.$fichier.'>'.$fichier.'</option>';
+    }
+    }
+?>
+</select>
+<button id="createXML_File" onclick='createXML(false)' type="button" class="btn btn-success ">Créer</button>
 
-</ul>

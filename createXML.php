@@ -1,11 +1,18 @@
 <?php
+$fromFile = $_GET['fromFile'];
+$fileName = $_GET['fileName'];
+$is_blank = $_GET['is_blank'];
 
-$name = $_GET['name'];
-
-if (file_exists('base.xml')) {
-    $xml = simplexml_load_file('base.xml');
+if ($is_blank=='true') {
+    $xml = simplexml_load_file($fromFile);
+    $xml->asXML("TEMP/".$fileName);
 }
 
-$xml->asXML("TEMP/".$name);
+else if ($is_blank=='false'){
+    $xml = simplexml_load_file("TEMP/".$fromFile);
+    $xml->asXML("TEMP/".$fileName);
+}
+
+
 
 ?>
