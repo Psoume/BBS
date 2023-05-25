@@ -145,13 +145,34 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         $fields = ['Config_Optimisee','Changement_Bouche'];
         addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
         addTag($Singularites,'AT'.$i.'Config'.$j.'_Singularite_EA','Singularite_EA','text',false);
-        $fieldsPOST = ['AT'.$i.'Config'.$j.'_EA_Fixes','AT'.$i.'Config'.$j.'_EA_Autoréglables'];
-        $fieldsXML = ['EA_Fixes','EA_Autoréglables'];
-        addTags($Singularites,$fieldsPOST,$fieldsXML,'bool',true);
-        $fieldsPOST = ['AT'.$i.'Config'.$j.'_Nb_Sdb_WC','AT'.$i.'Config'.$j.'_Nb_Sdb','AT'.$i.'Config'.$j.'_Nb_WC','AT'.$i.'Config'.$j.'_Nb_Sde'];
-        $fieldsXML = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde'];
-        addTags($CONFIG,$fieldsPOST,$fieldsXML,'number',false);
+        $fields = ['EA_Fixes','EA_Autoréglables'];
+        addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
+        $fields = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde'];
+        addTags($CONFIG,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
         $DEBIT_RT = $CONFIG->addChild('DEBIT_RT');
+        $Cdeps = $DEBIT_RT->addChild('Cdeps');
+        addTag($Cdeps,'AT'.$i.'Config'.$j.'_Cdep','Cdep','array',false);
+        $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
+        addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
+        // LES LOCAUX
+        $LOCAUX = $CONFIG->addChild('LOCAUX');
+        $k = 1;
+        while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k]))
+        {
+            $name = $_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k];
+            $piece =  $LOCAUX->addChild($name);
+            addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Code_'.$k,'Code','text',false);
+            addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Qvrep_'.$k,'Qvrep','text',false);
+            $k++;
+        }
+        while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k]))
+        {
+            $name = $_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k];
+            $piece =  $LOCAUX->addChild($name);
+            $Entree_Solution = $piece->addChild('Entree_Solution');
+            addTag($Entree_Solution,'AT'.$i.'Config'.$j.'_LocauxS_Code_'.$k,'Code','text',false);
+            $k++;
+        }
 
         $j++;
     }

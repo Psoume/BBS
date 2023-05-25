@@ -87,7 +87,7 @@ function loadGeneralites(xml){
     var container = document.getElementById('list-generalites');
     loadFields(xml,'text',['Titre_AT','Titulaire','Code_Titulaire','Industriel','Code_Industriel','Num_AT'],container,'unite');
     addEmptyDiv('NumATAncienField',container);
-    addArrayField(xml,'Num_AT_Ancien','Num_AT_Ancien','NumATAncienField');
+    addArrayField(xml,'Num_AT_Ancien','Num_AT_Ancien','Num_AT_Ancien',document.getElementById('NumATAncienField'));
     addButton("addEmptyField('Num_AT_Ancien','text','NumATAncienField')",'+',container);
     loadFields(xml,'text',['Date_Application','Date_Fin_Application','Usage_EA'],container,'unite');
     addText('Usages :',container);
@@ -181,9 +181,11 @@ function loadATS(xml){
             addFieldConfig(AT,'Singularite_EA','Singularite_EA','text','Singularite_EA',j,config,'unite');
             loadFieldsConfig(AT,'checkbox',['EA_Fixes','EA_Autoréglables'],j,config,'unite');         
             loadFieldsConfig(AT,'number',['Nb_Sdb_WC', 'Nb_Sdb', 'Nb_WC', 'Nb_Sde'],j,config,'unite');  
+            addArrayField(AT.getElementsByTagName('CONFIG')[j],'Cdep','AT'+parseInt(i+1)+'Config'+parseInt(j+1)+'_Cdep','Cdep',config);
             loadFieldsConfig(AT,'number',['Qv_Rep', 'Smea_Existant', 'Module_1', 'Module_2', 'Qsupp_Sdb', 'Qsupp_WC', 'Qsupp_Sdb_WC', 'Qsupp_Cellier'],j,config,'unite');         
             div.appendChild(config);
-            addTableConfig(configXML,"AT"+index+"Config"+indexConfig);
+            addTableConfig(configXML,"Humide","AT"+index+"Config"+indexConfig);
+            addTableConfig(configXML,"Sec","AT"+index+"Config"+indexConfig);
             j++;
         }  
         container.appendChild(navConfig); 
@@ -275,20 +277,19 @@ function addFieldConfig(xml,nameXML,nameHTML,type,label,position,div,unite){
     addField(xml,nameXML,nameHTML,type,label,position,div,unite);
 };
 
-function addArrayField(xml,name,label,divId)
+function addArrayField(xml,nameXML,nameHTML,label,container)
 {    
     var lab = document.createElement("label");
     lab.innerHTML = label;
-    lab.htmlFor = name;
-    var container = document.getElementById(divId);
+    lab.htmlFor = nameHTML;
     container.appendChild(lab);
     var i = 0;
-    while(typeof(xml.getElementsByTagName(name)[i])!=='undefined' && xml.getElementsByTagName(name)[i]!==null){
+    while(typeof(xml.getElementsByTagName(nameXML)[i])!=='undefined' && xml.getElementsByTagName(nameXML)[i]!==null){
         var input = document.createElement("input");
         input.type = 'text';
-        input.name = name+'_'+parseInt(i+1);
-        input.id = name+'_'+parseInt(i+1);
-        input.value = xml.getElementsByTagName(name)[i].textContent; ; 
+        input.name = nameHTML+'_'+parseInt(i+1);
+        input.id = nameHTML+'_'+parseInt(i+1);
+        input.value = xml.getElementsByTagName(nameXML)[i].textContent; ; 
         container.appendChild(input);  
         i++;
     }
@@ -342,16 +343,27 @@ function addCheckbox(name,lab,container) //crée un input dans un container id
     container.appendChild(input);
 };
 
-function addTableConfig(Config,id)
-{
+function addTableConfig(Config,roomType,id)
+{    
     var table = document.createElement("table");
     table.setAttribute('class','table table-sm table-bordered');
+
+    switch (roomType){
+        case 'Humide':
+            var colnames =['Pièce','Code','Qvrep']; 
+            var textTitle = document.createTextNode('Pièces Humides');
+            break;
+        case 'Sec':
+            var colnames =['Pièce','Code']; 
+            var textTitle = document.createTextNode('Pièces Sèches');
+            break;
+    }
     // TABLE HEAD
     var thead = document.createElement("thead");
     thead.setAttribute('class','table-dark');
     var tr = document.createElement("tr");
-    var colnames =['Pièce','Code','Qvrep']; 
-    for (let i=0;i<3;i++){
+
+    for (let i=0;i<colnames.length;i++){
         var th = document.createElement('th');
         th.innerHTML = colnames[i];
         tr.appendChild(th);
@@ -359,33 +371,50 @@ function addTableConfig(Config,id)
     thead.appendChild(tr);
 
     // TABLE BODY
+
     var tbody = document.createElement("tbody");
     tbody.setAttribute('class','border-dark');
     var i = 0;
     while(typeof(Config.getElementsByTagName('LOCAUX')[0].children[i])!=='undefined' && Config.getElementsByTagName('LOCAUX')[0].children[i]!==null)
     {
         var room = Config.getElementsByTagName('LOCAUX')[0].children[i];
+        switch(roomType)
+        {
+            case 'Humide':
+                if(typeof(room.getElementsByTagName('Qvrep')[0])=='undefined'){i++;continue;}
+                break;
+            
+            case 'Sec':
+                if(typeof(room.getElementsByTagName('Qvrep')[0])!=='undefined'){i++;continue;}
+                break;
+        }
         var tr = document.createElement('tr');
         var th = document.createElement('th');
         th.setAttribute('scope','row');
-        addFieldTableConfig(room,'Name',id,'text',th,i);
+        addFieldTableConfig(room,'Name',roomType,id,'text',th,i);
         tr.appendChild(th);
         var td = document.createElement('td');
-        addFieldTableConfig(room,'Code',id,'text',td,i);
+        addFieldTableConfig(room,'Code',roomType,id,'text',td,i);
         tr.appendChild(td);
+        if(typeof(room.getElementsByTagName('Qvrep')[0])!=='undefined' && room.getElementsByTagName('Qvrep')[0]!==null)
+        {
         var td = document.createElement('td');
-        addFieldTableConfig(room,'Qvrep',id,'text',td,i);
+        addFieldTableConfig(room,'Qvrep',roomType,id,'text',td,i);
         tr.appendChild(td);
+        }
         tbody.appendChild(tr);
-    i++;
+        i++;
     }
+    var title = document.createElement('h3');
+    title.appendChild(textTitle);
 
+    config.appendChild(title);
     table.appendChild(thead);
     table.appendChild(tbody);
     config.appendChild(table);
 };
 
-function addFieldTableConfig(room,name,id,type,div,position){
+function addFieldTableConfig(room,name,roomType,id,type,div,position){
     var input = document.createElement('input');
     switch (name){
         case 'Name':
@@ -398,8 +427,8 @@ function addFieldTableConfig(room,name,id,type,div,position){
     };
     
     input.value = value;
-    input.name = id+'_Piece'+parseInt(position+1)+'_'+name;
-    input.id = id+'_'+parseInt(position+1)+'_'+name;
+    input.name = id+'_Locaux'+roomType[0]+'_'+name+'_'+parseInt(position+1);
+    input.id = id+'_Locaux'+roomType[0]+'_'+name+'_'+parseInt(position+1);
     input.type = type;
     div.appendChild(input);
 
