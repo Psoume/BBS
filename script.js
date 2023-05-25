@@ -198,15 +198,24 @@ function loadATS(xml){
 function loadEquipements(xml)
 {
     const eqpmts = xml.getElementsByTagName('Equipements')[0];
-    const bouches = eqpmts.getElementsByTagName('Bouches');
-    const entrees = eqpmts.getElementsByTagName('Entrees');
-    const solutions = eqpmts.getElementsByTagName('Solutions');
-    const extracteurs = eqpmts.getElementsByTagName('Extracteurs');
+    const bouches = eqpmts.getElementsByTagName('Bouches')[0];
+    const entrees = eqpmts.getElementsByTagName('Entrees')[0];
+    const solutions = eqpmts.getElementsByTagName('Solutions')[0];
+    const extracteurs = eqpmts.getElementsByTagName('Extracteurs')[0];
 
-    const containerNav = document.getElementById('nav_eqpmt'); //navbar des ats
-    const containerContent = document.getElementById('eqpmt_content'); //contenu des ats
+    const containerBouches = document.getElementById('bouches-tab-pane'); //contenu des eqpmts
+    const containerEntrees = document.getElementById('entrees-tab-pane'); //contenu des eqpmts
+    const containerSolutions = document.getElementById('solutions-tab-pane'); //contenu des eqpmts
+    const containerExtracteurs = document.getElementById('extracteurs-tab-pane'); //contenu des eqpmts
 
-
+    // BOUCHES
+    addTableEqpmt('Bouche',bouches,containerBouches,['Code','Références','Qmin','QminF','QminLimite','QmaxF','QmaxLimite']);
+    // ENTREES
+    addTableEqpmt('Entree',entrees,containerEntrees,['Code','Références','EA_min','EA_max']);
+    // SOLUTIONS
+    addTableEqpmt('Solution',solutions,containerSolutions,['Code_Solution','<button onclick="Solutions_addConfig">Ajouter une configuration</button>']);
+    // EXTRACTEURS
+    addTableEqpmt('Extracteur',extracteurs,containerExtracteurs,['Références','N_Cdep','Libelle_Cdep']);
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -432,4 +441,100 @@ function addFieldTableConfig(room,name,roomType,id,type,div,position){
     input.type = type;
     div.appendChild(input);
 
+}
+
+function addTableEqpmt(Eqpmt,xml,container,colNames)
+{
+    // TABLE HEAD
+    var table = document.createElement('table');
+    var thead = document.createElement('thead');
+    
+    table.setAttribute('class', 'table table-sm table-bordered');
+    table.id = 'table_'+Eqpmt;
+    thead.setAttribute('class', 'table-dark sticky-top top-0');
+    var tr = document.createElement('tr');
+    for (i=0; i<colNames.length; i++)
+    {
+        var th = document.createElement('th');
+        th.innerHTML = colNames[i];
+        tr.appendChild(th);
+    }
+    thead.appendChild(tr);
+    // TABLE BODY
+    var tbody = document.createElement('tbody');
+    tbody.setAttribute('class', 'border-dark');
+    var i = 0;
+    while(typeof(xml.children[i])!=='undefined'){
+        var tr = document.createElement('tr');
+        var th = document.createElement('th');
+        switch(Eqpmt){
+            case 'Bouche':
+                addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
+                addFieldEqpmt(xml,Eqpmt,'Reference','text',i,tr); // A revoir
+                loadFieldsEqpmt(xml,Eqpmt,['Qmin','QminF','QminLimite','QmaxF','QmaxLimite'],'number',i,tr);
+                break;
+            case 'Entree':
+                addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
+                addFieldEqpmt(xml,Eqpmt,'Reference','text',i,tr);
+                loadFieldsEqpmt(xml,Eqpmt,['EA_min','EA_max'],'number',i,tr);
+                break;
+            case 'Solution':
+                addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
+                break;
+            case 'Extracteur':
+                addFieldEqpmt(xml,Eqpmt,'Reference','text',i,tr);
+                addFieldEqpmt(xml,Eqpmt,'N_Cdep','number',i,tr);
+                addFieldEqpmt(xml,Eqpmt,'Libelle_Cdep','text',i,tr);
+
+        }
+        tbody.appendChild(tr);
+        i++;
+    }
+    
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    container.appendChild(table);
+    var button = document.createElement('button');
+    button.type="button";
+    button.setAttribute('class', 'btn btn-dark');
+    button.setAttribute('onclick',"newEquipement('"+Eqpmt+"')");
+    button.innerHTML = "Ajouter";
+    container.appendChild(button);
+
+}
+
+function addFieldEqpmt(xml,Eqpmt,nameXML,type,position,parent)
+{
+    var td = document.createElement('td');
+    
+    switch(nameXML){
+        case 'Reference':
+            var i = 0;
+            while (typeof(xml.getElementsByTagName('References')[position].children[i])!=='undefined')
+            {
+                var input = document.createElement('input');
+                input.value = xml.getElementsByTagName('References')[position].children[i].textContent;
+                input.name = Eqpmt+parseInt(position+1)+'_'+nameXML+'_'+parseInt(i+1);
+                input.type = type;
+                td.appendChild(input);
+                i++;
+            }
+            var button = document.createElement('button');
+            button.type='button';
+            button.innerHTML = '+';
+            button.setAttribute('onclick','addReference')
+            td.appendChild(button);
+            break;
+        default:
+            var input = document.createElement('input');
+            input.value = xml.getElementsByTagName(nameXML)[position].textContent;
+            input.name = Eqpmt+parseInt(position+1)+'_'+nameXML;
+            input.type = type;
+            td.appendChild(input);
+    }
+    parent.appendChild(td);
+}
+
+function loadFieldsEqpmt(xml,Eqpmt,fields,type,position,parent){
+    fields.forEach(element => addFieldEqpmt(xml,Eqpmt,element,type,position,parent));
 }

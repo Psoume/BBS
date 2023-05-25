@@ -99,6 +99,15 @@ foreach ($fields as &$f)
 return $fields;
 }
 
+function FormatFieldsEqpmts($fields,$eqpmt,$i)
+{
+    foreach ($fields as &$f)
+    {
+        $f = $eqpmt.$i.'_'.$f;
+    }
+    return $fields;
+}
+
 //GENERALITES
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><Avis_Technique_Ventilation/>');
 $xml->addAttribute('encoding', 'UTF-8');
@@ -118,7 +127,8 @@ addTag($Caracteristiques,'Type_Extraction','Type_Extraction','text',false);
 $xml->addChild('NB_AT', NB_AT());
 $ATS = $xml->addChild('ATS');
 $i = 1;
-// ON ITERE SUR LES AT
+
+// ATS
 while (isset($_POST['AT'.$i.'_REF_AT'])) 
 {
     $AT = $ATS->addChild('AT');
@@ -173,28 +183,54 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
             addTag($Entree_Solution,'AT'.$i.'Config'.$j.'_LocauxS_Code_'.$k,'Code','text',false);
             $k++;
         }
-
         $j++;
     }
 
     $i++;
 }
 
-//ATS
-
-
-
-// $Caracteristiques = $xml->addChild('Caracteristiques');
-// $Caracteristiques->addChild('Double_Flux',$checkboxesValues['Double_Flux']);
-// $Caracteristiques->addChild('Autoreglable',$checkboxesValues['Autoreglable']);
-// $Caracteristiques->addChild('Hygroreglable',$checkboxesValues['Hygroreglable']);
-// $Caracteristiques->addChild('Basse_Pression',$checkboxesValues['Basse_Pression']);
-// $Caracteristiques->addChild('Type_extraction',$Type_extraction);
-
-// $xml->addChild('NB_AT', $NB_AT);
-
-
-
+// EQUIPEMENTS 
+$Equipements = $xml->addChild('Equipements');
+//Bouches
+$Bouches = $Equipements->addChild('Bouches');
+$i = 1;
+while(isset($_POST['Bouche'.$i.'_Code']))
+{
+    $Type_Bouche = $Bouches->addChild('Type_Bouche');
+    addTag($Type_Bouche,'Bouche'.$i.'_Code','Code','text',false);
+    $References = $Type_Bouche->addChild('References');
+    addTag($References,'Bouche'.$i.'_Reference','Reference','array',false);
+    $fields = ['Qmin','QminF','QminLimite','QmaxF','QmaxLimite'];
+    addTags($Type_Bouche,FormatFieldsEqpmts($fields,'Bouche',$i),$fields,'number',false);
+    $i++;
+}
+//Entrees
+$Entrees = $Equipements->addChild('Entrees');
+$i = 1;
+while(isset($_POST['Entree'.$i.'_Code']))
+{
+    $Type_Entree = $Entrees->addChild('Type_Entree');
+    addTag($Type_Entree,'Entree'.$i.'_Code','Code','text',false);
+    $References = $Type_Entree->addChild('References');
+    addTag($References,'Entree'.$i.'_Reference','Reference','array',false);
+    $fields = ['EA_min','EA_max'];
+    addTags($Type_Entree,FormatFieldsEqpmts($fields,'Entree',$i),$fields,'number',false);
+    $i++;
+}
+// SOLUTIONS : TO DO
+// Extracteurs
+$Extracteurs = $Equipements->addChild('Extracteurs');
+$i = 1;
+while(isset($_POST['Extracteur'.$i.'_Libelle_Cdep']))
+{
+    $Type_Extracteur = $Extracteurs->addChild('Type_Extracteur');
+    $References = $Type_Extracteur->addChild('References');
+    addTag($References,'Extracteur'.$i.'_Reference','Reference','array',false);
+    $fields = ['EA_min','EA_max'];
+    addTag($Type_Extracteur,'Extracteur'.$i.'_N_Cdep','N_Cdep','number',false);
+    addTag($Type_Extracteur,'Extracteur'.$i.'_Libelle_Cdep','Libelle_Cdep','text',false);
+    $i++;
+}
 
 $File_Name = $_POST['fileName'];
 echo $File_Name;

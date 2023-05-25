@@ -31,7 +31,7 @@ input[type='text'],input[type='number']{
 
 
 
-#table_bouches input,#table_entrees input,#table_extracteurs input #table_solutions input{
+#table_Bouche input,#table_Entree input,#table_Extracteur input #table_Solution input{
     max-width: 5vw;
     display: inline;
 }
