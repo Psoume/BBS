@@ -217,7 +217,7 @@ while(isset($_POST['Entree'.$i.'_Code']))
     addTags($Type_Entree,FormatFieldsEqpmts($fields,'Entree',$i),$fields,'number',false);
     $i++;
 }
-// SOLUTIONS : TO DO
+// SOLUTIONS
 $Solutions = $Equipements->addChild('Solutions');
 $i = 1;
 while(isset($_POST['Solution'.$i.'_Code_Solution'])) // Solution i

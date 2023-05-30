@@ -362,6 +362,7 @@ function addTableConfig(Config,roomType,id)
 {    
     var table = document.createElement("table");
     table.setAttribute('class','table table-sm table-bordered');
+    table.id = id+"_"+roomType;
 
     switch (roomType){
         case 'Humide':
@@ -422,31 +423,65 @@ function addTableConfig(Config,roomType,id)
     }
     var title = document.createElement('h3');
     title.appendChild(textTitle);
+    // Bouton addRoom()
+    var button = document.createElement('button');
+    button.type='button';
+    button.innerHTML = 'Ajouter une pièce';
+    button.setAttribute('class','btn btn-dark');
+    button.setAttribute("onclick","addRoom('"+id+"','"+roomType+"')");
 
     config.appendChild(title);
     table.appendChild(thead);
     table.appendChild(tbody);
     config.appendChild(table);
+    config.appendChild(button);
 };
 
 function addFieldTableConfig(room,name,roomType,id,type,div,position){
     var input = document.createElement('input');
-    switch (name){
-        case 'Name':
-            var value = room.nodeName;
-            break;
-        default:
-            if(typeof(room.getElementsByTagName(name)[0])!=='undefined' && room.getElementsByTagName(name)[0]!==null)
-            var value = room.getElementsByTagName(name)[0].textContent;
-            break;
-    };
     
-    input.value = value;
+    if(room!==null){
+        switch (name){
+            case 'Name':
+                var value = room.nodeName;
+                break;
+            default:
+                if(typeof(room.getElementsByTagName(name)[0])!=='undefined' && room.getElementsByTagName(name)[0]!==null)
+                var value = room.getElementsByTagName(name)[0].textContent;
+                break;
+        };
+        input.value = value;
+    }
+
     input.name = id+'_Locaux'+roomType[0]+'_'+name+'_'+parseInt(position+1);
     input.id = id+'_Locaux'+roomType[0]+'_'+name+'_'+parseInt(position+1);
     input.type = type;
     div.appendChild(input);
+}
 
+
+function addRoom(id,roomType){
+    var tbody = document.getElementById(id+'_'+roomType).lastChild;
+    var index = parseInt(tbody.children.length);
+    var tr = document.createElement('tr');
+
+    //Piece
+    var th = document.createElement('th');
+    th.setAttribute('scope','row');
+    addFieldTableConfig(null,'Name',roomType,id,'text',th,index);
+    tr.appendChild(th);
+
+    var td = document.createElement('td');
+    addFieldTableConfig(null,'Code',roomType,id,'text',td,index);
+    tr.appendChild(td);
+    
+    if(roomType=='Humide')
+    {
+        var td = document.createElement('td');
+        addFieldTableConfig(null,'Qvrep',roomType,id,'number',td,index);
+        tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
 }
 
 function addTableEqpmt(Eqpmt,xml,container,colNames)
@@ -490,11 +525,11 @@ function addTableEqpmt(Eqpmt,xml,container,colNames)
                 {
                     if (typeof(xml.children[i].children[j])!=='undefined')
                     {
-                        solutionsAddConfig(parseInt(i+1),j,tr,xml.children[i].children[j]);
+                        solutionsTabAddCell(parseInt(i+1),j,tr,xml.children[i].children[j]);
                     }
                     else
                     {
-                        solutionsAddConfig(parseInt(i+1),j,tr);
+                        solutionsTabAddCell(parseInt(i+1),j,tr);
                     }
                 }
                 
@@ -622,7 +657,7 @@ function newEquipement(Eqpmt)
             var maxIndexConfig = tbody.firstChild.children.length;
             for(var i = 1; i < maxIndexConfig; i++)
             {
-                solutionsAddConfig(indexSolution,i,tr);
+                solutionsTabAddCell(indexSolution,i,tr);
             }
             break;
         case 'Extracteur':
@@ -634,7 +669,7 @@ function newEquipement(Eqpmt)
     tbody.appendChild(tr);
 }
 
-function solutionsAddConfig(indexSolution,indexConfig,parent,xml=null){
+function solutionsTabAddCell(indexSolution,indexConfig,parent,xml=null){
 var td = document.createElement('td');
 var inputNames = ['Solution_Libelle','Code','Nombre'];
 var inputTypes = ['text','text','number'];
@@ -687,7 +722,7 @@ function solutionsNewConfig()
     for (i=1;i<=maxIndexSolution;i++)
     {
         var parent = tbody.children[parseInt(i-1)];
-        solutionsAddConfig(i,indexConfig,parent);
+        solutionsTabAddCell(i,indexConfig,parent);
     }
     
 }
