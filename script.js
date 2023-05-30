@@ -415,7 +415,7 @@ function addTableConfig(Config,roomType,id)
         if(typeof(room.getElementsByTagName('Qvrep')[0])!=='undefined' && room.getElementsByTagName('Qvrep')[0]!==null)
         {
         var td = document.createElement('td');
-        addFieldTableConfig(room,'Qvrep',roomType,id,'text',td,i);
+        addFieldTableConfig(room,'Qvrep',roomType,id,'number',td,i);
         tr.appendChild(td);
         }
         tbody.appendChild(tr);
