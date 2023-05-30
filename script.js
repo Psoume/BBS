@@ -219,7 +219,7 @@ function loadEquipements(xml)
     // ENTREES
     addTableEqpmt('Entree',entrees,containerEntrees,['Code','Références','EA_min','EA_max']);
     // SOLUTIONS
-    addTableEqpmt('Solution',solutions,containerSolutions,['Code_Solution','<button onclick="Solutions_addConfig">Ajouter une configuration</button>']);
+    addTableEqpmt('Solution',solutions,containerSolutions,['Code_Solution','Config 1','Config 2','Config 3','<button type="button" onclick="solutionsNewConfig()">Ajouter</button>']);
     // EXTRACTEURS
     addTableEqpmt('Extracteur',extracteurs,containerExtracteurs,['Références','N_Cdep','Libelle_Cdep']);
 };
@@ -459,6 +459,7 @@ function addTableEqpmt(Eqpmt,xml,container,colNames)
     table.id = 'table_'+Eqpmt;
     thead.setAttribute('class', 'table-dark sticky-top top-0');
     var tr = document.createElement('tr');
+
     for (i=0; i<colNames.length; i++)
     {
         var th = document.createElement('th');
@@ -484,8 +485,21 @@ function addTableEqpmt(Eqpmt,xml,container,colNames)
                 loadFieldsEqpmt(xml,Eqpmt,['EA_min','EA_max'],'number',i,tr);
                 break;
             case 'Solution':
-                addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
+                addFieldEqpmt(xml,Eqpmt,'Code_Solution','text',i,tr);
+                for(j=1;j<4;j++)
+                {
+                    if (typeof(xml.children[i].children[j])!=='undefined')
+                    {
+                        solutionsAddConfig(parseInt(i+1),j,tr,xml.children[i].children[j]);
+                    }
+                    else
+                    {
+                        solutionsAddConfig(parseInt(i+1),j,tr);
+                    }
+                }
+                
                 break;
+
             case 'Extracteur':
                 addFieldEqpmt(xml,Eqpmt,'Reference','text',i,tr);
                 addFieldEqpmt(xml,Eqpmt,'N_Cdep','number',i,tr);
@@ -589,7 +603,7 @@ function addReference(idContainer){
 
 function newEquipement(Eqpmt)
 {
-    var container = document.getElementById("table_"+Eqpmt).lastChild;
+    var tbody = document.getElementById("table_"+Eqpmt).lastChild;
     var tr = document.createElement('tr');
     switch(Eqpmt){
         case 'Bouche':
@@ -603,7 +617,13 @@ function newEquipement(Eqpmt)
             loadEmptyFieldsEqpmt(Eqpmt,['EA_min','EA_max'],'number',tr);
             break;
         case 'Solution':
-            // addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
+            addEmptyFieldEqpmt(Eqpmt,'Code_Solution','text',tr);
+            var indexSolution = parseInt(tbody.children.length+1);
+            var maxIndexConfig = tbody.firstChild.children.length;
+            for(var i = 1; i < maxIndexConfig; i++)
+            {
+                solutionsAddConfig(indexSolution,i,tr);
+            }
             break;
         case 'Extracteur':
             addEmptyFieldEqpmt(Eqpmt,'Reference','text',tr);
@@ -611,5 +631,63 @@ function newEquipement(Eqpmt)
             addEmptyFieldEqpmt(Eqpmt,'Libelle_Cdep','text',tr);
 
     }
-    container.appendChild(tr);
+    tbody.appendChild(tr);
+}
+
+function solutionsAddConfig(indexSolution,indexConfig,parent,xml=null){
+var td = document.createElement('td');
+var inputNames = ['Solution_Libelle','Code','Nombre'];
+var inputTypes = ['text','text','number'];
+for(var i=0;i<3;i++){
+    var input = document.createElement('input');
+    var label = document.createElement('label');
+    
+    input.type = inputTypes[i];
+    input.name = 'Solution'+indexSolution+'_Config'+indexConfig+'_'+inputNames[i];
+    label.htmlFor = input.name;
+    label.innerHTML = inputNames[i];
+
+    if(xml!==null){
+        switch(inputNames[i])
+        {
+            case 'Solution_Libelle':
+                if(typeof(xml.getElementsByTagName('Solution_Libelle'))!=='undefined')
+                {input.value = xml.getElementsByTagName('Solution_Libelle')[0].textContent;}
+                break;
+            case 'Code':
+                if(typeof(xml.getElementsByTagName('Entree')[0].getElementsByTagName('Code'))!=='undefined')
+                {input.value = xml.getElementsByTagName('Entree')[0].getElementsByTagName('Code')[0].textContent;}
+                break;
+            case 'Nombre':
+                if(typeof(xml.getElementsByTagName('Entree')[0].getElementsByTagName('Nombre'))!=='undefined')
+                {input.value = xml.getElementsByTagName('Entree')[0].getElementsByTagName('Nombre')[0].textContent;}
+                break;
+        }
+    }
+    td.appendChild(label);
+    td.appendChild(input);
+}
+
+parent.appendChild(td);
+}
+
+function solutionsNewConfig()
+{
+    var thead = document.getElementById("table_Solution").firstChild;
+    var tbody = document.getElementById("table_Solution").lastChild;
+    var tr = thead.firstChild;
+    var indexConfig = parseInt(tr.children.length - 1);
+    var maxIndexSolution = tbody.children.length;
+    // thead
+    
+    var th = document.createElement('th');
+    th.innerHTML = "Config "+indexConfig;
+    tr.insertBefore(th,tr.lastChild);
+    // tbody
+    for (i=1;i<=maxIndexSolution;i++)
+    {
+        var parent = tbody.children[parseInt(i-1)];
+        solutionsAddConfig(i,indexConfig,parent);
+    }
+    
 }
