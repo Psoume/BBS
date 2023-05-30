@@ -115,7 +115,10 @@ function loadATS(xml){
         button.id = "at_"+index+"-tab";
         button.type="button";
         button.innerHTML = AT.getElementsByTagName('REF_AT')[0].textContent;
-        button.setAttribute('class', 'nav-link');
+        if(i==0)
+        {button.setAttribute('class', 'active nav-link');}
+        else
+        {button.setAttribute('class', 'nav-link');}
         button.setAttribute('data-bs-toggle','tab');
         button.setAttribute('data-bs-target',"#at_"+index+"-tab-pane");
         button.setAttribute('aria-controls',"at_"+index+"-tab-pane");
@@ -124,7 +127,10 @@ function loadATS(xml){
         containerNav.insertBefore(navItem,referenceNavButton);
         // Content AT
         div.id="at_"+index+"-tab-pane";
-        div.setAttribute('class','tab-pane fade');
+        if(i==0)
+        {div.setAttribute('class','show active tab-pane fade')}
+        else
+        {div.setAttribute('class','tab-pane fade');}
         div.setAttribute('aria-labelledby','at_'+index+'-tab');
         div.setAttribute('tabindex','0');
         // on ajoute tout le contenu à la div
@@ -333,7 +339,7 @@ function addButton(onclick,content,container)
     button.type = "button";
     button.href = '#';
     button.innerHTML = content;
-    button.className = "btn btn-primary";
+    button.className = "btn";
     button.setAttribute("onclick", onclick)
     container.appendChild(button);
 };
@@ -466,7 +472,6 @@ function addTableEqpmt(Eqpmt,xml,container,colNames)
     var i = 0;
     while(typeof(xml.children[i])!=='undefined'){
         var tr = document.createElement('tr');
-        var th = document.createElement('th');
         switch(Eqpmt){
             case 'Bouche':
                 addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
@@ -516,13 +521,15 @@ function addFieldEqpmt(xml,Eqpmt,nameXML,type,position,parent)
                 input.value = xml.getElementsByTagName('References')[position].children[i].textContent;
                 input.name = Eqpmt+parseInt(position+1)+'_'+nameXML+'_'+parseInt(i+1);
                 input.type = type;
+                td.id = Eqpmt+parseInt(position+1)+'_'+nameXML;
                 td.appendChild(input);
                 i++;
             }
             var button = document.createElement('button');
             button.type='button';
             button.innerHTML = '+';
-            button.setAttribute('onclick','addReference')
+            button.setAttribute('onclick',"addReference('"+Eqpmt+parseInt(position+1)+"_"+nameXML+"')");
+            
             td.appendChild(button);
             break;
         default:
@@ -535,6 +542,74 @@ function addFieldEqpmt(xml,Eqpmt,nameXML,type,position,parent)
     parent.appendChild(td);
 }
 
+function addEmptyFieldEqpmt(Eqpmt,nameXML,type,parent)
+{
+    var tbody = document.getElementById('table_'+Eqpmt).lastChild;
+    var td = document.createElement('td');
+    var input = document.createElement('input');
+    var index = Eqpmt+parseInt(tbody.children.length+1);
+    
+    switch(nameXML){
+        
+        case 'Reference':
+            input.name = index+'_'+nameXML+'_1';
+            input.type = type;
+            td.id = index+'_'+nameXML;
+            td.appendChild(input);
+
+            var button = document.createElement('button');
+            button.type='button';
+            button.innerHTML = '+';
+            button.setAttribute('onclick',"addReference('"+index+"_"+nameXML+"')");
+            td.appendChild(button);
+            break;
+
+        default:
+            input.name = index+'_'+nameXML;
+            input.type = type;
+            td.appendChild(input);
+    }
+    parent.appendChild(td);
+}
+
 function loadFieldsEqpmt(xml,Eqpmt,fields,type,position,parent){
     fields.forEach(element => addFieldEqpmt(xml,Eqpmt,element,type,position,parent));
+}
+function loadEmptyFieldsEqpmt(Eqpmt,fields,type,parent){
+    fields.forEach(element => addEmptyFieldEqpmt(Eqpmt,element,type,parent));
+}
+
+function addReference(idContainer){
+    var container = document.getElementById(idContainer);
+    var input = document.createElement('input');
+    input.name = idContainer+"_"+container.children.length;
+    input.type='text';
+    container.insertBefore(input,container.lastChild);
+}
+
+function newEquipement(Eqpmt)
+{
+    var container = document.getElementById("table_"+Eqpmt).lastChild;
+    var tr = document.createElement('tr');
+    switch(Eqpmt){
+        case 'Bouche':
+            addEmptyFieldEqpmt(Eqpmt,'Code','text',tr);
+            addEmptyFieldEqpmt(Eqpmt,'Reference','text',tr); 
+            loadEmptyFieldsEqpmt(Eqpmt,['Qmin','QminF','QminLimite','QmaxF','QmaxLimite'],'number',tr);
+            break;
+        case 'Entree':
+            addEmptyFieldEqpmt(Eqpmt,'Code','text',tr);
+            addEmptyFieldEqpmt(Eqpmt,'Reference','text',tr);
+            loadEmptyFieldsEqpmt(Eqpmt,['EA_min','EA_max'],'number',tr);
+            break;
+        case 'Solution':
+            // addFieldEqpmt(xml,Eqpmt,'Code','text',i,tr);
+            break;
+        case 'Extracteur':
+            addEmptyFieldEqpmt(Eqpmt,'Reference','text',tr);
+            addEmptyFieldEqpmt(Eqpmt,'N_Cdep','number',tr);
+            addEmptyFieldEqpmt(Eqpmt,'Libelle_Cdep','text',tr);
+
+    }
+    container.appendChild(tr);
 }

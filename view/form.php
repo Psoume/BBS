@@ -31,8 +31,8 @@
                 <div class="tab-pane fade" id="list-equipements" aria-labelledby="list-equipements-list">
                     <!--EQUIPEMENTS NAV -->
                     <ul class="nav nav-pills" id="nav_eqpmt">
-                        <li class='nav-item'>
-                            <button type='button' id='bouches-tab' class='nav-link' data-bs-toggle='tab' data-bs-target='#bouches-tab-pane'>Bouches</button>
+                        <li class='nav-item '>
+                            <button type='button' id='bouches-tab' class='nav-link active' data-bs-toggle='tab' data-bs-target='#bouches-tab-pane'>Bouches</button>
                         </li>
                         <li class='nav-item'>
                             <button type='button' id='entrees-tab' class='nav-link' data-bs-toggle='tab' data-bs-target='#entrees-tab-pane'>Entrées</button>
@@ -46,7 +46,7 @@
                     </ul> 
                     <!-- EQUIPEMENTS CONTENT -->
                     <div class="tab-content" id="eqpmt_content">
-                        <div id='bouches-tab-pane' class='tab-pane fade'>
+                        <div id='bouches-tab-pane' class='tab-pane fade active show'>
                         </div>
                         <div id='entrees-tab-pane' class='tab-pane fade'>
                         </div>
