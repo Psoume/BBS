@@ -4,7 +4,7 @@
 <?php
 
 //Lister tout
-$scandir = scandir("./TEMP");
+$scandir = scandir("./res/XML");
 foreach($scandir as $fichier){
     if($fichier!='.'&& $fichier!='..')
     {

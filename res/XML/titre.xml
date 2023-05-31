@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Avis_Technique_Ventilation>
+    <Titre_AT>titre</Titre_AT>
+    <Titulaire>titulaire</Titulaire>
+    <Code_Titulaire>code</Code_Titulaire>
+    <Industriel>indus</Industriel>
+    <Code_Industriel>codeI</Code_Industriel>
+    <Num_AT>num</Num_AT>
+    <Liste_AT_Ancien>
+        <Num_AT_Ancien>numat</Num_AT_Ancien>
+        <Num_AT_Ancien>numat</Num_AT_Ancien>
+    </Liste_AT_Ancien>
+    <Date_Application>02/02/2022</Date_Application>
+    <Date_Fin_Application>02/02/2024</Date_Fin_Application>
+    <Usage_EA>UsageEA</Usage_EA>
+    <Usages>
+        <Collectif>false</Collectif>
+        <Individuel>true</Individuel>
+        <Hotel>false</Hotel>
+    </Usages>
+    <Caracteristiques>
+        <Double_Flux>true</Double_Flux>
+        <Autoreglable>false</Autoreglable>
+        <Hygroreglable>false</Hygroreglable>
+        <Basse_Pression>false</Basse_Pression>
+        <Type_extraction>aaa</Type_extraction>
+    </Caracteristiques>
+    <NB_AT>2</NB_AT>
+</Avis_Technique_Ventilation>

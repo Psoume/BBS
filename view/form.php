@@ -1,5 +1,5 @@
 <h2 id='titleAT'></h2>
-<form method='post' action='./writeXML.php'>
+<form method='post' action='./controller/writeXML.php'>
     <input type='hidden' id='titleATForm' name='fileName'></input>
     <div class="container">
         <div class="nav">

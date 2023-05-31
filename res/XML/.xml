@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<Avis_Technique_Ventilation><Titre_AT/><Titulaire/><Code_Titulaire/><Industriel/><Code_Industriel/><Num_AT/><Liste_AT_Ancien/><Date_Application/><Date_Fin_Application/><Usage_EA/><Usages><Collectif>false</Collectif><Individuel>false</Individuel><Hotel>false</Hotel></Usages><Caracteristiques><Double_Flux>false</Double_Flux><Autoreglable>false</Autoreglable><Hygroreglable>false</Hygroreglable><Basse_Pression>false</Basse_Pression><Type_extraction/></Caracteristiques><NB_AT/></Avis_Technique_Ventilation>
