@@ -30,66 +30,17 @@ function loadXML(at) {
 // PREMIERE PAGE : GENERALITES
 function loadGeneralites(xml) {
     var container = document.getElementById("list-generalites");
-    loadFields(
-        xml,
-        "text",
-        [
-            "Titre_AT",
-            "Titulaire",
-            "Code_Titulaire",
-            "Industriel",
-            "Code_Industriel",
-            "Num_AT",
-        ],
-        container,
-        "unite"
-    );
-    addEmptyDiv("NumATAncienField", container);
-    addArrayField(
-        xml,
-        "Num_AT_Ancien",
-        "Num_AT_Ancien",
-        "Num_AT_Ancien",
-        document.getElementById("NumATAncienField")
-    );
-    addButton(
-        "addEmptyField('Num_AT_Ancien','text','NumATAncienField')",
-        "+",
-        container
-    );
-    loadFields(
-        xml,
-        "text",
-        ["Date_Application", "Date_Fin_Application", "Usage_EA"],
-        container,
-        "unite"
-    );
+    addField(xml,"Titre_AT","Titre_AT","text","Titre_AT",container,);
+    addFields(xml,"text",["Titulaire","Code_Titulaire","Industriel","Code_Industriel","Num_AT",],container);
+    addEmptyDiv(container,"NumATAncienField");
+    addArrayField(xml,"Num_AT_Ancien","Num_AT_Ancien","Num_AT_Ancien", document.getElementById("NumATAncienField"));
+    addButton("addEmptyField('Num_AT_Ancien','text','NumATAncienField')","+",container);
+    addFields(xml,"text",["Date_Application", "Date_Fin_Application", "Usage_EA"],container,);
     addText("Usages :", container);
-    loadFields(
-        xml,
-        "checkbox",
-        ["Collectif", "Individuel", "Hotel"],
-        container,
-        "unite"
-    );
+    addFields(xml,"checkbox",["Collectif", "Individuel", "Hotel"],container,);
     addText("Caractéristiques :", container);
-    loadFields(
-        xml,
-        "checkbox",
-        ["Double_Flux", "Autoreglable", "Hygroreglable", "Basse_Pression"],
-        container,
-        "unite"
-    );
-    addField(
-        xml,
-        "Type_Extraction",
-        "Type_Extraction",
-        "text",
-        "Type_Extraction",
-        0,
-        container,
-        "unite"
-    );
+    addFields(xml,"checkbox",["Double_Flux", "Autoreglable", "Hygroreglable", "Basse_Pression"],container,);
+    addField(xml,"Type_Extraction","Type_Extraction","text","Type_Extraction",container,);
 }
 
 // DEUXIEME PAGE : ATS
@@ -135,52 +86,13 @@ function loadATS(xml) {
         div.setAttribute("tabindex", "0");
         // on ajoute tout le contenu à la div
         containerContent.appendChild(div);
-        loadFieldsAT(
-            xml,
-            "text",
-            ["REF_AT", "LIBELLE", "Type_Avis_Technique"],
-            i,
-            div,
-            "unite"
-        );
-        loadFieldsAT(
-            xml,
-            "checkbox",
-            ["HYGRO_A", "HYGRO_B1", "HYGRO_B2", "GAZ"],
-            i,
-            div,
-            "unite"
-        );
+        addFieldsAT(AT,"text",["REF_AT", "LIBELLE", "Type_Avis_Technique"],div,"unite");
+        addFieldsAT(AT,"checkbox",["HYGRO_A", "HYGRO_B1", "HYGRO_B2", "GAZ"],div,"unite");
         addText("Type EA :", div);
-        addFieldAT(
-            xml,
-            "Presence_EA",
-            "Presence_EA",
-            "text",
-            "Presence_EA",
-            i,
-            div,
-            "unite"
-        );
-        loadFieldsAT(
-            xml,
-            "checkbox",
-            ["Presence_EA_Fixes", "Presence_EA_Autoreglables"],
-            i,
-            div,
-            "unite"
-        );
-        loadFieldsAT(xml, "number", ["Dp1", "Dp2", "R_f"], i, div, "unite");
-        addFieldAT(
-            xml,
-            "Optimisation",
-            "Optimisation",
-            "checkbox",
-            "Optimisation",
-            i,
-            div,
-            "unite"
-        );
+        addFieldAT(AT,"Presence_EA","Presence_EA","text","Presence_EA",div,"unite");
+        addFieldsAT(AT,"checkbox",["Presence_EA_Fixes", "Presence_EA_Autoreglables"],div,"unite");
+        addFieldsAT(AT, "number", ["Dp1", "Dp2", "R_f"], div, "unite");
+        addFieldAT(AT,"Optimisation","Optimisation","checkbox","Optimisation",div,"unite");
         // CONFIGURATIONS
         var container = document.getElementById(div.id); //ok
         // NAV CONFIG
@@ -232,74 +144,13 @@ function loadATS(xml) {
             );
             config.setAttribute("tabindex", "0");
 
-            addFieldConfig(
-                AT,
-                "Type_Logement",
-                "Type_Logement",
-                "text",
-                "Type_Logement",
-                j,
-                config,
-                "unite"
-            );
-            loadFieldsConfig(
-                AT,
-                "checkbox",
-                ["Config_Optimisee", "Changement_Bouche"],
-                j,
-                config,
-                "unite"
-            );
-            addFieldConfig(
-                AT,
-                "Singularite_EA",
-                "Singularite_EA",
-                "text",
-                "Singularite_EA",
-                j,
-                config,
-                "unite"
-            );
-            loadFieldsConfig(
-                AT,
-                "checkbox",
-                ["EA_Fixes", "EA_Autoréglables"],
-                j,
-                config,
-                "unite"
-            );
-            loadFieldsConfig(
-                AT,
-                "number",
-                ["Nb_Sdb_WC", "Nb_Sdb", "Nb_WC", "Nb_Sde"],
-                j,
-                config,
-                "unite"
-            );
-            addArrayField(
-                AT.getElementsByTagName("CONFIG")[j],
-                "Cdep",
-                "AT" + parseInt(i + 1) + "Config" + parseInt(j + 1) + "_Cdep",
-                "Cdep",
-                config
-            );
-            loadFieldsConfig(
-                AT,
-                "number",
-                [
-                    "Qv_Rep",
-                    "Smea_Existant",
-                    "Module_1",
-                    "Module_2",
-                    "Qsupp_Sdb",
-                    "Qsupp_WC",
-                    "Qsupp_Sdb_WC",
-                    "Qsupp_Cellier",
-                ],
-                j,
-                config,
-                "unite"
-            );
+            addFieldConfig(configXML,"Type_Logement","Type_Logement","text","Type_Logement",config,"unite");
+            addFieldsConfig(configXML,"checkbox",["Config_Optimisee", "Changement_Bouche"],config,"unite");
+            addFieldConfig(configXML,"Singularite_EA","Singularite_EA","text","Singularite_EA",config,"unite");
+            addFieldsConfig(configXML,"checkbox",["EA_Fixes", "EA_Autoréglables"],config,"unite");
+            addFieldsConfig(configXML,"number",["Nb_Sdb_WC", "Nb_Sdb", "Nb_WC", "Nb_Sde"],config,"unite");
+            addArrayField(configXML,"Cdep","AT" + parseInt(i + 1) + "Config" + parseInt(j + 1) + "_Cdep","Cdep",config);
+            addFieldsConfig(configXML,"number",["Qv_Rep","Smea_Existant","Module_1","Module_2","Qsupp_Sdb","Qsupp_WC","Qsupp_Sdb_WC","Qsupp_Cellier",],config,"unite");
             div.appendChild(config);
             addTableConfig(
                 configXML,
@@ -329,55 +180,32 @@ function loadEquipements(xml) {
     const containerExtracteurs = document.getElementById("extracteurs-tab-pane"); //contenu des eqpmts
 
     // BOUCHES
-    addTableEqpmt("Bouche", bouches, containerBouches, [
-        "Code",
-        "Références",
-        "Qmin",
-        "QminF",
-        "QminLimite",
-        "QmaxF",
-        "QmaxLimite",
-    ]);
+    addTableEqpmt("Bouche", bouches, containerBouches, ["Code","Références","Qmin","QminF","QminLimite","QmaxF","QmaxLimite",]);
     // ENTREES
-    addTableEqpmt("Entree", entrees, containerEntrees, [
-        "Code",
-        "Références",
-        "EA_min",
-        "EA_max",
-    ]);
+    addTableEqpmt("Entree", entrees, containerEntrees, ["Code","Références","EA_min","EA_max",]);
     // SOLUTIONS
-    addTableEqpmt("Solution", solutions, containerSolutions, [
-        "Code_Solution",
-        "Config 1",
-        "Config 2",
-        "Config 3",
-        '<button type="button" onclick="solutionsNewConfig()">Ajouter</button>',
-    ]);
+    addTableEqpmt("Solution", solutions, containerSolutions, ["Code_Solution","Config 1","Config 2","Config 3",'<button type="button" onclick="solutionsNewConfig()">Ajouter</button>',]);
     // EXTRACTEURS
-    addTableEqpmt("Extracteur", extracteurs, containerExtracteurs, [
-        "Références",
-        "N_Cdep",
-        "Libelle_Cdep",
-    ]);
+    addTableEqpmt("Extracteur", extracteurs, containerExtracteurs, ["Références","N_Cdep","Libelle_Cdep",]);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-function loadFields(xml, type, fields, div, unite) {
+function addFields(xml, type, fields, div, unite) {
     fields.forEach((element) =>
-        addField(xml, element, element, type, element, 0, div, unite)
+        addField(xml, element, element, type, element, div, unite)
     );
 }
 
-function addField(xml, nameXML, nameHTML, type, label, position, div, unite) {
+function addField(xml, nameXML, nameHTML, type, label, parent, unite=null,helper=null) {
     var lab = document.createElement("label");
     var input = document.createElement("input");
 
     if (
-        typeof xml.getElementsByTagName(nameXML)[position] !== "undefined" &&
-        xml.getElementsByTagName(nameXML)[position] !== null
+        typeof xml.getElementsByTagName(nameXML)[0] !== "undefined" &&
+        xml.getElementsByTagName(nameXML)[0] !== null
     ) {
-        var value = xml.getElementsByTagName(nameXML)[position].textContent;
+        var value = xml.getElementsByTagName(nameXML)[0].textContent;
     } else {
         var value = "";
     }
@@ -385,8 +213,10 @@ function addField(xml, nameXML, nameHTML, type, label, position, div, unite) {
     input.type = type;
     input.name = nameHTML;
     input.id = nameHTML;
+    input.setAttribute("class","form-control");
     lab.innerHTML = label;
     lab.htmlFor = nameHTML;
+    lab.setAttribute("class","form-label");
 
     switch (type) {
         case "text":
@@ -410,42 +240,54 @@ function addField(xml, nameXML, nameHTML, type, label, position, div, unite) {
             }
             break;
     }
-    div.appendChild(lab);
-    div.appendChild(input);
+    parent.appendChild(lab);
+    if(unite !==null)
+    {
+        var div = document.createElement("div");
+        var span = document.createElement("span");
+        div.setAttribute('class','input-group');
+        div.appendChild(input);
+        span.setAttribute('class','input-group-text');
+        span.innerHTML = unite;
+        div.appendChild(span);
+        div.appendChild(input);
+        parent.appendChild(div);
+    }
+    else
+    {
+        parent.appendChild(input);
+    }
+    
 }
 
-function loadFieldsAT(xml, type, fields, position, div, unite) {
+function addFieldsAT(xml, type, fields, position, div, unite) 
+{
     fields.forEach((element) =>
         addFieldAT(xml, element, element, type, element, position, div, unite)
     );
 }
 
-function addFieldAT(xml, nameXML, nameHTML, type, label, position, div, unite) {
+function addFieldAT(xml, nameXML, nameHTML, type, label, position, div, unite) 
+{
     nameHTML = "AT" + parseInt(position + 1) + "_" + nameHTML;
     addField(xml, nameXML, nameHTML, type, label, position, div, unite);
 }
 
-function loadFieldsConfig(xml, type, fields, position, div, unite) {
+function addFieldsConfig(xml, type, fields, position, div, unite) 
+{
     fields.forEach((element) =>
         addFieldConfig(xml, element, element, type, element, position, div, unite)
     );
 }
 
-function addFieldConfig(
-    xml,
-    nameXML,
-    nameHTML,
-    type,
-    label,
-    position,
-    div,
-    unite
-) {
+function addFieldConfig(xml,nameXML,nameHTML,type,label,position,div,unite) 
+{
     nameHTML = (div.id + "_" + nameHTML).replace("-tab-pane", "");
     addField(xml, nameXML, nameHTML, type, label, position, div, unite);
 }
 
-function addArrayField(xml, nameXML, nameHTML, label, container) {
+function addArrayField(xml, nameXML, nameHTML, label, container) 
+{
     var lab = document.createElement("label");
     lab.innerHTML = label;
     lab.htmlFor = nameHTML;
@@ -475,9 +317,15 @@ function addEmptyField(name, type, containerId) {
     container.appendChild(input);
 }
 
-function addEmptyDiv(id, container) {
+function addEmptyDiv(parent,id) {
     var div = document.createElement("div");
     div.id = id;
+    parent.appendChild(div);
+}
+
+function addDiv(parent,gridItem) {
+    var div = document.createElement("div");
+    div.setAttribute("class",gridItem)
     container.appendChild(div);
 }
 
@@ -676,19 +524,12 @@ function addTableEqpmt(Eqpmt, xml, container, colNames) {
             case "Bouche":
                 addFieldEqpmt(xml, Eqpmt, "Code", "text", i, tr);
                 addFieldEqpmt(xml, Eqpmt, "Reference", "text", i, tr); // A revoir
-                loadFieldsEqpmt(
-                    xml,
-                    Eqpmt,
-                    ["Qmin", "QminF", "QminLimite", "QmaxF", "QmaxLimite"],
-                    "number",
-                    i,
-                    tr
-                );
+                addFieldsEqpmt(xml,Eqpmt,["Qmin", "QminF", "QminLimite", "QmaxF", "QmaxLimite"],"number",i,tr);
                 break;
             case "Entree":
                 addFieldEqpmt(xml, Eqpmt, "Code", "text", i, tr);
                 addFieldEqpmt(xml, Eqpmt, "Reference", "text", i, tr);
-                loadFieldsEqpmt(xml, Eqpmt, ["EA_min", "EA_max"], "number", i, tr);
+                addFieldsEqpmt(xml, Eqpmt, ["EA_min", "EA_max"], "number", i, tr);
                 break;
             case "Solution":
                 addFieldEqpmt(xml, Eqpmt, "Code_Solution", "text", i, tr);
@@ -802,7 +643,7 @@ function addEmptyFieldEqpmt(Eqpmt, nameXML, type, parent) {
     parent.appendChild(td);
 }
 
-function loadFieldsEqpmt(xml, Eqpmt, fields, type, position, parent) {
+function addFieldsEqpmt(xml, Eqpmt, fields, type, position, parent) {
     fields.forEach((element) =>
         addFieldEqpmt(xml, Eqpmt, element, type, position, parent)
     );

@@ -1,33 +1,5 @@
-.container {
-    display: grid; 
-    grid-template-columns: 0.5fr 1.5fr; 
-    grid-template-rows: 1fr; 
-    gap: 0px 0%; 
-    grid-template-areas: 
-    "nav content"; 
-    border: 1px solid var(--bs-blue);
-
-}
-
-.nav { 
-    grid-area: nav; 
-    max-width: 100%;
-}
-
-.content { 
-    grid-area: content; 
-    max-width: inherit;
-}
 
 
-input[type='text'],input[type='number']{
-    display: block;
-}
-
-.AT{
-    border: 1px solid var(--bs-blue);
-    margin-bottom: 1em;
-}
 
 
 

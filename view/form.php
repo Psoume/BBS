@@ -1,8 +1,8 @@
 <h2 id='titleAT'></h2>
 <form method='post' action='./controller/writeXML.php'>
     <input type='hidden' id='titleATForm' name='fileName'></input>
-    <div class="container">
-        <div class="nav">
+    <div class="container-fluid row">
+        <div class="nav col-2">
             <div class="list-group" id="list-tab">
                 <a class="list-group-item list-group-item-action active" id="list-generalites-list" data-bs-toggle="list" href="#list-generalites" aria-controls="list-generalites">Généralités</a>
                 <a class="list-group-item list-group-item-action" id="list-ats-list" data-bs-toggle="list" href="#list-ats" aria-controls="list-ats">ATS</a>
@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="content">
+        <div class="content col-10">
             <div class="tab-content" id="nav-tabContent">
                 <!-- GENERALITES -->
                 <div class="tab-pane fade show active" id="list-generalites" aria-labelledby="list-generalites-list">

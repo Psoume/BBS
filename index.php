@@ -36,7 +36,7 @@ function Loader()
 
 
   <script type="text/javascript" src="./js/controlXML.js"></script>
-  <script type="text/javascript" src="./js/script.js"></script>
+  <script type="text/javascript" src="./js/loadXML.js"></script>
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js.map"></script>
 
