@@ -53,7 +53,6 @@ $indexConfig = $_POST['indexConfig'];
 </div>
 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep">Cdep</label>
 <input type="text" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1">
-<input type="text" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_2" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_2">
 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qv_Rep" class="form-label">Qv_Rep</label>
 <div class="input-group">
     <span class="input-group-text">unite</span>

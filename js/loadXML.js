@@ -176,24 +176,26 @@ xhr.onload = function () {
 xhr.send(data);
 }
 
-// fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'date');
+
 function fillArrayField(xml, nameXML, idHTML, type)
 {
     for(var i=0; i<xml.getElementsByTagName(nameXML).length; i++) 
     {
-        idHTML = idHTML +'_'+ parseInt(i+1);
-
+        
+        var newIdHTML = idHTML +'_'+ parseInt(i+1);
+        var idReference = idHTML +'_'+ i;
         if(i!=0)
         {
-            var reference = document.getElementById(idHTML);
+            var reference = document.getElementById(idReference);
             var input = document.createElement('input');
             input.type = type;
-            input.name = idHTML;
-            input.id =idHTML;
+            input.name = newIdHTML;
+            input.id =newIdHTML;
             reference.after(input);
         }
         
-        fillField(xml,nameXML,idHTML,type,i);
+        
+        fillField(xml,nameXML,newIdHTML,type,i);
     }
 }
 
@@ -243,7 +245,7 @@ function addData(xml)
     // Generalites
     var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application'];
     fillFields(xml, fields, fields, 'text');
-    fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'date');
+    fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
     var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
     fillFields(xml, checkboxFields, checkboxFields, 'checkbox');
     AT
@@ -266,6 +268,7 @@ function addData(xml)
             fillFields(configXML, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
             var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
             fillFields(configXML, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
+            fillArrayField(configXML, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
             j++;
         }
         i++;
