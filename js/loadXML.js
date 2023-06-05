@@ -1,6 +1,7 @@
 
 // Se lance onload quand $_GET['AT'] !=null
 // Porte d'entrée de la création du formulaire
+
 function loadXML(at) {
     let xhr = new XMLHttpRequest();
 
@@ -20,9 +21,20 @@ function loadXML(at) {
         }
     };
     xhr.send();
-    // Remplissage des inputs
-    // addData(xml);
     
+    
+}
+// PREMIERE PAGE : GENERALITES
+function loadGeneralites(xml,IdParent) {
+    var parent = document.getElementById(IdParent);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "/view/_form/_generalites.php", true); 
+    xhr.onload = function () {
+        parent.innerHTML = xhr.responseText;
+        loadATS(xml);        
+    };
+    xhr.send();   
 }
 
 // DEUXIEME PAGE : ATS
@@ -35,6 +47,7 @@ function loadATS(xml) {
         loadAT(xml,AT,i);
         i++;
     } //end while
+    loadEquipements(xml);
 }
 
 function loadAT(xml,AT,i)
@@ -112,6 +125,7 @@ function loadConfig(xml,configXML,indexAT,j){
     divConfigContent.appendChild(config);
 
     loadPieces(xml,configXML,indexAT,indexConfig);
+    
     }
 
 
@@ -144,7 +158,7 @@ function loadPieces(xml,configXML,indexAT,indexConfig){
     {
         var config = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab-pane");
         config.innerHTML = xhr.responseText;
-        loadEquipements(xml);
+        
     };
     xhr.send(data);
 }
@@ -166,6 +180,9 @@ function loadEquipements(xml) {
     loadEquipement("_solution.php", "solutions-tab-pane", solutions);
     // EXTRACTEURS
     loadEquipement("_extracteur.php", "extracteurs-tab-pane", extracteurs);
+    // Remplissage des inputs
+    addData(xml);
+    
 }
 
 function loadEquipement(fileName,idContainer,xml)
@@ -186,18 +203,44 @@ function loadEquipement(fileName,idContainer,xml)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-function loadGeneralites(xml,IdParent) {
-var parent = document.getElementById(IdParent);
+// REMPLISSAGE DES CHAMPS
 
-var xhr = new XMLHttpRequest();
-xhr.open('POST', "/view/_form/_generalites.php", true); 
-xhr.onload = function () {
-    parent.innerHTML = xhr.responseText;
-    loadATS(xml);
-};
-xhr.send();
+function addData(xml)
+{
+    // Generalites
+    console.log(document.getElementById('AT1_REF_AT'));
+    var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application'];
+    fillFields(xml, fields, fields, 'text');
+    fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
+    var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
+    fillFields(xml, checkboxFields, checkboxFields, 'checkbox');
+    // AT
+    var i = 0; // tant qu'il y a des AT dans le XML
+    while (typeof xml.getElementsByTagName("AT")[i] !== "undefined") 
+    {
+        var AT = xml.getElementsByTagName("AT")[i];
+        var indexAT = parseInt(i+1);
+        var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
+        fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
+
+        // var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
+        // fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
+    //     // Configs
+    //     var j = 0;
+    //     while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
+    //     {
+    //         var configXML = AT.getElementsByTagName("CONFIG")[j];
+    //         var indexConfig = parseInt(j + 1);
+    //         var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
+    //         fillFields(configXML, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
+    //         var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
+    //         fillFields(configXML, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
+    //         fillArrayField(configXML, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
+    //         j++;
+    //     }
+        i++;
+    }
 }
-
 
 function fillArrayField(xml, nameXML, idHTML, type)
 {
@@ -260,42 +303,6 @@ function fillFields(xml, nameXML, idHTML, type)
     }
 }
 
-
-
-function addData(xml)
-{
-    // Generalites
-    var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application'];
-    fillFields(xml, fields, fields, 'text');
-    fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
-    var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
-    fillFields(xml, checkboxFields, checkboxFields, 'checkbox');
-    AT
-    var i = 0; // tant qu'il y a des AT dans le XML
-    while (typeof xml.getElementsByTagName("AT")[i] !== "undefined") 
-    {
-        var AT = xml.getElementsByTagName("AT")[i];
-        var indexAT = parseInt(i+1);
-        var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
-        fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
-        var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
-        fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
-        // Configs
-        var j = 0;
-        while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
-        {
-            var configXML = AT.getElementsByTagName("CONFIG")[j];
-            var indexConfig = parseInt(j + 1);
-            var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
-            fillFields(configXML, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
-            var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
-            fillFields(configXML, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
-            fillArrayField(configXML, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
-            j++;
-        }
-        i++;
-    }
-}
 
 function formatFieldsAT(fields,indexAT)
 {
