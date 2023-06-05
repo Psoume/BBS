@@ -1,3 +1,10 @@
+<?php
+if(isset($_POST['index']))
+{
+    $i = $_POST['index'];
+}
+?>
+
 <tr>
     <td>
         <input id="Solution<?php echo $i; ?>_Code_Solution" name="Solution<?php echo $i; ?>_Code_Solution" type="text"></td>

@@ -51,8 +51,13 @@ $indexConfig = $_POST['indexConfig'];
     <span class="input-group-text">unite</span>
     <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-control" step="any">
 </div>
+
+<div id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField">
 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep">Cdep</label>
-<input type="text" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1">
+<input type="text" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" >
+</div>
+<button type='button' onclick="addField('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep','number','AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField')">+</button>
+
 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qv_Rep" class="form-label">Qv_Rep</label>
 <div class="input-group">
     <span class="input-group-text">unite</span>

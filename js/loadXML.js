@@ -419,3 +419,29 @@ function addNav(containerNav,referenceNavButton,containerContent,buttonHTML,inde
     divAT.setAttribute("tabindex", "0");
     containerContent.appendChild(divAT);
 }
+
+// DYNAMIQUES
+
+function addField(idHTML,type,idContainer)
+{
+    var input = document.createElement("input");
+    input.type = type;
+    var container = document.getElementById(idContainer);
+    idHTML +="_"+container.children.length;
+    input.id=idHTML;
+    input.name=idHTML;
+    container.appendChild(input);
+}
+
+function newEquipement(Eqpmt){
+    var container = document.getElementById('table_'+Eqpmt).children[1];
+    var data = new FormData();
+    data.append('index', parseInt(container.children.length+1));
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "/view/_form/_"+Eqpmt.toLowerCase()+'_row.php', true); // false car on veut le faire de façon synchrone
+    xhr.onload = function () {
+        container.insertAdjacentHTML('beforeend' ,xhr.responseText);     
+    };
+    xhr.send(data);
+}

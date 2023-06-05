@@ -10,9 +10,13 @@
 <input type="text" name="Code_Industriel" id="Code_Industriel" class="form-control">
 <label for="Num_AT" class="form-label">Num_AT</label>
 <input type="text" name="Num_AT" id="Num_AT" class="form-control">
+
 <div id="NumATAncienField">
-<label for="Num_AT_Ancien">Num_AT_Ancien</label>
-<input type="text" name="Num_AT_Ancien_1" id="Num_AT_Ancien_1"></div><button type="button" class="btn" onclick="addEmptyField('Num_AT_Ancien','text','NumATAncienField')">+</button>
+<label for="Num_AT_Ancien_1">Num_AT_Ancien</label>
+<input type="text" name="Num_AT_Ancien_1" id="Num_AT_Ancien_1">
+</div>
+<button type="button" class="btn" onclick="addField('Num_AT_Ancien','text','NumATAncienField')">+</button>
+
 <label for="Date_Application" class="form-label">Date_Application</label>
 <input type="text" name="Date_Application" id="Date_Application" class="form-control">
 <label for="Date_Fin_Application" class="form-label">Date_Fin_Application</label>
