@@ -84,6 +84,7 @@ function loadAT(xml,AT,i)
         loadConfigs(xml,AT,indexAT);
     };
     xhr.send(data);
+    
 }
 
 function loadConfigs(xml,AT,indexAT){
@@ -173,28 +174,32 @@ function loadEquipements(xml) {
     const extracteurs = eqpmts.getElementsByTagName("Extracteurs")[0];
 
     // BOUCHES
-    loadEquipement("_bouche.php","bouches-tab-pane",bouches);
+    loadEquipement(xml,"_bouche.php","bouches-tab-pane",bouches);
     // ENTREES
-    loadEquipement("_entree.php", "entrees-tab-pane", entrees);
+    loadEquipement(xml,"_entree.php", "entrees-tab-pane", entrees);
     // SOLUTIONS
-    loadEquipement("_solution.php", "solutions-tab-pane", solutions);
+    loadEquipement(xml,"_solution.php", "solutions-tab-pane", solutions);
     // EXTRACTEURS
-    loadEquipement("_extracteur.php", "extracteurs-tab-pane", extracteurs);
+    loadEquipement(xml,"_extracteur.php", "extracteurs-tab-pane", extracteurs);
     // Remplissage des inputs
-    addData(xml);
     
 }
 
-function loadEquipement(fileName,idContainer,xml)
+function loadEquipement(xml,fileName,idContainer,EqpmtXML)
 {
     var divEqpmt = document.getElementById(idContainer);
     var data = new FormData();
-    data.append('nbrEqpmt', xml.children.length);
+    data.append('nbrEqpmt', EqpmtXML.children.length);
     
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "/view/_form/"+fileName, true); // false car on veut le faire de façon synchrone
     xhr.onload = function () {
         divEqpmt.innerHTML = xhr.responseText;
+        if(fileName=='_extracteur.php')
+        {
+            addData(xml);
+        }
+        
     };
     xhr.send(data);
 }
@@ -207,8 +212,8 @@ function loadEquipement(fileName,idContainer,xml)
 
 function addData(xml)
 {
+    console.log(document.getElementById('AT1Config1_Type_Logement'));
     // Generalites
-    console.log(document.getElementById('AT1_REF_AT'));
     var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application'];
     fillFields(xml, fields, fields, 'text');
     fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
@@ -223,21 +228,21 @@ function addData(xml)
         var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
         fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
 
-        // var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
-        // fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
-    //     // Configs
-    //     var j = 0;
-    //     while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
-    //     {
-    //         var configXML = AT.getElementsByTagName("CONFIG")[j];
-    //         var indexConfig = parseInt(j + 1);
-    //         var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
-    //         fillFields(configXML, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
-    //         var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
-    //         fillFields(configXML, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
-    //         fillArrayField(configXML, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
-    //         j++;
-    //     }
+        var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
+        fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
+        // Configs
+        var j = 0;
+        while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
+        {
+            var configXML = AT.getElementsByTagName("CONFIG")[j];
+            var indexConfig = parseInt(j + 1);
+            var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
+            // fillFields(configXML, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
+            // var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
+            // fillFields(configXML, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
+            // fillArrayField(configXML, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
+            j++;
+        }
         i++;
     }
 }
@@ -267,6 +272,7 @@ function fillArrayField(xml, nameXML, idHTML, type)
 
 function fillField(xml, nameXML, idHTML, type,position=0)
 {
+    // console.log(idHTML);
     if (typeof(xml.getElementsByTagName(nameXML)[position]) !== 'undefined')
     {
         var value = xml.getElementsByTagName(nameXML)[position].textContent;
