@@ -18,6 +18,7 @@ function loadXML(at) {
             var xml = xhr.responseXML; // le fichier XML choisi
             // PREMIERE PAGE
             loadGeneralites(xml,'list-generalites');
+            
         }
     };
     xhr.send();
@@ -32,6 +33,7 @@ function loadGeneralites(xml,IdParent) {
     xhr.open('POST', "/view/_form/_generalites.php", true); 
     xhr.onload = function () {
         parent.innerHTML = xhr.responseText;
+        addDataGeneralites(xml);
         loadATS(xml);        
     };
     xhr.send();   
@@ -44,13 +46,13 @@ function loadATS(xml) {
     while (typeof xml.getElementsByTagName("AT")[i] !== "undefined" &&xml.getElementsByTagName("AT")[i] !== null) 
     {
         var AT = xml.getElementsByTagName("AT")[i];
-        loadAT(xml,AT,i);
+        loadAT(AT,i);
         i++;
     } //end while
     loadEquipements(xml);
 }
 
-function loadAT(xml,AT,i)
+function loadAT(AT,i)
 {
     const containerNav = document.getElementById("nav_ats"); //navbar des ats
     const referenceNavButton = document.getElementById("addAT"); // bouton + at
@@ -70,6 +72,7 @@ function loadAT(xml,AT,i)
     {
         var divAT = document.getElementById("at_" + indexAT + "-tab-pane"); 
         divAT.innerHTML = xhr.responseText;
+        addDataAT(AT,indexAT);
         // CONFIGS
         // NAV CONFIG
         var containerNavConfig = document.createElement("ul");
@@ -81,23 +84,23 @@ function loadAT(xml,AT,i)
         divConfigContent.setAttribute("class", "tab-content");
         divConfigContent.id = "AT" + indexAT + "configs-content";
         divAT.appendChild(divConfigContent);
-        loadConfigs(xml,AT,indexAT);
+        loadConfigs(AT,indexAT);
     };
     xhr.send(data);
     
 }
 
-function loadConfigs(xml,AT,indexAT){
+function loadConfigs(AT,indexAT){
     var j = 0; //on itere sur les configs.
     while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined" && AT.getElementsByTagName("CONFIG")[j] !== null) 
     {   
         var configXML = AT.getElementsByTagName("CONFIG")[j];
-        loadConfig(xml,configXML,indexAT,j);
+        loadConfig(configXML,indexAT,j);
         j++;
     }
 }
 
-function loadConfig(xml,configXML,indexAT,j){
+function loadConfig(configXML,indexAT,j){
     
     var indexConfig = parseInt(j + 1);
     const itemNavConfig = document.createElement("li");
@@ -125,12 +128,12 @@ function loadConfig(xml,configXML,indexAT,j){
     divConfigContent = document.getElementById("AT"+indexAT+"configs-content");
     divConfigContent.appendChild(config);
 
-    loadPieces(xml,configXML,indexAT,indexConfig);
+    loadPieces(configXML,indexAT,indexConfig);
     
     }
 
 
-function loadPieces(xml,configXML,indexAT,indexConfig){
+function loadPieces(configXML,indexAT,indexConfig){
     var pieces =configXML.getElementsByTagName("LOCAUX")[0].children;
     var piecesHumides = [];
     var piecesSeches = [];
@@ -159,7 +162,10 @@ function loadPieces(xml,configXML,indexAT,indexConfig){
     {
         var config = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab-pane");
         config.innerHTML = xhr.responseText;
-        
+        addDataConfig(configXML,indexAT,indexConfig);
+        var Locaux = configXML.getElementsByTagName('LOCAUX')[0];
+        addDataRoom(Locaux,'LocauxH',piecesHumides,indexAT,indexConfig);
+        addDataRoom(Locaux,'LocauxS',piecesSeches,indexAT,indexConfig);        
     };
     xhr.send(data);
 }
@@ -174,18 +180,18 @@ function loadEquipements(xml) {
     const extracteurs = eqpmts.getElementsByTagName("Extracteurs")[0];
 
     // BOUCHES
-    loadEquipement(xml,"_bouche.php","bouches-tab-pane",bouches);
+    loadEquipement('Bouche',"_bouche.php","bouches-tab-pane",bouches);
     // ENTREES
-    loadEquipement(xml,"_entree.php", "entrees-tab-pane", entrees);
+    loadEquipement("Entree","_entree.php", "entrees-tab-pane", entrees);
     // SOLUTIONS
-    loadEquipement(xml,"_solution.php", "solutions-tab-pane", solutions);
+    loadEquipement("Solution","_solution.php", "solutions-tab-pane", solutions);
     // EXTRACTEURS
-    loadEquipement(xml,"_extracteur.php", "extracteurs-tab-pane", extracteurs);
+    loadEquipement("Extracteur","_extracteur.php", "extracteurs-tab-pane", extracteurs);
     // Remplissage des inputs
     
 }
 
-function loadEquipement(xml,fileName,idContainer,EqpmtXML)
+function loadEquipement(Eqpmt,fileName,idContainer,EqpmtXML)
 {
     var divEqpmt = document.getElementById(idContainer);
     var data = new FormData();
@@ -194,12 +200,8 @@ function loadEquipement(xml,fileName,idContainer,EqpmtXML)
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "/view/_form/"+fileName, true); // false car on veut le faire de façon synchrone
     xhr.onload = function () {
-        divEqpmt.innerHTML = xhr.responseText;
-        if(fileName=='_extracteur.php')
-        {
-            addData(xml);
-        }
-        
+        divEqpmt.innerHTML = xhr.responseText;  
+        addDataEqpmt(Eqpmt,EqpmtXML);     
     };
     xhr.send(data);
 }
@@ -210,40 +212,86 @@ function loadEquipement(xml,fileName,idContainer,EqpmtXML)
 
 // REMPLISSAGE DES CHAMPS
 
-function addData(xml)
-{
-    console.log(document.getElementById('AT1Config1_Type_Logement'));
+function addDataGeneralites(xml){
     // Generalites
     var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application'];
     fillFields(xml, fields, fields, 'text');
     fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
     var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
     fillFields(xml, checkboxFields, checkboxFields, 'checkbox');
-    // AT
-    var i = 0; // tant qu'il y a des AT dans le XML
-    while (typeof xml.getElementsByTagName("AT")[i] !== "undefined") 
-    {
-        var AT = xml.getElementsByTagName("AT")[i];
-        var indexAT = parseInt(i+1);
-        var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
-        fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
+}
 
-        var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
-        fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
-        // Configs
-        var j = 0;
-        while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
+function addDataAT(AT,indexAT)
+{
+var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
+fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
+var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
+fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
+}
+
+function addDataConfig(Config,indexAT,indexConfig)
+{
+    var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
+    fillFields(Config, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
+    var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
+    fillFields(Config, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
+    fillArrayField(Config, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
+    var fields = ['Name','Code','Qvrep'];
+}
+
+function addDataRoom(Locaux, roomtype, rooms,indexAT, indexConfig){
+
+    for(var k=0;k<rooms.length;k++)
+    {
+        var input = document.getElementById("AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Name_"+parseInt(k+1));
+        input.value = rooms[k];
+        fillRoomField(Locaux,parseInt(k+1), 'Code',"AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Code" , 'text');
+        if(roomtype=='LocauxH')
         {
-            var configXML = AT.getElementsByTagName("CONFIG")[j];
-            var indexConfig = parseInt(j + 1);
-            var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
-            // fillFields(configXML, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
-            // var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
-            // fillFields(configXML, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
-            // fillArrayField(configXML, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
-            j++;
+            fillRoomField(Locaux,parseInt(k+1), 'Qvrep',"AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Qvrep" , 'text');
         }
-        i++;
+    }  
+}
+
+function addDataEqpmt(Eqpmt,EqpmtXML)
+{
+    
+    for (var i=0;i<EqpmtXML.children.length;i++)
+    {
+        var xml = EqpmtXML.children[i];
+        var indexEqpmt = parseInt(i+1);
+        switch(Eqpmt){
+            case 'Bouche':
+                fillArrayField(xml, 'Reference', Eqpmt+indexEqpmt+'_Reference', 'text');
+                var fields = ['Code','Qmin','QminF','QminLimite','QmaxF','QmaxLimite'];
+                break;
+
+            case 'Entree':
+                fillArrayField(xml, 'Reference', Eqpmt+indexEqpmt+'_Reference', 'text');
+                var fields = ['Code','EA_min','EA_max'];
+                break;
+
+            case 'Solution':
+                fillField(xml, 'Code_Solution', Eqpmt+indexEqpmt+'_Code_Solution','text');
+                var fields=[];
+                for(var j=1;j<xml.children.length;j++)
+                {
+                    fillField(xml,'Solution_Libelle',Eqpmt+indexEqpmt+'_Config'+j+'_Solution_Libelle');
+                    fillField(xml,'Code',Eqpmt+indexEqpmt+'_Config'+j+'_Code');
+                    fillField(xml,'Nombre',Eqpmt+indexEqpmt+'_Config'+j+'_Nombre');
+                }
+                break;
+
+            case 'Extracteur':
+                fillArrayField(xml, 'Reference', Eqpmt+indexEqpmt+'_Reference', 'text');
+                var fields = ['N_Cdep','Libelle_Cdep'];
+                break;
+    }
+
+    if(Eqpmt!=='Solution')
+    {
+        fillFields(xml, fields, formatFieldsEqpmt(fields,Eqpmt,indexEqpmt), 'text')
+    }
     }
 }
 
@@ -251,7 +299,6 @@ function fillArrayField(xml, nameXML, idHTML, type)
 {
     for(var i=0; i<xml.getElementsByTagName(nameXML).length; i++) 
     {
-        
         var newIdHTML = idHTML +'_'+ parseInt(i+1);
         var idReference = idHTML +'_'+ i;
         if(i!=0)
@@ -263,16 +310,17 @@ function fillArrayField(xml, nameXML, idHTML, type)
             input.id =newIdHTML;
             reference.after(input);
         }
-        
-        
         fillField(xml,nameXML,newIdHTML,type,i);
     }
 }
 
+function fillRoomField(xml,indexRoom, nameXML, idHTML, type){
+    var newIdHTML = idHTML +'_'+ indexRoom;
+    fillField(xml,nameXML,newIdHTML,type);
+}
 
 function fillField(xml, nameXML, idHTML, type,position=0)
 {
-    // console.log(idHTML);
     if (typeof(xml.getElementsByTagName(nameXML)[position]) !== 'undefined')
     {
         var value = xml.getElementsByTagName(nameXML)[position].textContent;
@@ -326,6 +374,15 @@ function formatFieldsConfig(fields,indexAT,indexConfig)
     for (var i=0; i<fields.length; i++) 
     {
         newFields.push("AT"+indexAT+"Config"+indexConfig+"_"+fields[i]);
+    }
+    return newFields;
+}
+
+function formatFieldsEqpmt(fields,Eqpmt,index){
+    var newFields = [];
+    for (var i=0; i<fields.length; i++) 
+    {
+        newFields.push(Eqpmt+index+"_"+fields[i]);
     }
     return newFields;
 }
