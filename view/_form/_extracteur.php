@@ -1,5 +1,5 @@
 <?php
-$nbr_rows = $_POST['indexAT'];
+$nbr_rows = $_POST['nbrEqpmt'];
 ?>
 
 

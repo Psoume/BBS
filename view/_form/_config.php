@@ -1,6 +1,6 @@
 <?php
-$piecesHumides = explode(',',$_POST['piecesHumides']);
-$piecesSeches = explode(',',$_POST['piecesSeches']);
+$nbrPiecesHumides = $_POST['nbrPiecesHumides'];
+$nbrPiecesSeches = $_POST['nbrPiecesSeches'];
 $indexAT = $_POST['indexAT'];
 $indexConfig = $_POST['indexConfig'];
 ?>
@@ -104,11 +104,10 @@ $indexConfig = $_POST['indexConfig'];
     </thead>
     <tbody class="border-dark">
     <?php 
-        $i = 1;
-        foreach($piecesHumides as $piece) 
+
+        for($i=1;$i<=$nbrPiecesHumides;$i++) 
         {
             include'./_config_roomH.php';
-            $i++;
         }
     ?>
     </tbody>
@@ -125,11 +124,10 @@ $indexConfig = $_POST['indexConfig'];
     </thead>
     <tbody class="border-dark">
         <?php 
-        $i = 1;
-        foreach($piecesSeches as $piece) 
+
+        for($i=1;$i<=$nbrPiecesSeches;$i++) 
         {
             include'./_config_roomS.php';
-            $i++;
         }
         ?>
 

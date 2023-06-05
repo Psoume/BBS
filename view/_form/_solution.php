@@ -1,5 +1,5 @@
 <?php
-$nbr_rows = $_POST['indexAT'];
+$nbr_rows = $_POST['nbrEqpmt'];
 ?>
 
 <table class="table table-sm table-bordered" id="table_Solution">
