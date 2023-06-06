@@ -20,7 +20,7 @@ function createXML(is_blank) {
         let xhr = new XMLHttpRequest();
         xhr.open(
             "GET",
-            "model/createXML.php?fileName=" +
+            "controller/createXML.php?fileName=" +
             fileName +
             "&fromFile=" +
             fromFile +
@@ -46,7 +46,7 @@ function deleteXML(filename) {
         ) == true
     ) {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "model/deleteXML.php?name=" + filename);
+        xhr.open("GET", "controller/deleteXML.php?name=" + filename);
         xhr.send();
         xhr.onerror = function () {
             alert("La requête a échouée");

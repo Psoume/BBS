@@ -5,7 +5,7 @@
 function loadXML(at) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "/res/XML/" + at);
+    xhr.open("GET", "/model/XML/" + at);
     xhr.onerror = function () {
         alert("La requête a échouée");
     };
@@ -307,6 +307,7 @@ function fillArrayField(xml, nameXML, idHTML, type)
             var input = document.createElement('input');
             input.type = type;
             input.name = newIdHTML;
+            input.setAttribute('class','form-control mt-1')
             input.id =newIdHTML;
             reference.after(input);
         }
@@ -430,6 +431,7 @@ function addField(idHTML,type,idContainer)
     idHTML +="_"+container.children.length;
     input.id=idHTML;
     input.name=idHTML;
+    input.setAttribute('class','form-control mt-1');
     container.appendChild(input);
 }
 

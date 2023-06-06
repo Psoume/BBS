@@ -1,41 +1,82 @@
-<label for="Titre_AT" class="form-label">Titre_AT</label>
-<input type="text" name="Titre_AT" id="Titre_AT" class="form-control">
-<label for="Titulaire" class="form-label">Titulaire</label>
-<input type="text" name="Titulaire" id="Titulaire" class="form-control">
-<label for="Code_Titulaire" class="form-label">Code_Titulaire</label>
-<input type="text" name="Code_Titulaire" id="Code_Titulaire" class="form-control">
-<label for="Industriel" class="form-label">Industriel</label>
-<input type="text" name="Industriel" id="Industriel" class="form-control">
-<label for="Code_Industriel" class="form-label">Code_Industriel</label>
-<input type="text" name="Code_Industriel" id="Code_Industriel" class="form-control">
-<label for="Num_AT" class="form-label">Num_AT</label>
-<input type="text" name="Num_AT" id="Num_AT" class="form-control">
-
-<div id="NumATAncienField">
-<label for="Num_AT_Ancien_1">Num_AT_Ancien</label>
-<input type="text" name="Num_AT_Ancien_1" id="Num_AT_Ancien_1">
+<div class='px-4'>
+    <label for="Titre_AT" class="form-label">Titre : </label>
+    <input type="text" name="Titre_AT" id="Titre_AT" class="form-control">
 </div>
-<button type="button" class="btn" onclick="addField('Num_AT_Ancien','text','NumATAncienField')">+</button>
 
-<label for="Date_Application" class="form-label">Date_Application</label>
-<input type="text" name="Date_Application" id="Date_Application" class="form-control">
-<label for="Date_Fin_Application" class="form-label">Date_Fin_Application</label>
-<input type="text" name="Date_Fin_Application" id="Date_Fin_Application" class="form-control">
-<p>Usages :</p>
-<label for="Collectif" class="form-check-label">Collectif</label>
-<input type="checkbox" name="Collectif" id="Collectif" class="form-check-input" value="Collectif">
-<label for="Individuel" class="form-check-label">Individuel</label>
-<input type="checkbox" name="Individuel" id="Individuel" class="form-check-input" value="Individuel">
-<label for="Hotel" class="form-check-label">Hotel</label>
-<input type="checkbox" name="Hotel" id="Hotel" class="form-check-input" value="Hotel">
-<p>Caractéristiques :</p>
-<label for="Double_Flux" class="form-check-label">Double_Flux</label>
-<input type="checkbox" name="Double_Flux" id="Double_Flux" class="form-check-input" value="Double_Flux">
-<label for="Autoréglable" class="form-check-label">Autoréglable</label>
-<input type="checkbox" name="Autoréglable" id="Autoréglable" class="form-check-input" value="Autoréglable">
-<label for="Hygroreglable" class="form-check-label">Hygroreglable</label>
-<input type="checkbox" name="Hygroreglable" id="Hygroreglable" class="form-check-input" value="Hygroreglable">
-<label for="Basse_Pression" class="form-check-label">Basse_Pression</label>
-<input type="checkbox" name="Basse_Pression" id="Basse_Pression" class="form-check-input" value="Basse_Pression">
-<label for="Type_Extraction" class="form-label">Type_Extraction</label>
-<input type="text" name="Type_Extraction" id="Type_Extraction" class="form-control">
+<div class="row mx-auto">
+    <div class='col-12 col-sm-6 px-4'>
+        <label for="Titulaire" class="form-label">Nom du titulaire : </label>
+        <input type="text" name="Titulaire" id="Titulaire" class="form-control">
+        <label for="Code_Titulaire" class="form-label">Code du titulaire : </label>
+        <input type="text" name="Code_Titulaire" id="Code_Titulaire" class="form-control">
+        <label for="Num_AT" class="form-label">Numéro de l'AT : </label>
+        <input type="text" name="Num_AT" id="Num_AT" class="form-control">
+        <span id="NumATAncienField">
+            <label for="Num_AT_Ancien_1">Anciens numéros : </label><br/>
+            <input class="form-control" type="text" name="Num_AT_Ancien_1" id="Num_AT_Ancien_1">
+        </span>
+        <button type="button" class="btn btn-primary border border-dark mt-1 float-end" onclick="addField('Num_AT_Ancien','text','NumATAncienField')">+</button>
+    </div>
+
+    <div class='col-12 col-sm-6 px-4'>
+        <label for="Industriel" class="form-label">Nom de l'industriel : </label>
+        <input type="text" name="Industriel" id="Industriel" class="form-control">
+        <label for="Code_Industriel" class="form-label">Code de l'industriel : </label>
+        <input type="text" name="Code_Industriel" id="Code_Industriel" class="form-control">
+        <label for="Date_Application" class="form-label">Date d'application : </label>
+        <input type="text" name="Date_Application" id="Date_Application" class="form-control">
+        <label for="Date_Fin_Application" class="form-label">Date de fin d'application : </label>
+        <input type="text" name="Date_Fin_Application" id="Date_Fin_Application" class="form-control">
+        <label for="Type_Extraction" class="form-label">Type d'extraction : </label>
+        <input type="text" name="Type_Extraction" id="Type_Extraction" class="form-control">
+        
+    </div>
+</div>
+
+<div class="row mx-auto">
+    <div class="col-12 col-sm-6 px-4 pt-3">
+        <fieldset>
+            <legend>Usages :</legend>
+            <div class="form-check">
+                <label for="Collectif" class="form-check-label">Collectif : </label>
+                <input type="checkbox" name="Collectif" id="Collectif" class="form-check-input" value="Collectif">
+            </div>
+            <div class="form-check">
+                <label for="Individuel" class="form-check-label">Individuel : </label>
+                <input type="checkbox" name="Individuel" id="Individuel" class="form-check-input" value="Individuel">
+            </div>
+            <div class="form-check">
+                <label for="Hotel" class="form-check-label">Hôtel : </label>
+                <input type="checkbox" name="Hotel" id="Hotel" class="form-check-input" value="Hotel">
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="col-12 col-sm-6 px-4 pt-3">
+        <fieldset>
+        <legend>Caractéristiques :</legend>
+            <div class="form-check">
+                <label for="Double_Flux" class="form-check-label">Double Flux : </label>
+                <input type="checkbox" name="Double_Flux" id="Double_Flux" class="form-check-input" value="Double_Flux">
+            </div>
+            <div class="form-check">
+                <label for="Autoréglable" class="form-check-label">Autoréglable : </label>
+                <input type="checkbox" name="Autoréglable" id="Autoréglable" class="form-check-input" value="Autoréglable">
+            </div>
+            <div class="form-check">
+                <label for="Hygroreglable" class="form-check-label">Hygroreglable : </label>
+                <input type="checkbox" name="Hygroreglable" id="Hygroreglable" class="form-check-input" value="Hygroreglable">
+            </div>
+            <div class="form-check">
+                <label for="Basse_Pression" class="form-check-label">Basse Pression : </label>
+                <input type="checkbox" name="Basse_Pression" id="Basse_Pression" class="form-check-input" value="Basse_Pression">
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+
+
+
+

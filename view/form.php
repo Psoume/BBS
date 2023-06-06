@@ -1,20 +1,21 @@
 <h2 id='titleAT'></h2>
 <form method='post' action='./controller/writeXML.php'>
     <input type='hidden' id='titleATForm' name='fileName'></input>
-    <div class="container-fluid row">
-        <div class="nav col-2">
-            <div class="list-group" id="list-tab">
-                <a class="list-group-item list-group-item-action active" id="list-generalites-list" data-bs-toggle="list" href="#list-generalites" aria-controls="list-generalites">Généralités</a>
-                <a class="list-group-item list-group-item-action" id="list-ats-list" data-bs-toggle="list" href="#list-ats" aria-controls="list-ats">ATS</a>
-                <a class="list-group-item list-group-item-action" id="list-equipements-list" data-bs-toggle="list" href="#list-equipements" aria-controls="list-equipements">Équipements</a>
-            </div>
-        </div>
 
-        <div class="content col-10">
+    <div class="container-md row border border-dark mx-auto px-1 py-1 bg-secondary-subtle">
+        <aside class="col-12 col-sm-4 col-md-3 col-xl-2 px-0">
+            <div class="list-group" id="list-tab">
+                <a class="list-group-item list-group-item-action active border-bottom border-right border-dark text-center" id="list-generalites-list" data-bs-toggle="list" href="#list-generalites" aria-controls="list-generalites">Généralités</a>
+                <a class="list-group-item list-group-item-action border-bottom border-right border-dark text-center" id="list-ats-list" data-bs-toggle="list" href="#list-ats" aria-controls="list-ats">Avis Techniques</a>
+                <a class="list-group-item list-group-item-action border-bottom border-right border-dark text-center" id="list-equipements-list" data-bs-toggle="list" href="#list-equipements" aria-controls="list-equipements">Équipements</a>
+            </div>
+        </aside>
+
+        <section class="col col-12 col-sm-8 col-md-9 col-xl-10 ps-5{sm}">
             <div class="tab-content" id="nav-tabContent">
+
                 <!-- GENERALITES -->
-                <div class="tab-pane fade show active" id="list-generalites" aria-labelledby="list-generalites-list">
-                </div>
+                <div class="tab-pane fade show active mx-2 my-5" id="list-generalites" aria-labelledby="list-generalites-list"></div>
                 <!-- ATS -->
                 <div class="tab-pane fade" id="list-ats" aria-labelledby="list-ats-list">
                     <!-- ATS NAV -->
@@ -46,7 +47,7 @@
                     </ul> 
                     <!-- EQUIPEMENTS CONTENT -->
                     <div class="tab-content" id="eqpmt_content">
-                        <div id='bouches-tab-pane' class='tab-pane fade active show'>
+                        <div id='bouches-tab-pane' class='tab-pane fade active show '>
                         </div>
                         <div id='entrees-tab-pane' class='tab-pane fade'>
                         </div>
@@ -57,7 +58,9 @@
                     </div>
                 </div>    
             </div>
-        </div>
+            <button class='btn btn-primary float-end' type="submit">Télécharger le XML</button>
+            <button class='btn btn-secondary float-end me-2' type="button">Sauvegarder</button>
+        </section>
     </div>
-    <button class='btn btn-primary' type="submit">Enregistrer</button>
+    
 </form>

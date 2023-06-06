@@ -252,9 +252,9 @@ while(isset($_POST['Extracteur'.$i.'_Libelle_Cdep']))
 
 $File_Name = $_POST['fileName'];
 echo $File_Name;
-$xml->asXML("res/XML/test.xml");
-//     $xml->asXML("res/XML/".$File_Name);
-//     echo "<a href='/res/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
+$xml->asXML("model/XML/test.xml");
+//     $xml->asXML("model/XML/".$File_Name);
+//     echo "<a href='/model/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
 
 
 ?>
