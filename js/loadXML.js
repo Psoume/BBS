@@ -54,44 +54,9 @@ function loadATS(xml) {
 
 function loadAT(AT,i)
 {
-    const containerNav = document.getElementById("ATS_nav"); //navbar des ats
-    const referenceNavButton = document.getElementById("addAT"); // bouton add at
-    const containerContent = document.getElementById("ATS_content"); //contenu de l'AT
     var indexAT = parseInt(i + 1);
     var buttonHTML = AT.getElementsByTagName("REF_AT")[0].textContent;
-    addNav(containerNav,referenceNavButton,containerContent,buttonHTML,indexAT); // ajoute ATi et ATi-tab-pane
-
-    
-    var data = new FormData();
-    data.append('indexAT', indexAT);
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/"+"_AT.php", true); 
-
-    xhr.onload = function () 
-    {
-        var divAT = document.getElementById("AT" + indexAT + "-tab-pane"); 
-        divAT.innerHTML = xhr.responseText;
-        addDataAT(AT,indexAT);
-        // CONFIGS
-        // NAV CONFIG
-        var containerNavConfig = document.createElement("ul");
-        containerNavConfig.id = "navConfigs_AT" + indexAT;
-        containerNavConfig.setAttribute("class", "nav nav-pills");
-        navConfigItem = document.createElement('li');
-        navConfigItem.id = "AT"+indexAT+"_addConfig";
-        navConfigButton = document.createElement('button');
-        navConfigItem.appendChild(navConfigButton);
-        containerNavConfig.appendChild(navConfigItem);
-        divAT.appendChild(containerNavConfig);
-        // CONTENT CONFIG
-        divConfigContent = document.createElement("div");
-        divConfigContent.setAttribute("class", "tab-content");
-        divConfigContent.id = "AT" + indexAT + "configs-content";
-        divAT.appendChild(divConfigContent);
-        loadConfigs(AT,indexAT);
-    };
-    xhr.send(data);
-    
+    addAT("ATS_nav","addAT","ATS_content",buttonHTML,AT,indexAT); // ajoute ATi et ATi-tab-pane
 }
 
 function loadConfigs(AT,indexAT){
@@ -99,56 +64,59 @@ function loadConfigs(AT,indexAT){
     while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined" && AT.getElementsByTagName("CONFIG")[j] !== null) 
     {   
         var configXML = AT.getElementsByTagName("CONFIG")[j];
-        loadConfig(configXML,indexAT,j);
+        loadConfig(indexAT,j,configXML);
         j++;
     }
 }
 
-function loadConfig(configXML,indexAT,j){
+function loadConfig(indexAT,j,configXML=null){
     
     var indexConfig = parseInt(j + 1);
-    var containerNavConfig = document.getElementById("navConfigs_AT"+indexAT);
-    var containerContentConfig = document.getElementById("AT"+indexAT+"configs-content");
-    var referenceNavButton = document.getElementById("AT"+indexAT+"_addConfig"); // bouton + at
-    //referenceNavButton à définir
-    addNav(containerNavConfig,referenceNavButton,containerContentConfig,"Config" + indexConfig,indexAT,indexConfig);
-    loadPieces(configXML,indexAT,indexConfig);
+    addConfig("navConfigs_AT"+indexAT,"AT"+indexAT+"_addConfig","AT"+indexAT+"configs-content",indexAT,indexConfig);
+    loadPieces(indexAT,indexConfig,configXML);
     }
 
 
-function loadPieces(configXML,indexAT,indexConfig){
-    var pieces =configXML.getElementsByTagName("LOCAUX")[0].children;
+function loadPieces(indexAT,indexConfig,configXML=null){
     var piecesHumides = [];
     var piecesSeches = [];
 
-    for (var k = 0; k < pieces.length; k++)
+    if(configXML !==null)
     {
-        if (typeof(pieces[k].getElementsByTagName('Entree_Solution')[0]) !== 'undefined')
+        var pieces =configXML.getElementsByTagName("LOCAUX")[0].children;
+        for (var k = 0; k < pieces.length; k++)
         {
-            piecesSeches.push(pieces[k].tagName);
-        }
-        else
-        {
-            piecesHumides.push(pieces[k].tagName);
+            if (typeof(pieces[k].getElementsByTagName('Entree_Solution')[0]) !== 'undefined')
+            {
+                piecesSeches.push(pieces[k].tagName);
+            }
+            else
+            {
+                piecesHumides.push(pieces[k].tagName);
+            }
         }
     }
+
 
     var data = new FormData();
     data.append('indexAT', indexAT);
     data.append('indexConfig', indexConfig);
     data.append('nbrPiecesHumides', piecesHumides.length);
     data.append('nbrPiecesSeches', piecesSeches.length);
-
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "/view/_form/"+"_config.php", true); 
     xhr.onload = function () 
     {
         var config = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab-pane");
         config.innerHTML = xhr.responseText;
-        addDataConfig(configXML,indexAT,indexConfig);
-        var Locaux = configXML.getElementsByTagName('LOCAUX')[0];
-        addDataRoom(Locaux,'LocauxH',piecesHumides,indexAT,indexConfig);
-        addDataRoom(Locaux,'LocauxS',piecesSeches,indexAT,indexConfig);        
+        if(configXML !== null)
+        {
+            addDataConfig(configXML,indexAT,indexConfig);
+            var Locaux = configXML.getElementsByTagName('LOCAUX')[0];
+            addDataRoom(Locaux,'LocauxH',piecesHumides,indexAT,indexConfig);
+            addDataRoom(Locaux,'LocauxS',piecesSeches,indexAT,indexConfig);  
+            
+        }
     };
     xhr.send(data);
 }
@@ -400,46 +368,166 @@ function newEquipement(Eqpmt){
 }
 
 
-function addNav(containerNav,referenceNavButton,containerContent,buttonHTML,indexAT,indexConfig=null)
+function addAT(containerNavID,referenceNavButtonID,containerContentID,buttonHTML,AT=null,indexAT=null)
 {
+    const containerNav = document.getElementById(containerNavID); //navbar des ats
+    const referenceNavButton = document.getElementById(referenceNavButtonID); // bouton add at
+    const containerContent = document.getElementById(containerContentID); //contenu de l'AT
+    var navItem = document.createElement("li");
+    var button = document.createElement("button");
+    var div = document.createElement("div");
+    // NAV
+    navItem.setAttribute("class", "nav-item");
+    button.type = "button";
+    button.innerHTML = buttonHTML; 
+    button.setAttribute("data-bs-toggle", "tab");
+    button.setAttribute("aria-selected", "true");
+
+    if (indexAT == 1) {
+        button.setAttribute("class", "border border-dark active nav-link");
+        div.setAttribute("class", "show active tab-pane fade");
+    } else {
+        button.setAttribute("class", " border border-dark nav-link");
+        div.setAttribute("class", "tab-pane fade");
+    }
+
+    if (indexAT==null)
+    {
+        indexAT = containerNav.children.length;
+    }
+
+    button.id = "AT" + indexAT + "-tab";
+    button.setAttribute("data-bs-target", "#AT" + indexAT + "-tab-pane");
+    navItem.id = "AT" + indexAT;
+    div.id = "AT" + indexAT + "-tab-pane";
+    div.setAttribute("aria-labelledby", "AT" + indexAT + "-tab");
+
+    navItem.appendChild(button);
+    containerNav.insertBefore(navItem, referenceNavButton);
+
+    div.setAttribute("tabindex", "0");
+    containerContent.appendChild(div);
+
+    // CONTENT
+    var data = new FormData();
+    data.append('indexAT', indexAT);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "/view/_form/"+"_AT.php", true); 
+
+    xhr.onload = function () 
+    {
+        var divAT = document.getElementById("AT" + indexAT + "-tab-pane"); 
+        divAT.innerHTML = xhr.responseText;
+        if(AT !==null)
+        {
+            addDataAT(AT,indexAT);
+        }
+        
+        // CONFIGS
+        // NAV CONFIG
+        var containerNavConfig = document.createElement("ul");
+        var navConfigItem = document.createElement('li');
+        var navConfigButton = document.createElement('button');
+
+        containerNavConfig.id = "navConfigs_AT" + indexAT;
+        containerNavConfig.setAttribute("class", "nav nav-pills");
+        navConfigItem.id = "AT"+indexAT+"_addConfig";
+        navConfigButton.innerHTML = '+';
+        navConfigButton.type = "button";
+        navConfigButton.id = "AT"+indexAT+"_addConfig-button";
+        navConfigButton.setAttribute("class","nav-link border border-dark btn");
+        navConfigButton.setAttribute('onclick',"addConfig('navConfigs_AT"+indexAT+"','AT"+indexAT+"_addConfig','AT"+indexAT+"configs-content',"+indexAT+")");
+        navConfigItem.appendChild(navConfigButton);
+        containerNavConfig.appendChild(navConfigItem);
+        divAT.appendChild(containerNavConfig);
+        // CONTENT CONFIG
+        divConfigContent = document.createElement("div");
+        divConfigContent.setAttribute("class", "tab-content");
+        divConfigContent.id = "AT" + indexAT + "configs-content";
+        divAT.appendChild(divConfigContent);
+        if(AT !==null)
+        {
+            loadConfigs(AT,indexAT);
+        }
+        
+    };
+    xhr.send(data);
+    
+}
+
+
+function addConfig(containerNavID,referenceNavButtonID,containerContentID,indexAT,indexConfig=null)
+{
+    var containerNav = document.getElementById(containerNavID);
+    var containerContent = document.getElementById(containerContentID);
+    var referenceNavButton = document.getElementById(referenceNavButtonID); // bouton + Config
     var navItem = document.createElement("li");
     var button = document.createElement("button");
     var div = document.createElement("div");
     // Nav AT
     navItem.setAttribute("class", "nav-item");
     button.type = "button";
-    button.innerHTML = buttonHTML;
-    if (indexAT == 1 && indexConfig==null) {
-        button.setAttribute("class", "active nav-link");
-        div.setAttribute("class", "show active tab-pane fade");
-    } else {
-        button.setAttribute("class", " border border-dark nav-link");
-        div.setAttribute("class", "tab-pane fade");
-    }
+    
+    
+    button.setAttribute("class", " border border-dark nav-link");
     button.setAttribute("data-bs-toggle", "tab");
-    if (indexConfig==null)//si AT 
-    {
-        button.id = "AT" + indexAT + "-tab";
-        button.setAttribute("data-bs-target", "#AT" + indexAT + "-tab-pane");
-        navItem.id = "AT" + indexAT;
-        div.id = "AT" + indexAT + "-tab-pane";
-        div.setAttribute("aria-labelledby", "AT" + indexAT + "-tab");
 
-    }
-    else //si Config
+    if(indexConfig==null)
     {
-        button.id = "AT" + indexAT + "Config" + indexConfig + "-tab";
-        button.setAttribute("data-bs-target","#AT" + indexAT + "Config" + indexConfig + "-tab-pane");
-        navItem.id = "AT" + indexAT + "Config" + indexConfig;
-        div.id = "AT" + indexAT + "Config" + indexConfig + "-tab-pane";
-        div.setAttribute("aria-labelledby","AT" + indexAT + "Config" + indexConfig + "-tab");
-
+        indexConfig = containerNav.children.length;
     }
+
+    button.innerHTML = 'Config'+indexConfig;
+    button.id = "AT" + indexAT + "Config" + indexConfig + "-tab";
+    button.setAttribute("data-bs-target","#AT" + indexAT + "Config" + indexConfig + "-tab-pane");
+    navItem.id = "AT" + indexAT + "Config" + indexConfig;
+    div.id = "AT" + indexAT + "Config" + indexConfig + "-tab-pane";
+    div.setAttribute("aria-labelledby","AT" + indexAT + "Config" + indexConfig + "-tab");
+
     // button.setAttribute("aria-controls", "at_" + indexAT + "-tab-pane");
     button.setAttribute("aria-selected", "true");
     navItem.appendChild(button);
     containerNav.insertBefore(navItem, referenceNavButton);
+    div.setAttribute("class", "tab-pane fade");
 
     div.setAttribute("tabindex", "0");
     containerContent.appendChild(div);
+    loadPieces(indexAT,indexConfig);
+}
+
+function updateATName(indexAT)
+{
+    var titreAT = document.getElementById("AT"+indexAT+"-tab");
+    var newValue = document.getElementById("AT"+indexAT+"_REF_AT").value;
+    titreAT.innerHTML = newValue;
+}
+
+
+function addRoom(roomType,indexAT,indexConfig)
+{
+    switch(roomType)
+    {
+        case "Humide":
+            var tbody = document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Humide").children[1];
+            var fileName = "_config_roomH.php";
+            break;
+        case "Sec":
+            var tbody = document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Sec").children[1];
+            var fileName = "_config_roomS.php";
+            break;
+    }
+
+    var indexPiece = parseInt(tbody.children.length+1);
+
+    var data = new FormData();
+    data.append('indexAT', indexAT);
+    data.append('indexConfig', indexConfig);
+    data.append('indexPiece', indexPiece);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "/view/_form/"+fileName, true); 
+    xhr.onload = function () 
+    {
+        tbody.insertAdjacentHTML('beforeend' ,xhr.responseText);   
+    };
+    xhr.send(data);
 }

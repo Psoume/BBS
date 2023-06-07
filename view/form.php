@@ -21,7 +21,7 @@
                     <!-- ATS NAV -->
                     <ul class="nav nav-pills" id="ATS_nav">
                     <li class="nav-item" id="addAT">
-                        <button class="nav-link border border-dark btn" id="addAT-tab" data-bs-toggle="tab" data-bs-target="#addAT-tab-pane" type="button" aria-controls="addAT-tab-pane" aria-selected="false">+</button>
+                        <button class="nav-link border border-dark btn" id="addAT-button" type="button" onclick="addAT('ATS_nav','addAT','ATS_content','AT')">+</button>
                     </li>
                     </ul>  
                     <!-- ATS CONTENT -->

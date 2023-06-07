@@ -177,20 +177,6 @@ $indexConfig = $_POST['indexConfig'];
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h3>Pièces Humides</h3>
 <table class="table table-sm table-bordered" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Humide">
     <thead class="table-dark">
@@ -210,7 +196,7 @@ $indexConfig = $_POST['indexConfig'];
     ?>
     </tbody>
 </table>
-<button type="button" class="btn btn-dark" onclick="addRoom('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>','Humide')">Ajouter une pièce</button>
+<button type="button" class="btn btn-dark" onclick="addRoom('Humide','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce</button>
 
 <h3>Pièces Sèches</h3>
 <table class="table table-sm table-bordered" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec">
@@ -231,4 +217,4 @@ $indexConfig = $_POST['indexConfig'];
 
     </tbody>
 </table>
-<button type="button" class="btn btn-dark" onclick="addRoom('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>','Sec')">Ajouter une pièce</button>
+<button type="button" class="btn btn-dark" onclick="addRoom('Sec','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce</button>

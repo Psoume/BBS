@@ -5,7 +5,7 @@ $indexAT = $_POST['indexAT'];
 <div class="border border-dark my-3 py-3">
     <div class='px-4 mb-5'>
         <label for="AT<?php echo $indexAT; ?>_REF_AT" class="form-label">Référence :</label>
-        <input type="text" name="AT<?php echo $indexAT; ?>_REF_AT" id="AT<?php echo $indexAT; ?>_REF_AT" class="form-control">
+        <input onchange="updateATName(<?php echo $indexAT; ?>)" type="text" name="AT<?php echo $indexAT; ?>_REF_AT" id="AT<?php echo $indexAT; ?>_REF_AT" class="form-control">
         <label for="AT<?php echo $indexAT; ?>_LIBELLE" class="form-label">Libellé :</label>
         <input type="text" name="AT<?php echo $indexAT; ?>_LIBELLE" id="AT<?php echo $indexAT; ?>_LIBELLE" class="form-control">
     </div>
