@@ -435,14 +435,14 @@ function addAT(containerNavID,referenceNavButtonID,containerContentID,buttonHTML
         navConfigButton.innerHTML = '+';
         navConfigButton.type = "button";
         navConfigButton.id = "AT"+indexAT+"_addConfig-button";
-        navConfigButton.setAttribute("class","nav-link border border-dark btn");
+        navConfigButton.setAttribute("class","nav-link border border-dark btn mx-1 my-1");
         navConfigButton.setAttribute('onclick',"addConfig('navConfigs_AT"+indexAT+"','AT"+indexAT+"_addConfig','AT"+indexAT+"configs-content',"+indexAT+")");
         navConfigItem.appendChild(navConfigButton);
         containerNavConfig.appendChild(navConfigItem);
         divAT.appendChild(containerNavConfig);
         // CONTENT CONFIG
         divConfigContent = document.createElement("div");
-        divConfigContent.setAttribute("class", "tab-content");
+        divConfigContent.setAttribute("class", "tab-content my-2");
         divConfigContent.id = "AT" + indexAT + "configs-content";
         divAT.appendChild(divConfigContent);
         if(AT !==null)
@@ -468,8 +468,7 @@ function addConfig(containerNavID,referenceNavButtonID,containerContentID,indexA
     navItem.setAttribute("class", "nav-item");
     button.type = "button";
     
-    
-    button.setAttribute("class", " border border-dark nav-link");
+    button.setAttribute("class", " border border-dark nav-link mx-1 my-1");
     button.setAttribute("data-bs-toggle", "tab");
 
     if(indexConfig==null)

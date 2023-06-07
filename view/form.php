@@ -19,7 +19,7 @@
                 <!-- ATS -->
                 <div class="tab-pane fade" id="list-ats" aria-labelledby="list-ats-list">
                     <!-- ATS NAV -->
-                    <ul class="nav nav-pills" id="ATS_nav">
+                    <ul class="nav nav-pills my-3" id="ATS_nav">
                     <li class="nav-item" id="addAT">
                         <button class="nav-link border border-dark btn" id="addAT-button" type="button" onclick="addAT('ATS_nav','addAT','ATS_content','AT')">+</button>
                     </li>

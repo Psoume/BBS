@@ -49,17 +49,19 @@ $indexAT = $_POST['indexAT'];
                 <input type="radio" name="AT<?php echo $indexAT; ?>_Presence_EA" id="AT<?php echo $indexAT; ?>_Presence_EA_Autoreglables" class="form-check-input" value="Presence_EA_Autoreglables">
             </div>
             <label for="AT<?php echo $indexAT; ?>_Dp1" class="form-label">Dp1 :</label>
-            <div class="input-group">
-                <input type="number" name="AT<?php echo $indexAT; ?>_Dp1" id="AT<?php echo $indexAT; ?>_Dp1" class="form-control" step="any">
+            <div class="input-group pe-5">
+                <input type="number" name="AT<?php echo $indexAT; ?>_Dp1" id="AT<?php echo $indexAT; ?>_Dp1" class="form-control " step="any">
                 <span class="input-group-text">Pa</span>
             </div>
             <label for="AT<?php echo $indexAT; ?>_Dp2" class="form-label">Dp2 :</label>
-            <div class="input-group">
+            <div class="input-group pe-5">
                 <input type="number" name="AT<?php echo $indexAT; ?>_Dp2" id="AT<?php echo $indexAT; ?>_Dp2" class="form-control" step="any">
                 <span class="input-group-text">Pa</span>
             </div>
-            <label for="AT<?php echo $indexAT; ?>_R_f" class="form-label">R_f :</label>
-            <input type="number" name="AT<?php echo $indexAT; ?>_R_f" id="AT<?php echo $indexAT; ?>_R_f" class="form-control" step="any">
+            <div class='pe-5'>
+                <label for="AT<?php echo $indexAT; ?>_R_f" class="form-label">R_f :</label>
+                <input type="number" name="AT<?php echo $indexAT; ?>_R_f" id="AT<?php echo $indexAT; ?>_R_f" class="form-control " step="any">
+            </div>
         </fieldset>
         </div>
     </div>
