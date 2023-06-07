@@ -3,7 +3,7 @@
     <input type='hidden' id='titleATForm' name='fileName'></input>
 
     <div class="container-md row border border-dark mx-auto px-1 py-1 bg-secondary-subtle">
-        <aside class="col-12 col-sm-4 col-md-3 col-xl-2 px-0">
+        <aside class="col-12 col-md-3 col-xl-2 px-0">
             <div class="list-group" id="list-tab">
                 <a class="list-group-item list-group-item-action active border-bottom border-right border-dark text-center" id="list-generalites-list" data-bs-toggle="list" href="#list-generalites" aria-controls="list-generalites">Généralités</a>
                 <a class="list-group-item list-group-item-action border-bottom border-right border-dark text-center" id="list-ats-list" data-bs-toggle="list" href="#list-ats" aria-controls="list-ats">Avis Techniques</a>
@@ -11,7 +11,7 @@
             </div>
         </aside>
 
-        <section class="col col-12 col-sm-8 col-md-9 col-xl-10 ps-5{sm}">
+        <section class="col col-12 col-md-9 col-xl-10 ps-5{sm}">
             <div class="tab-content" id="nav-tabContent">
 
                 <!-- GENERALITES -->
@@ -19,13 +19,14 @@
                 <!-- ATS -->
                 <div class="tab-pane fade" id="list-ats" aria-labelledby="list-ats-list">
                     <!-- ATS NAV -->
-                    <ul class="nav nav-pills" id="nav_ats">
+                    <ul class="nav nav-pills" id="ATS_nav">
                     <li class="nav-item" id="addAT">
-                        <button class="nav-link" id="addAT-tab" data-bs-toggle="tab" data-bs-target="#addAT-tab-pane" type="button" aria-controls="addAT-tab-pane" aria-selected="false">+</button>
+                        <button class="nav-link border border-dark btn" id="addAT-tab" data-bs-toggle="tab" data-bs-target="#addAT-tab-pane" type="button" aria-controls="addAT-tab-pane" aria-selected="false">+</button>
                     </li>
                     </ul>  
                     <!-- ATS CONTENT -->
-                    <div class="tab-content" id="at_content">
+                    <div class="tab-content" id="ATS_content">
+
                     </div>
                 </div>
                 <!-- EQUIPEMENTS -->

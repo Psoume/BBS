@@ -2,7 +2,7 @@
 $nbr_rows = $_POST['nbrEqpmt'];
 ?>
 
-<table class="table table-sm table-bordered" id="table_Solution">
+<table class="table table-sm table-bordered border-dark" id="table_Solution">
     <thead class="table-dark sticky-top top-0">
         <tr>
             <th>Code_Solution</th>
@@ -12,7 +12,7 @@ $nbr_rows = $_POST['nbrEqpmt'];
             <th><button type="button" onclick="solutionsNewConfig()">Ajouter</button></th>
         </tr>
     </thead>
-    <tbody class="border-dark">
+    <tbody>
     <?php
         for($i=1;$i<=$nbr_rows;$i++)
         {

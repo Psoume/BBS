@@ -54,14 +54,13 @@ function loadATS(xml) {
 
 function loadAT(AT,i)
 {
-    const containerNav = document.getElementById("nav_ats"); //navbar des ats
-    const referenceNavButton = document.getElementById("addAT"); // bouton + at
-    const containerContent = document.getElementById("at_content"); //contenu des ats
-    
+    const containerNav = document.getElementById("ATS_nav"); //navbar des ats
+    const referenceNavButton = document.getElementById("addAT"); // bouton add at
+    const containerContent = document.getElementById("ATS_content"); //contenu de l'AT
     var indexAT = parseInt(i + 1);
     var buttonHTML = AT.getElementsByTagName("REF_AT")[0].textContent;
-    addNav(containerNav,referenceNavButton,containerContent,buttonHTML,indexAT);
-    // crée divAT dont l'id est "at_" + indexAT + "-tab-pane"
+    addNav(containerNav,referenceNavButton,containerContent,buttonHTML,indexAT); // ajoute ATi et ATi-tab-pane
+
     
     var data = new FormData();
     data.append('indexAT', indexAT);
@@ -70,7 +69,7 @@ function loadAT(AT,i)
 
     xhr.onload = function () 
     {
-        var divAT = document.getElementById("at_" + indexAT + "-tab-pane"); 
+        var divAT = document.getElementById("AT" + indexAT + "-tab-pane"); 
         divAT.innerHTML = xhr.responseText;
         addDataAT(AT,indexAT);
         // CONFIGS
@@ -78,6 +77,11 @@ function loadAT(AT,i)
         var containerNavConfig = document.createElement("ul");
         containerNavConfig.id = "navConfigs_AT" + indexAT;
         containerNavConfig.setAttribute("class", "nav nav-pills");
+        navConfigItem = document.createElement('li');
+        navConfigItem.id = "AT"+indexAT+"_addConfig";
+        navConfigButton = document.createElement('button');
+        navConfigItem.appendChild(navConfigButton);
+        containerNavConfig.appendChild(navConfigItem);
         divAT.appendChild(containerNavConfig);
         // CONTENT CONFIG
         divConfigContent = document.createElement("div");
@@ -103,33 +107,12 @@ function loadConfigs(AT,indexAT){
 function loadConfig(configXML,indexAT,j){
     
     var indexConfig = parseInt(j + 1);
-    const itemNavConfig = document.createElement("li");
-    // NavConfig
-    itemNavConfig.setAttribute("class", "nav-item");
-    itemNavConfig.id = "AT" + indexAT + "Config" + indexConfig;
-    var buttonNavConfig = document.createElement("button");
-    buttonNavConfig.setAttribute("class", "nav-link");
-    buttonNavConfig.setAttribute("data-bs-toggle", "tab");
-    buttonNavConfig.setAttribute("data-bs-target","#AT" + indexAT + "Config" + indexConfig + "-tab-pane");
-    buttonNavConfig.setAttribute("aria-controls","AT" + indexAT + "Config" + indexConfig + "-tab-pane");
-    buttonNavConfig.setAttribute("aria-selected", "false");
-    buttonNavConfig.type = "button";
-    buttonNavConfig.id = "AT" + indexAT + "Config" + indexConfig + "-tab";
-    buttonNavConfig.innerHTML = "Config" + indexConfig;
-    itemNavConfig.appendChild(buttonNavConfig);
-    containerNavConfig = document.getElementById("navConfigs_AT"+indexAT);
-    containerNavConfig.appendChild(itemNavConfig);
-    //ContentConfig
-    config = document.createElement("div"); //formulaire de la config At1Config1
-    config.id = "AT" + indexAT + "Config" + indexConfig + "-tab-pane";
-    config.setAttribute("class", "tab-pane fade");
-    config.setAttribute("aria-labelledby","AT" + indexAT + "Config" + indexConfig + "-tab");
-    config.setAttribute("tabindex", "0");
-    divConfigContent = document.getElementById("AT"+indexAT+"configs-content");
-    divConfigContent.appendChild(config);
-
+    var containerNavConfig = document.getElementById("navConfigs_AT"+indexAT);
+    var containerContentConfig = document.getElementById("AT"+indexAT+"configs-content");
+    var referenceNavButton = document.getElementById("AT"+indexAT+"_addConfig"); // bouton + at
+    //referenceNavButton à définir
+    addNav(containerNavConfig,referenceNavButton,containerContentConfig,"Config" + indexConfig,indexAT,indexConfig);
     loadPieces(configXML,indexAT,indexConfig);
-    
     }
 
 
@@ -223,7 +206,7 @@ function addDataGeneralites(xml){
 
 function addDataAT(AT,indexAT)
 {
-var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
+var fields = ['REF_AT','LIBELLE','Dp1','Dp2','R_f'];
 fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
 var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
 fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
@@ -388,38 +371,6 @@ function formatFieldsEqpmt(fields,Eqpmt,index){
     return newFields;
 }
 
-function addNav(containerNav,referenceNavButton,containerContent,buttonHTML,indexAT,indexConfig=null)
-{
-    var navItem = document.createElement("li");
-    var button = document.createElement("button");
-    var divAT = document.createElement("div");
-    // Nav AT
-    navItem.setAttribute("class", "nav-item");
-    button.id = "at_" + indexAT + "-tab";
-    button.type = "button";
-    button.innerHTML = buttonHTML;
-    if (indexAT == 1) {
-        button.setAttribute("class", "active nav-link");
-    } else {
-        button.setAttribute("class", "nav-link");
-    }
-    button.setAttribute("data-bs-toggle", "tab");
-    button.setAttribute("data-bs-target", "#at_" + indexAT + "-tab-pane");
-    button.setAttribute("aria-controls", "at_" + indexAT + "-tab-pane");
-    button.setAttribute("aria-selected", "true");
-    navItem.appendChild(button);
-    containerNav.insertBefore(navItem, referenceNavButton);
-    // Content AT
-    divAT.id = "at_" + indexAT + "-tab-pane";
-    if (indexAT == 1) {
-        divAT.setAttribute("class", "show active tab-pane fade");
-    } else {
-        divAT.setAttribute("class", "tab-pane fade");
-    }
-    divAT.setAttribute("aria-labelledby", "at_" + indexAT + "-tab");
-    divAT.setAttribute("tabindex", "0");
-    containerContent.appendChild(divAT);
-}
 
 // DYNAMIQUES
 
@@ -446,4 +397,49 @@ function newEquipement(Eqpmt){
         container.insertAdjacentHTML('beforeend' ,xhr.responseText);     
     };
     xhr.send(data);
+}
+
+
+function addNav(containerNav,referenceNavButton,containerContent,buttonHTML,indexAT,indexConfig=null)
+{
+    var navItem = document.createElement("li");
+    var button = document.createElement("button");
+    var div = document.createElement("div");
+    // Nav AT
+    navItem.setAttribute("class", "nav-item");
+    button.type = "button";
+    button.innerHTML = buttonHTML;
+    if (indexAT == 1 && indexConfig==null) {
+        button.setAttribute("class", "active nav-link");
+        div.setAttribute("class", "show active tab-pane fade");
+    } else {
+        button.setAttribute("class", " border border-dark nav-link");
+        div.setAttribute("class", "tab-pane fade");
+    }
+    button.setAttribute("data-bs-toggle", "tab");
+    if (indexConfig==null)//si AT 
+    {
+        button.id = "AT" + indexAT + "-tab";
+        button.setAttribute("data-bs-target", "#AT" + indexAT + "-tab-pane");
+        navItem.id = "AT" + indexAT;
+        div.id = "AT" + indexAT + "-tab-pane";
+        div.setAttribute("aria-labelledby", "AT" + indexAT + "-tab");
+
+    }
+    else //si Config
+    {
+        button.id = "AT" + indexAT + "Config" + indexConfig + "-tab";
+        button.setAttribute("data-bs-target","#AT" + indexAT + "Config" + indexConfig + "-tab-pane");
+        navItem.id = "AT" + indexAT + "Config" + indexConfig;
+        div.id = "AT" + indexAT + "Config" + indexConfig + "-tab-pane";
+        div.setAttribute("aria-labelledby","AT" + indexAT + "Config" + indexConfig + "-tab");
+
+    }
+    // button.setAttribute("aria-controls", "at_" + indexAT + "-tab-pane");
+    button.setAttribute("aria-selected", "true");
+    navItem.appendChild(button);
+    containerNav.insertBefore(navItem, referenceNavButton);
+
+    div.setAttribute("tabindex", "0");
+    containerContent.appendChild(div);
 }

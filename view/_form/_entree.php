@@ -2,7 +2,7 @@
 $nbr_rows = $_POST['nbrEqpmt'];
 ?>
 
-<table class="table table-sm table-bordered" id="table_Entree">
+<table class="table table-sm table-bordered border-dark" id="table_Entree">
     <thead class="table-dark sticky-top top-0">
         <tr>
             <th>Code</th>
@@ -11,7 +11,7 @@ $nbr_rows = $_POST['nbrEqpmt'];
             <th>EA_max</th>
         </tr>
     </thead>
-    <tbody class="border-dark">
+    <tbody>
 
     <?php
             for($i=1;$i<=$nbr_rows;$i++)

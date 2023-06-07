@@ -3,7 +3,7 @@ $nbr_rows = $_POST['nbrEqpmt'];
 ?>
 
 <div class="table-responsive">
-<table class="table table-sm table-bordered" id="table_Bouche">
+<table class="table table-sm table-bordered border-dark" id="table_Bouche">
         <thead class="table-dark sticky-top top-0">
             <tr>
                 <th scope='col' >Code<br/><br/></th>
@@ -15,7 +15,7 @@ $nbr_rows = $_POST['nbrEqpmt'];
                 <th scope='col'>QmaxLimite (m<sup>3</sup>/h)</th>
             </tr>
         </thead>
-        <tbody class="border-dark">
+        <tbody>
             <?php
             for($i=1;$i<=$nbr_rows;$i++)
             {
