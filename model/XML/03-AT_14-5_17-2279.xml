@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Avis_Technique_Ventilation>
+<Avis_Technique_Ventilation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./AT_VENTIL.xsd">
   <Titre_AT>VMC HYGRO individuelle Atlantic</Titre_AT>
   <Titulaire>ANJOS</Titulaire>
   <Code_Titulaire>ANJ</Code_Titulaire>

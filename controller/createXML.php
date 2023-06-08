@@ -1,10 +1,12 @@
 <?php
 $fromFile = $_GET['fromFile'];
-$fileName = $_GET['fileName'];
+$fileName = str_replace(" ","",htmlspecialchars(basename($_GET['fileName'])));
 $is_blank = $_GET['is_blank'];
 
+
+
 if ($is_blank=='true') {
-    $xml = simplexml_load_file('model/'.$fromFile);
+    $xml = simplexml_load_file('model/base.xml');
     $xml->asXML("model/XML/".$fileName);
 }
 

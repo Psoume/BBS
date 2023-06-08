@@ -1,5 +1,8 @@
 <?php
 
+
+$return = $_GET['return'];
+
 function resolveCheckbox($name,$is_bool)
 {
     if(isset($_POST[$name]))
@@ -115,9 +118,24 @@ $fields= ['Titre_AT' , 'Titulaire' , 'Code_Titulaire' , 'Industriel' , 'Code_Ind
 addTags($xml,$fields,$fields,'text',false);
 $Liste_AT_Anciens = $xml->addChild('Liste_AT_Ancien');
 addTag($Liste_AT_Anciens,'Num_AT_Ancien','Num_AT_Ancien','array',false);
-$fields= ['Date_Application' , 'Date_Fin_Application' , 'Usage_EA'];
+$fields= ['Date_Application' , 'Date_Fin_Application'];// , 'Usage_EA'
 addTags($xml,$fields,$fields,'text',false);
+
+if(isset($_POST['Collectif']))
+    {
+        $xml->addChild('Usage_EA', $_POST['Collectif']);
+    }
+elseif (isset($_POST['Individuel']))
+    {
+        $xml->addChild('Usage_EA', $_POST['Individuel']);
+    }   
+elseif (isset($_POST['Hotel']))
+    {
+        $xml->addChild('Usage_EA', $_POST['Hotel']);
+    }     
+
 $Usages = $xml->addChild('Usages');
+
 $fields = ['Collectif','Individuel','Hotel'];
 addTags($Usages,$fields,$fields,'bool',true);
 $Caracteristiques = $xml->addChild('Caracteristiques');
@@ -132,14 +150,40 @@ $i = 1;
 while (isset($_POST['AT'.$i.'_REF_AT'])) 
 {
     $AT = $ATS->addChild('AT');
-    $fields = ['REF_AT','LIBELLE','Type_Avis_Technique'];
+    $fields = ['REF_AT','LIBELLE'];
     addTags($AT,FormatFieldsAT($fields,$i),$fields,'text',false);
-    $fields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ'];
-    addTags($AT,FormatFieldsAT($fields,$i),$fields,'bool',true);
+
+    addTag($AT,'AT'.$i.'_Type_Avis_Technique','Type_Avis_Technique','bool',false);
+
+    $hygroA = $hygroB1 = $hygroB2 = $gaz = 'false';
+    if(isset($_POST['AT'.$i.'_Type_Avis_Technique']))
+    {
+        if($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_A'){$hygroA='true';}
+        elseif($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_B1'){$hygroB1='true';}
+        elseif($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_B2'){$hygroB2='true';}
+        elseif($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Gaz'){$gaz='true';}
+    }
+    $AT->addChild('Hygro_A', $hygroA);
+    $AT->addChild('Hygro_B1', $hygroB1);
+    $AT->addChild('Hygro_B2', $hygroB2);
+    $AT->addChild('Gaz', $gaz);
+
+    
     $Type_EA = $AT->addChild('Type-EA');
-    addTag($Type_EA,'AT'.$i.'_Presence_EA','Presence_EA','text',false);
+
+    addTag($Type_EA,'AT'.$i.'_Presence_EA','Presence_EA','bool',false);
     $fields = ['Presence_EA_Fixes','Presence_EA_Autoreglables'];
-    addTags($Type_EA,FormatFieldsAT($fields,$i),$fields,'bool',true);
+    if ($_POST['AT'.$i.'_Presence_EA']=='Fixe')
+    {
+        $Type_EA->addChild('Presence_EA_Fixes', 'true');
+        $Type_EA->addChild('Presence_EA_Autoreglables', 'false');
+    }
+    elseif ($_POST['AT'.$i.'_Presence_EA']=='Autoréglable')
+    {
+        $Type_EA->addChild('Presence_EA_Fixes', 'false');
+        $Type_EA->addChild('Presence_EA_Autoreglables', 'true');
+    }
+
     $fields = ['Dp1','Dp2','R_f'];
     addTags($Type_EA,FormatFieldsAT($fields,$i),$fields,'number',false);
     addTag($AT,'AT'.$i.'_Optimisation','Optimisation','bool',true);
@@ -154,9 +198,24 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         $Singularites = $CONFIG->addChild('Singularités');
         $fields = ['Config_Optimisee','Changement_Bouche'];
         addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
-        addTag($Singularites,'AT'.$i.'Config'.$j.'_Singularite_EA','Singularite_EA','text',false);
-        $fields = ['EA_Fixes','EA_Autoréglables'];
-        addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
+
+        addTag($Singularites,'AT'.$i.'Config'.$j.'_Singularite_EA','Singularite_EA','bool',false);
+
+        if(isset($_POST['AT'.$i.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$i.'Config'.$j.'_Singularite_EA']=='Sing_EA_Autoréglable')
+        {
+            $Singularites->addChild('EA_Fixes', 'false');
+            $Singularites->addChild('EA_Autoréglables', 'true');
+        }
+        elseif(isset($_POST['AT'.$i.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$i.'Config'.$j.'_Singularite_EA']=='Sing_EA_Fixe')
+        {
+            $Singularites->addChild('EA_Fixes', 'true');
+            $Singularites->addChild('EA_Autoréglables', 'false');
+        }
+        else {
+            $Singularites->addChild('EA_Fixes', 'false');
+            $Singularites->addChild('EA_Autoréglables', 'false');
+        }
+
         $fields = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde'];
         addTags($CONFIG,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
         $DEBIT_RT = $CONFIG->addChild('DEBIT_RT');
@@ -251,13 +310,25 @@ while(isset($_POST['Extracteur'.$i.'_Libelle_Cdep']))
 }
 
 $File_Name = $_POST['fileName'];
-echo $File_Name;
-$xml->asXML("model/XML/test.xml");
+
+$xml->asXML("../model/XML/test.xml");
 //     $xml->asXML("model/XML/".$File_Name);
-//     echo "<a href='/model/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
+    
 
+// switch ($return)
+// {
+//     case 'false':
+//         echo "<a href='../index.php?'>Revenir à l'accueil</a>";
+//         echo "<a href='/model/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
+//         break;
+//     case 'true':
+//         header("Location: ../index.php?AT=".$File_Name);
+//         die();
+//         break;
+// }
 
+// echo $return;
 ?>
 
-<a href='./index.php'>Revenir à l'accueil</a>
+
 

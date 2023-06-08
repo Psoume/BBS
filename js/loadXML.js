@@ -63,7 +63,7 @@ function loadConfigs(AT,indexAT){
     var j = 0; //on itere sur les configs.
     while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined" && AT.getElementsByTagName("CONFIG")[j] !== null) 
     {   
-        var configXML = AT.getElementsByTagName("CONFIG")[j];
+        var configXML = AT.getElementsByTagName("CONFIGS")[0].children[j];
         loadConfig(indexAT,j,configXML);
         j++;
     }
@@ -147,9 +147,19 @@ function loadEquipement(Eqpmt,fileName,idContainer,EqpmtXML)
     var divEqpmt = document.getElementById(idContainer);
     var data = new FormData();
     data.append('nbrEqpmt', EqpmtXML.children.length);
+    if(Eqpmt =='Solution')
+    {
+        var nbrConfig = 1;
+        for (var i=0;i<EqpmtXML.children.length;i++)
+        {
+            var max = parseInt(EqpmtXML.children[i].children.length-1);
+            if(max > nbrConfig){nbrConfig = max;}
+        }
+        data.append('nbrConfig', nbrConfig);
+    }
     
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/"+fileName, true); // false car on veut le faire de façon synchrone
+    xhr.open('POST', "/view/_form/"+fileName, true); 
     xhr.onload = function () {
         divEqpmt.innerHTML = xhr.responseText;  
         addDataEqpmt(Eqpmt,EqpmtXML);     
@@ -196,10 +206,11 @@ function addDataRoom(Locaux, roomtype, rooms,indexAT, indexConfig){
     {
         var input = document.getElementById("AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Name_"+parseInt(k+1));
         input.value = rooms[k];
-        fillRoomField(Locaux,parseInt(k+1), 'Code',"AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Code" , 'text');
+        var roomXML = Locaux.getElementsByTagName(rooms[k])[0];
+        fillRoomField(roomXML,parseInt(k+1), 'Code',"AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Code" , 'text');
         if(roomtype=='LocauxH')
         {
-            fillRoomField(Locaux,parseInt(k+1), 'Qvrep',"AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Qvrep" , 'text');
+            fillRoomField(roomXML,parseInt(k+1), 'Qvrep',"AT"+indexAT+"Config"+indexConfig+"_"+roomtype+"_Qvrep" , 'text');
         }
     }  
 }
@@ -227,9 +238,9 @@ function addDataEqpmt(Eqpmt,EqpmtXML)
                 var fields=[];
                 for(var j=1;j<xml.children.length;j++)
                 {
-                    fillField(xml,'Solution_Libelle',Eqpmt+indexEqpmt+'_Config'+j+'_Solution_Libelle');
-                    fillField(xml,'Code',Eqpmt+indexEqpmt+'_Config'+j+'_Code');
-                    fillField(xml,'Nombre',Eqpmt+indexEqpmt+'_Config'+j+'_Nombre');
+                    fillField(xml.children[j],'Solution_Libelle',Eqpmt+indexEqpmt+'_Config'+j+'_Solution_Libelle');
+                    fillField(xml.children[j],'Code',Eqpmt+indexEqpmt+'_Config'+j+'_Code');
+                    fillField(xml.children[j],'Nombre',Eqpmt+indexEqpmt+'_Config'+j+'_Nombre');
                 }
                 break;
 
@@ -358,7 +369,8 @@ function newEquipement(Eqpmt){
     var container = document.getElementById('table_'+Eqpmt).children[1];
     var data = new FormData();
     data.append('index', parseInt(container.children.length+1));
-    
+    if(Eqpmt=='Solution')
+    {data.append('nbr_cols', parseInt(container.children[0].children.length-1));}
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "/view/_form/_"+Eqpmt.toLowerCase()+'_row.php', true); // false car on veut le faire de façon synchrone
     xhr.onload = function () {

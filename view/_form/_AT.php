@@ -16,19 +16,19 @@ $indexAT = $_POST['indexAT'];
                 <legend>Type d'avis technique :</legend>
                 <div class="form-check">
                     <label for="AT<?php echo $indexAT; ?>_HYGRO_A" class="form-check-label">HYGRO A </label>
-                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_HYGRO_A" class="form-check-input" value="HYGRO_A">
+                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_HYGRO_A" class="form-check-input" value="Hygro_A">
                 </div>
                 <div class="form-check">
                     <label for="AT<?php echo $indexAT; ?>_HYGRO_B1" class="form-check-label">HYGRO B1</label>
-                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_HYGRO_B1" class="form-check-input" value="HYGRO_B1">
+                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_HYGRO_B1" class="form-check-input" value="Hygro_B1">
                 </div>
                 <div class="form-check">
                     <label for="AT<?php echo $indexAT; ?>_HYGRO_B2" class="form-check-label">HYGRO B2</label>
-                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_HYGRO_B2" class="form-check-input" value="HYGRO_B2">
+                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_HYGRO_B2" class="form-check-input" value="Hygro_B2">
                 </div>
                 <div class="form-check">
                     <label for="AT<?php echo $indexAT; ?>_GAZ" class="form-check-label">GAZ</label>
-                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_GAZ" class="form-check-input" value="GAZ">
+                    <input type="radio" name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_GAZ" class="form-check-input" value="Gaz">
                 </div>
             </fieldset>
             <div class="form-check mt-5">
@@ -42,11 +42,11 @@ $indexAT = $_POST['indexAT'];
             <legend>Type d'Entrées d'Air :</legend>
             <div class="form-check">
             <label for="AT<?php echo $indexAT; ?>_Presence_EA_Fixes" class="form-check-label">Fixes</label>
-                <input type="radio" name="AT<?php echo $indexAT; ?>_Presence_EA" id="AT<?php echo $indexAT; ?>_Presence_EA_Fixes" class="form-check-input" value="Presence_EA_Fixes">
+                <input type="radio" name="AT<?php echo $indexAT; ?>_Presence_EA" id="AT<?php echo $indexAT; ?>_Presence_EA_Fixes" class="form-check-input" value="Fixe">
             </div>
             <div class="form-check">
             <label for="AT<?php echo $indexAT; ?>_Presence_EA_Autoreglables" class="form-check-label">Autoréglables</label>
-                <input type="radio" name="AT<?php echo $indexAT; ?>_Presence_EA" id="AT<?php echo $indexAT; ?>_Presence_EA_Autoreglables" class="form-check-input" value="Presence_EA_Autoreglables">
+                <input type="radio" name="AT<?php echo $indexAT; ?>_Presence_EA" id="AT<?php echo $indexAT; ?>_Presence_EA_Autoreglables" class="form-check-input" value="Autoréglable">
             </div>
             <label for="AT<?php echo $indexAT; ?>_Dp1" class="form-label">Dp1 :</label>
             <div class="input-group pe-5">

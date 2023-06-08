@@ -1,8 +1,10 @@
+<a href="./index.php" class="btn btn-outline-dark float-end me-5">Revenir à l'accueil</a>
 <h2 id='titleAT'></h2>
+
 <form method='post' action='./controller/writeXML.php'>
     <input type='hidden' id='titleATForm' name='fileName'></input>
 
-    <div class="container-md row border border-dark mx-auto px-1 py-1 bg-secondary-subtle">
+    <div class="container-md row border border-dark mx-auto my-5 px-1 py-1 bg-secondary-subtle">
         <aside class="col-12 col-md-3 col-xl-2 px-0">
             <div class="list-group" id="list-tab">
                 <a class="list-group-item list-group-item-action active border-bottom border-right border-dark text-center" id="list-generalites-list" data-bs-toggle="list" href="#list-generalites" aria-controls="list-generalites">Généralités</a>
@@ -59,8 +61,8 @@
                     </div>
                 </div>    
             </div>
-            <button class='btn btn-primary float-end' type="submit">Télécharger le XML</button>
-            <button class='btn btn-secondary float-end me-2' type="button">Sauvegarder</button>
+            <input formaction='./controller/writeXML.php?return=false' class='btn btn-primary float-end' type="submit" value="Télécharger le XML"></input>
+            <input formaction='./controller/writeXML.php?return=true' class='btn btn-secondary float-end me-2' type="submit" value="Sauvegarder"></input>
         </section>
     </div>
     

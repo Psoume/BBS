@@ -19,19 +19,15 @@ function createXML(is_blank) {
     if (fileName !== null && fileName !== "") {
         let xhr = new XMLHttpRequest();
         xhr.open(
-            "GET",
-            "controller/createXML.php?fileName=" +
-            fileName +
-            "&fromFile=" +
-            fromFile +
-            "&is_blank=" +
-            is_blank
+            "GET","controller/createXML.php?fileName=" +fileName +"&fromFile=" +fromFile +"&is_blank=" +is_blank
         );
         xhr.send();
         xhr.onerror = function () {
             alert("La requête a échouée");
         };
         xhr.onload = function () {
+            fileName = xhr.responseText;
+            console.log(fileName);
             chooseXML(fileName);
         };
     }

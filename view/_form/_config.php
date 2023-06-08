@@ -40,11 +40,11 @@ $indexConfig = $_POST['indexConfig'];
             <legend>Singularités Entrées d'Air:</legend>
             <div class="form-check">
                 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-label">Fixes</label>
-                <input type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="EA_Fixes">
+                <input type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="Sing_EA_Fixe">
             </div>
             <div class="form-check">
                 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-label">Autoréglables</label>
-                <input type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="EA_Autoréglables">
+                <input type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Autoréglable">
             </div>
         </fieldset>
     </div>

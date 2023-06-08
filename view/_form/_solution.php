@@ -1,14 +1,18 @@
 <?php
 $nbr_rows = $_POST['nbrEqpmt'];
+$nbr_cols = $_POST['nbrConfig'];
 ?>
 
 <table class="table table-sm table-bordered border-dark" id="table_Solution">
     <thead class="table-dark sticky-top top-0">
         <tr>
             <th>Code_Solution</th>
-            <th>Config 1</th>
-            <th>Config 2</th>
-            <th>Config 3</th>
+            <?php
+                for ($j=1;$j<=$nbr_cols;$j++)
+                {
+                    echo "<th>Config".$j."</th>";
+                }
+            ?>
             <th><button type="button" onclick="solutionsNewConfig()">Ajouter</button></th>
         </tr>
     </thead>
