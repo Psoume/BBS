@@ -9,9 +9,11 @@ if(isset($_POST['indexPiece']))
 
 <tr>
     <th scope='row'>
-        <input name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Name_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Name_<?php echo $i; ?>' type='text'>
+        <select class='form-select' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Name_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Name_<?php echo $i; ?>' type='text'>
+            <?php include("./_config_roomS_select.php") ;?>
+        </select>
     </th>
     <td>
-        <input name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' type='text'>
+        <input class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' type='text'>
     </td>
 </tr>

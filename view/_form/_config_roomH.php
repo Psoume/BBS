@@ -10,12 +10,14 @@ if(isset($_POST['indexPiece']))
 
 <tr>
     <th scope='row'>
-        <input name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Name_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Name_<?php echo $i; ?>' type='text'>
+        <select class='form-select' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Name_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Name_<?php echo $i; ?>'>
+            <?php include("./_config_roomH_select.php") ;?>
+        </select>
     </th>
     <td>
-        <input name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' type='text'>
+        <input class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' type='text'>
     </td>
     <td>
-        <input name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Qvrep_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Qvrep_<?php echo $i; ?>' type='text'>
+        <input class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Qvrep_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Qvrep_<?php echo $i; ?>' type='text'>
     </td>
 </tr>

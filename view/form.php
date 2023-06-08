@@ -1,9 +1,13 @@
 <a href="./index.php" class="btn btn-outline-dark float-end me-5">Revenir à l'accueil</a>
-<h2 id='titleAT'></h2>
-
 <form method='post' action='./controller/writeXML.php'>
-    <input type='hidden' id='titleATForm' name='fileName'></input>
-
+    <h2 id='titleAT'><img onclick='editTitleAT()' src="./css/bootstrap-icons/pencil-square.svg" alt="Bootstrap" width="32" height="32"></h2>
+    <div class='row w-50' hidden='true' id='titleATInputDiv'>
+        <div class="col"><input id='titleATInput' class=' form-control' name='fileName'></input></div>
+        <div class="col">
+            <button onclick='saveTitleAT()' type='button' class='btn btn-success'>ok</button>
+            <button onclick='resetTitleAT()' type='button' class='btn btn-danger'>X</button>
+        </div>
+    </div>
     <div class="container-md row border border-dark mx-auto my-5 px-1 py-1 bg-secondary-subtle">
         <aside class="col-12 col-md-3 col-xl-2 px-0">
             <div class="list-group" id="list-tab">

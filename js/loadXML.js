@@ -11,9 +11,10 @@ function loadXML(at) {
     };
     xhr.onload = function () {
         if (xhr.responseXML != null) {
+            
             container = document.getElementById("titleAT");
-            container.innerHTML = at;
-            container = document.getElementById("titleATForm");
+            container.insertAdjacentHTML('afterbegin' ,at);    
+            container = document.getElementById("titleATInput");
             container.value = at;
             var xml = xhr.responseXML; // le fichier XML choisi
             // PREMIERE PAGE
@@ -541,4 +542,29 @@ function addRoom(roomType,indexAT,indexConfig)
         tbody.insertAdjacentHTML('beforeend' ,xhr.responseText);   
     };
     xhr.send(data);
+}
+
+function editTitleAT()
+{
+    var h2 = document.getElementById('titleAT');
+    var inputDiv = document.getElementById('titleATInputDiv');
+    h2.setAttribute('hidden', 'true');
+    inputDiv.removeAttribute('hidden');
+}
+
+function saveTitleAT(){
+    var h2 = document.getElementById('titleAT');
+    var inputDiv = document.getElementById('titleATInputDiv');
+    var input = document.getElementById('titleATInput');
+    var newTitle = input.value;
+    h2.innerHTML = newTitle + "<img onclick='editTitleAT()' src='./css/bootstrap-icons/pencil-square.svg' alt='edit' width='32' height='32'></img>";
+    inputDiv.setAttribute('hidden', 'true');
+    h2.removeAttribute('hidden');
+}
+
+function resetTitleAT(){
+    var h2 = document.getElementById('titleAT');
+    var inputDiv = document.getElementById('titleATInputDiv');
+    inputDiv.setAttribute('hidden', 'true');
+    h2.removeAttribute('hidden');
 }
