@@ -1,7 +1,7 @@
 <?php 
 $uploadOk = 1;
 $File_Name = str_replace(" ","",htmlspecialchars(basename($_FILES["importXML"]["name"])));
-$target_file = "../model/XML/".$File_Name ;
+$target_file = "../data/XML/".$File_Name ;
 
 
 // Check if file already exists

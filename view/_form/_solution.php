@@ -13,7 +13,7 @@ $nbr_cols = $_POST['nbrConfig'];
                     echo "<th>Config".$j."</th>";
                 }
             ?>
-            <th><button type="button" onclick="solutionsNewConfig()">Ajouter</button></th>
+            <th><button type="button" onclick="solutionsNewconfig()">Ajouter</button></th>
         </tr>
     </thead>
     <tbody>

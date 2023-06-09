@@ -17,11 +17,11 @@ if(isset($_POST['nbr_cols']))
         for ($j=1;$j<=$nbr_cols;$j++)
         {
             echo "<td>";
-            echo "<label for='Solution".$i."_Config".$j."_Solution_Libelle'>Solution_Libelle</label>";
+            echo "<label for='Solution".$i."_Config".$j."_Solution_Libelle'>Libelle :</label>";
             echo "<input class='form-control' id='Solution".$i."_Config".$j."_Solution_Libelle' type='text' name='Solution".$i."_Config".$j."_Solution_Libelle'>";
-            echo "<label for='Solution".$i."_Config".$j."_Code'>Code</label>";
+            echo "<label for='Solution".$i."_Config".$j."_Code'>Code :</label>";
             echo "<input class='form-control' id='Solution".$i."_Config".$j."_Code' type='text' name='Solution".$i."_Config".$j."_Code'>";
-            echo "<label for='Solution".$i."_Config".$j."_Nombre'>Nombre</label>";
+            echo "<label for='Solution".$i."_Config".$j."_Nombre'>Nombre :</label>";
             echo "<input class='form-control' id='Solution".$i."_Config".$j."_Nombre' type='number' name='Solution".$i."_Config".$j."_Nombre'>";
             echo "</td>";
         }

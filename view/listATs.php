@@ -4,7 +4,7 @@
 <?php
 
 //Lister tout
-$scandir = scandir("./model/XML");
+$scandir = scandir("./data/XML");
 foreach($scandir as $fichier){
     if($fichier!='.'&& $fichier!='..')
     {   echo "<div class='ms-5'>";

@@ -96,7 +96,7 @@ $indexConfig = $_POST['indexConfig'];
             <tbody>
                 <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb_WC" class="form-label">SdB avec WC</label>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb_WC" class="form-label">Salles de bain avec WC</label>
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb_WC" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb_WC" class="form-control" step="any">
@@ -104,7 +104,7 @@ $indexConfig = $_POST['indexConfig'];
                 </tr>
                 <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb" class="form-label">Sdb sans WC</label>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb" class="form-label">Salles de bain sans WC</label>
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sdb" class="form-control" step="any">
@@ -120,7 +120,7 @@ $indexConfig = $_POST['indexConfig'];
                 </tr>
                 <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-label">Sde</label>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-label">Cellier</label>
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-control" step="any">
@@ -196,7 +196,7 @@ $indexConfig = $_POST['indexConfig'];
     ?>
     </tbody>
 </table>
-<button type="button" class="btn btn-dark" onclick="addRoom('Humide','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce</button>
+<button type="button" class="btn btn-dark" onclick="addRoom('Humide','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce humide</button>
 
 <h3>Pièces Sèches</h3>
 <table class="table table-sm table-bordered" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec">
@@ -217,4 +217,4 @@ $indexConfig = $_POST['indexConfig'];
 
     </tbody>
 </table>
-<button type="button" class="btn btn-dark" onclick="addRoom('Sec','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce</button>
+<button type="button" class="btn btn-dark" onclick="addRoom('Sec','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce sèche</button>
