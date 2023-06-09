@@ -5,6 +5,7 @@
 
 <div class="row mx-auto">
     <div class='col-12 col-sm-6 px-4'>
+    <img data-bs-toggle="tooltip" data-bs-title="Default tooltip" src="./css/bootstrap-icons/info-circle.svg" alt="Bootstrap" width="18" height="18">
         <label for="Titulaire" class="form-label">Nom du titulaire : </label>
         <input type="text" name="Titulaire" id="Titulaire" class="form-control">
         <label for="Code_Titulaire" class="form-label">Code du titulaire : </label>

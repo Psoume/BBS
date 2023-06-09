@@ -56,7 +56,11 @@ function loadATS(xml) {
 function loadAT(AT,i)
 {
     var indexAT = parseInt(i + 1);
-    var buttonHTML = AT.getElementsByTagName("REF_AT")[0].textContent;
+    if (AT.getElementsByTagName("REF_AT")[0].textContent !== "")
+    {
+        var buttonHTML = AT.getElementsByTagName("REF_AT")[0].textContent;
+    }
+    else{ var buttonHTML = "AT"; }
     addAT("ATS_nav","addAT","ATS_content",buttonHTML,AT,indexAT); // ajoute ATi et ATi-tab-pane
 }
 
@@ -115,7 +119,8 @@ function loadPieces(indexAT,indexConfig,configXML=null){
             addDataConfig(configXML,indexAT,indexConfig);
             var Locaux = configXML.getElementsByTagName('LOCAUX')[0];
             addDataRoom(Locaux,'LocauxH',piecesHumides,indexAT,indexConfig);
-            addDataRoom(Locaux,'LocauxS',piecesSeches,indexAT,indexConfig);  
+            addDataRoom(Locaux,'LocauxS',piecesSeches,indexAT,indexConfig); 
+            updateConfigName(indexAT,indexConfig); 
             
         }
     };
@@ -163,7 +168,10 @@ function loadEquipement(Eqpmt,fileName,idContainer,EqpmtXML)
     xhr.open('POST', "/view/_form/"+fileName, true); 
     xhr.onload = function () {
         divEqpmt.innerHTML = xhr.responseText;  
-        addDataEqpmt(Eqpmt,EqpmtXML);     
+        addDataEqpmt(Eqpmt,EqpmtXML); 
+        // Bootstrap tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))    
     };
     xhr.send(data);
 }
@@ -392,6 +400,8 @@ function addAT(containerNavID,referenceNavButtonID,containerContentID,buttonHTML
     // NAV
     navItem.setAttribute("class", "nav-item");
     button.type = "button";
+    if (buttonHTML == 'AT')
+    {buttonHTML += containerNav.children.length;}
     button.innerHTML = buttonHTML; 
     button.setAttribute("data-bs-toggle", "tab");
     button.setAttribute("aria-selected", "true");
@@ -512,6 +522,13 @@ function updateATName(indexAT)
     var titreAT = document.getElementById("AT"+indexAT+"-tab");
     var newValue = document.getElementById("AT"+indexAT+"_REF_AT").value;
     titreAT.innerHTML = newValue;
+}
+
+function updateConfigName(indexAT,indexConfig)
+{
+    var buttonConfig = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab");
+    var newValue = "Config"+indexConfig+" (T"+document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Type_Logement").value+")";
+    buttonConfig.innerHTML = newValue;
 }
 
 

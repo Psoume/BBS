@@ -11,7 +11,7 @@ $indexConfig = $_POST['indexConfig'];
         <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Type_Logement" class="form-label">Type de logement :</label>
         <div class="input-group pe-5">
             <span class="input-group-text">T</span>
-            <input type="text" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Type_Logement" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Type_Logement" class="form-control">
+            <input onchange="updateConfigName(<?php echo $indexAT.','.$indexConfig; ?>)" type="text" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Type_Logement" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Type_Logement" class="form-control">
         </div>
 
         <fieldset class='mt-4'>

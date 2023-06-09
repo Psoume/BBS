@@ -173,16 +173,20 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
 
     addTag($Type_EA,'AT'.$i.'_Presence_EA','Presence_EA','bool',false);
     $fields = ['Presence_EA_Fixes','Presence_EA_Autoreglables'];
-    if ($_POST['AT'.$i.'_Presence_EA']=='Fixe')
+    if(isset($_POST['AT'.$i.'_Presence_EA']))
     {
-        $Type_EA->addChild('Presence_EA_Fixes', 'true');
-        $Type_EA->addChild('Presence_EA_Autoreglables', 'false');
+        if ($_POST['AT'.$i.'_Presence_EA']=='Fixe')
+        {
+            $Type_EA->addChild('Presence_EA_Fixes', 'true');
+            $Type_EA->addChild('Presence_EA_Autoreglables', 'false');
+        }
+        elseif ($_POST['AT'.$i.'_Presence_EA']=='Autoréglable')
+        {
+            $Type_EA->addChild('Presence_EA_Fixes', 'false');
+            $Type_EA->addChild('Presence_EA_Autoreglables', 'true');
+        }
     }
-    elseif ($_POST['AT'.$i.'_Presence_EA']=='Autoréglable')
-    {
-        $Type_EA->addChild('Presence_EA_Fixes', 'false');
-        $Type_EA->addChild('Presence_EA_Autoreglables', 'true');
-    }
+
 
     $fields = ['Dp1','Dp2','R_f'];
     addTags($Type_EA,FormatFieldsAT($fields,$i),$fields,'number',false);
@@ -311,23 +315,21 @@ while(isset($_POST['Extracteur'.$i.'_Libelle_Cdep']))
 
 $File_Name = $_POST['fileName'];
 
-$xml->asXML("../model/XML/test.xml");
-//     $xml->asXML("model/XML/".$File_Name);
+$xml->asXML("../model/XML/".$File_Name);
     
 
-// switch ($return)
-// {
-//     case 'false':
-//         echo "<a href='../index.php?'>Revenir à l'accueil</a>";
-//         echo "<a href='/model/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
-//         break;
-//     case 'true':
-//         header("Location: ../index.php?AT=".$File_Name);
-//         die();
-//         break;
-// }
+switch ($return)
+{
+    case 'false':
+        echo "<a href='../index.php?'>Revenir à l'accueil</a>";
+        echo "<a href='/model/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
+        break;
+    case 'true':
+        header("Location: ../index.php?AT=".$File_Name);
+        die();
+        break;
+}
 
-// echo $return;
 ?>
 
 

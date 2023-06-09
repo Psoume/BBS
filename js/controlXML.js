@@ -27,7 +27,6 @@ function createXML(is_blank) {
         };
         xhr.onload = function () {
             fileName = xhr.responseText;
-            console.log(fileName);
             chooseXML(fileName);
         };
     }

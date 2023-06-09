@@ -8,6 +8,7 @@
             <button onclick='resetTitleAT()' type='button' class='btn btn-danger'>X</button>
         </div>
     </div>
+
     <div class="container-md row border border-dark mx-auto my-5 px-1 py-1 bg-secondary-subtle">
         <aside class="col-12 col-md-3 col-xl-2 px-0">
             <div class="list-group" id="list-tab">
@@ -53,7 +54,7 @@
                         </li>
                     </ul> 
                     <!-- EQUIPEMENTS CONTENT -->
-                    <div class="tab-content" id="eqpmt_content">
+                    <div class="tab-content my-2" id="eqpmt_content">
                         <div id='bouches-tab-pane' class='tab-pane fade active show '>
                         </div>
                         <div id='entrees-tab-pane' class='tab-pane fade'>
