@@ -89,6 +89,7 @@ function loadPieces(indexAT,indexConfig,configXML=null){
     if(configXML !==null)
     {
         var pieces =configXML.getElementsByTagName("LOCAUX")[0].children;
+
         for (var k = 0; k < pieces.length; k++)
         {
             if (typeof(pieces[k].getElementsByTagName('Entree_Solution')[0]) !== 'undefined')
@@ -102,6 +103,8 @@ function loadPieces(indexAT,indexConfig,configXML=null){
         }
     }
 
+    // console.log(piecesSeches);
+    // console.log(piecesHumides);
 
     var data = new FormData();
     data.append('indexAT', indexAT);

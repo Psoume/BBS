@@ -208,7 +208,6 @@ $indexConfig = $_POST['indexConfig'];
     </thead>
     <tbody class="border-dark">
         <?php 
-
         for($i=1;$i<=$nbrPiecesSeches;$i++) 
         {
             include'./_config_roomS.php';
