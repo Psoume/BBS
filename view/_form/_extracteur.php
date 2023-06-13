@@ -11,7 +11,7 @@ $nbr_rows = $_POST['nbrEqpmt'];
             <th>Libelle_Cdep</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="table_Extracteur_tbody">
     <?php
         for($i=1;$i<=$nbr_rows;$i++)
         {
@@ -21,3 +21,4 @@ $nbr_rows = $_POST['nbrEqpmt'];
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="newEquipement('Extracteur')">Ajouter</button>
+<button type='button' class="" onclick="deleteInput('table_Extracteur_tbody',0)" >Supprimer le dernier équipement</button>

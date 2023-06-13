@@ -3,3 +3,6 @@ input{
     border: .1em solid var(--bs-dark) !important;
 }
 
+select{
+    border: .1em solid var(--bs-dark) !important;
+}

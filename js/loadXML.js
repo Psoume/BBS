@@ -88,6 +88,7 @@ function loadPieces(indexAT,indexConfig,configXML=null){
 
     if(configXML !==null)
     {
+        // console.log(configXML.innerHTML);
         var pieces =configXML.getElementsByTagName("LOCAUX")[0].children;
 
         for (var k = 0; k < pieces.length; k++)

@@ -16,7 +16,7 @@ $nbr_cols = $_POST['nbrConfig'];
             <th><button type="button" onclick="solutionsNewconfig()">Ajouter</button></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id='table_Solution_tbody'>
     <?php
         for($i=1;$i<=$nbr_rows;$i++)
         {
@@ -26,4 +26,5 @@ $nbr_cols = $_POST['nbrConfig'];
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="newEquipement('Solution')">Ajouter</button>
+<button type='button' class="" onclick="deleteInput('table_Solution_tbody',0)" >Supprimer le dernier équipement</button>
 

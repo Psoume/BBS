@@ -111,6 +111,50 @@ function FormatFieldsEqpmts($fields,$eqpmt,$i)
     return $fields;
 }
 
+function TypeEA($parent,$indexAT)
+{
+    $j = 1;
+    $fixe = false;
+    while (isset($_POST['AT'.$indexAT.'Config'.$j.'_Type_Logement']))
+    {
+        if(isset($_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']=='Sing_EA_Fixe')
+        {
+            $fixe=true;
+            break;
+        }
+        $j++;
+    }
+    if($fixe)
+    {
+        $parent->addChild('Presence_EA','Fixe');
+        $parent->addChild('Presence_EA_Fixes','true');
+        $parent->addChild('Presence_EA_Autoreglables','false');
+    }
+    else
+    {
+        $parent->addChild('Presence_EA','Autoréglable');
+        $parent->addChild('Presence_EA_Fixes','false');
+        $parent->addChild('Presence_EA_Autoreglables','true');
+        $fields = ['Dp1','Dp2','R_f'];
+        addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'number',false);
+    }
+}
+
+function Optimisation($indexAT)
+{
+    $j = 1;
+    while (isset($_POST['AT'.$indexAT.'Config'.$j.'_Type_Logement']))
+    {
+        if(isset($_POST['AT'.$indexAT.'Config'.$j.'_Config_Optimisee']))
+        {
+            return 'true';
+            break;
+        }
+        $j++;
+    }
+    return 'false';
+}
+
 //GENERALITES
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><Avis_Technique_Ventilation/>');
 $xml->addAttribute('encoding', 'UTF-8');
@@ -118,91 +162,61 @@ $fields= ['Titre_AT' , 'Titulaire' , 'Code_Titulaire' , 'Industriel' , 'Code_Ind
 addTags($xml,$fields,$fields,'text',false);
 $Liste_AT_Anciens = $xml->addChild('Liste_AT_Ancien');
 addTag($Liste_AT_Anciens,'Num_AT_Ancien','Num_AT_Ancien','array',false);
-$fields= ['Date_Application' , 'Date_Fin_Application'];// , 'Usage_EA'
+$fields= ['Date_Application' , 'Date_Fin_Application','Usage_EA'];
 addTags($xml,$fields,$fields,'text',false);
-
-if(isset($_POST['Collectif']))
-    {
-        $xml->addChild('Usage_EA', $_POST['Collectif']);
-    }
-elseif (isset($_POST['Individuel']))
-    {
-        $xml->addChild('Usage_EA', $_POST['Individuel']);
-    }   
-elseif (isset($_POST['Hotel']))
-    {
-        $xml->addChild('Usage_EA', $_POST['Hotel']);
-    }     
-
+// Usages
 $Usages = $xml->addChild('Usages');
-
 $fields = ['Collectif','Individuel','Hotel'];
 addTags($Usages,$fields,$fields,'bool',true);
+// Caracteristiques
 $Caracteristiques = $xml->addChild('Caracteristiques');
 $fields =['Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
 addTags($Caracteristiques,$fields,$fields,'bool',true);
 addTag($Caracteristiques,'Type_Extraction','Type_Extraction','text',false);
+// ATS
 $xml->addChild('NB_AT', NB_AT());
 $ATS = $xml->addChild('ATS');
 $i = 1;
 
-// ATS
 while (isset($_POST['AT'.$i.'_REF_AT'])) 
 {
     $AT = $ATS->addChild('AT');
     $fields = ['REF_AT','LIBELLE'];
     addTags($AT,FormatFieldsAT($fields,$i),$fields,'text',false);
 
-    addTag($AT,'AT'.$i.'_Type_Avis_Technique','Type_Avis_Technique','bool',false);
+    addTag($AT,'AT'.$i.'_Type_Avis_Technique','Type_Avis_Technique','text',false);
 
     $hygroA = $hygroB1 = $hygroB2 = $gaz = 'false';
     if(isset($_POST['AT'.$i.'_Type_Avis_Technique']))
     {
         if($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_A'){$hygroA='true';}
-        elseif($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_B1'){$hygroB1='true';}
-        elseif($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_B2'){$hygroB2='true';}
-        elseif($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Gaz'){$gaz='true';}
+        if($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_B1'){$hygroB1='true';}
+        if($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Hygro_B2'){$hygroB2='true';}
+        if($_POST['AT'.$i.'_Type_Avis_Technique'] == 'Gaz'){$gaz='true';}
     }
-    $AT->addChild('Hygro_A', $hygroA);
-    $AT->addChild('Hygro_B1', $hygroB1);
-    $AT->addChild('Hygro_B2', $hygroB2);
-    $AT->addChild('Gaz', $gaz);
+    $AT->addChild('HYGRO_A', $hygroA);
+    $AT->addChild('HYGRO_B1', $hygroB1);
+    $AT->addChild('HYGRO_B2', $hygroB2);
+    $AT->addChild('GAZ', $gaz);
 
-    
+    // TYPE-EA
     $Type_EA = $AT->addChild('Type-EA');
+    TypeEA($Type_EA,$i);
+    $AT->addChild('Optimisation', Optimisation($i));
 
-    addTag($Type_EA,'AT'.$i.'_Presence_EA','Presence_EA','bool',false);
-    $fields = ['Presence_EA_Fixes','Presence_EA_Autoreglables'];
-    if(isset($_POST['AT'.$i.'_Presence_EA']))
-    {
-        if ($_POST['AT'.$i.'_Presence_EA']=='Fixe')
-        {
-            $Type_EA->addChild('Presence_EA_Fixes', 'true');
-            $Type_EA->addChild('Presence_EA_Autoreglables', 'false');
-        }
-        elseif ($_POST['AT'.$i.'_Presence_EA']=='Autoréglable')
-        {
-            $Type_EA->addChild('Presence_EA_Fixes', 'false');
-            $Type_EA->addChild('Presence_EA_Autoreglables', 'true');
-        }
-    }
-
-
-    $fields = ['Dp1','Dp2','R_f'];
-    addTags($Type_EA,FormatFieldsAT($fields,$i),$fields,'number',false);
-    addTag($AT,'AT'.$i.'_Optimisation','Optimisation','bool',true);
+    // CONFIGS
     $AT->addChild('NB_CONFIG', NB_CONFIG($i));
     $CONFIGS = $AT->addChild('CONFIGS');
-    // ON ITERE SUR LES CONFIGS
     $j = 1;
     while (isset($_POST['AT'.$i.'Config'.$j.'_Type_Logement']))
     {
         $CONFIG = $CONFIGS->addChild('CONFIG');
         addTag($CONFIG,'AT'.$i.'Config'.$j.'_Type_Logement','Type_Logement','number',false);
+        //SINGULARITES
         $Singularites = $CONFIG->addChild('Singularités');
         $fields = ['Config_Optimisee','Changement_Bouche'];
         addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
-
+        // SINGULARITE EA
         addTag($Singularites,'AT'.$i.'Config'.$j.'_Singularite_EA','Singularite_EA','bool',false);
 
         if(isset($_POST['AT'.$i.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$i.'Config'.$j.'_Singularite_EA']=='Sing_EA_Autoréglable')
@@ -220,14 +234,14 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
             $Singularites->addChild('EA_Autoréglables', 'false');
         }
 
-        $fields = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde'];
+        $fields = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Cellier','Nb_Sde'];
         addTags($CONFIG,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
         $DEBIT_RT = $CONFIG->addChild('DEBIT_RT');
         $Cdeps = $DEBIT_RT->addChild('Cdeps');
         addTag($Cdeps,'AT'.$i.'Config'.$j.'_Cdep','Cdep','array',false);
-        $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
+        $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier','Qsupp_Sde'];
         addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
-        // LES LOCAUX
+        // LOCAUX
         $LOCAUX = $CONFIG->addChild('LOCAUX');
         $k = 1;
         while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k]))
@@ -238,6 +252,7 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
             addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Qvrep_'.$k,'Qvrep','text',false);
             $k++;
         }
+        $k = 1;
         while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k]))
         {
             $name = $_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k];
@@ -248,7 +263,6 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         }
         $j++;
     }
-
     $i++;
 }
 

@@ -7,11 +7,11 @@ $nbr_rows = $_POST['nbrEqpmt'];
         <tr>
             <th>Code</th>
             <th>Références</th>
-            <th>EA_min</th>
-            <th>EA_max</th>
+            <th>EA_min (m<sup>3</sup>/h)</th>
+            <th>EA_max (m<sup>3</sup>/h)</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="table_Entree_tbody">
 
     <?php
             for($i=1;$i<=$nbr_rows;$i++)
@@ -22,3 +22,4 @@ $nbr_rows = $_POST['nbrEqpmt'];
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="newEquipement('Entree')">Ajouter</button>
+<button type='button' class="" onclick="deleteInput('table_Entree_tbody',0)" >Supprimer le dernier équipement</button>

@@ -18,7 +18,7 @@ $indexConfig = $_POST['indexConfig'];
             <legend>Singularités :</legend>
             <div class="form-check">
                 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Config_Optimisee" class="form-check-label">Configuration optimisée</label>
-                <input type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Config_Optimisee" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Config_Optimisee" class="form-check-input" value="Config_Optimisee">
+                <input onchange="updateConfigName(<?php echo $indexAT.','.$indexConfig.',this.checked'; ?>)" type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Config_Optimisee" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Config_Optimisee" class="form-check-input" value="Config_Optimisee">
             </div>
             <div class="form-check">
                 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Changement_Bouche" class="form-check-label">Changement de Bouche</label>
@@ -32,6 +32,7 @@ $indexConfig = $_POST['indexConfig'];
             <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1">Cdeps :</label>
             <input class='form-control' type="text" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" >
         </div>
+        <button type='button' onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField',2)" >Supprimer le dernier</button>
         <button type='button' class=" d-block btn btn-primary border border-dark my-1 float-end" onclick="addField('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep','number','AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField')">+</button>
     </div>
 
@@ -40,11 +41,11 @@ $indexConfig = $_POST['indexConfig'];
             <legend>Singularités Entrées d'Air:</legend>
             <div class="form-check">
                 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-label">Fixes</label>
-                <input type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="Sing_EA_Fixe">
+                <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',false'; ?>)"type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="Sing_EA_Fixe">
             </div>
             <div class="form-check">
                 <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-label">Autoréglables</label>
-                <input type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Autoréglable">
+                <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',true'; ?>)" type="radio" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Autoréglable">
             </div>
         </fieldset>
     </div>
@@ -120,10 +121,18 @@ $indexConfig = $_POST['indexConfig'];
                 </tr>
                 <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-label">Cellier</label>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-label">Salle d'eau</label>
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-control" step="any">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Cellier" class="form-label">Cellier</label>
+                    </td>
+                    <td>
+                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Cellier" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Cellier" class="form-control" step="any">
                     </td>
                 </tr>
             </tbody>
@@ -165,6 +174,14 @@ $indexConfig = $_POST['indexConfig'];
                 </tr>
                 <tr>
                     <td>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sde" class="form-label">Salle d'eau</label>
+                    </td>
+                    <td>
+                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sde" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sde" class="form-control" step="any">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Cellier" class="form-label">Cellier</label>
                     </td>
                     <td>
@@ -186,7 +203,7 @@ $indexConfig = $_POST['indexConfig'];
             <th>Qvrep</th>
         </tr>
     </thead>
-    <tbody class="border-dark">
+    <tbody class="border-dark" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Humide_tbody">
     <?php 
 
         for($i=1;$i<=$nbrPiecesHumides;$i++) 
@@ -197,6 +214,7 @@ $indexConfig = $_POST['indexConfig'];
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="addRoom('Humide','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce humide</button>
+<button type='button' class="" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Humide_tbody',0)" >Supprimer la dernière pièce</button>
 
 <h3>Pièces Sèches</h3>
 <table class="table table-sm table-bordered" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec">
@@ -206,14 +224,14 @@ $indexConfig = $_POST['indexConfig'];
             <th>Code</th>
         </tr>
     </thead>
-    <tbody class="border-dark">
+    <tbody class="border-dark" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec_tbody">
         <?php 
         for($i=1;$i<=$nbrPiecesSeches;$i++) 
         {
             include'./_config_roomS.php';
         }
         ?>
-
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="addRoom('Sec','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce sèche</button>
+<button type='button' class="" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec_tbody',0)" >Supprimer la dernière pièce</button>

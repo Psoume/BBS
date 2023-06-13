@@ -12,10 +12,11 @@
         <input type="text" name="Code_Titulaire" id="Code_Titulaire" class="form-control">
         <label for="Num_AT" class="form-label">Numéro de l'AT : </label>
         <input type="text" name="Num_AT" id="Num_AT" class="form-control">
-        <span id="NumATAncienField">
-            <label for="Num_AT_Ancien_1">Anciens numéros : </label><br/>
+        <div id="NumATAncienField">
+            <label for="Num_AT_Ancien_1">Anciens numéros : </label>
             <input class="form-control" type="text" name="Num_AT_Ancien_1" id="Num_AT_Ancien_1">
-        </span>
+        </div>
+        <button type='button' class="" onclick="deleteInput('NumATAncienField',2)" >Supprimer le dernier</button>
         <button type="button" class="btn btn-primary border border-dark mt-1 float-end" onclick="addField('Num_AT_Ancien','text','NumATAncienField')">+</button>
     </div>
 
@@ -29,28 +30,43 @@
         <label for="Date_Fin_Application" class="form-label">Date de fin d'application : </label>
         <input type="text" name="Date_Fin_Application" id="Date_Fin_Application" class="form-control">
         <label for="Type_Extraction" class="form-label">Type d'extraction : </label>
-        <input type="text" name="Type_Extraction" id="Type_Extraction" class="form-control">
+        <select name="Type_Extraction" id="Type_Extraction" class="form-select">
+            <option value="" selected>Choisir un type d'extraction</option>
+            <option value="caisson">Caisson</option>
+            <option value="tourelle">Tourelle</option>
+            <option value="caisson et tourelle">Caisson et Tourelle</option>
+        </select>
         
     </div>
 </div>
 
 <div class="row mx-auto">
     <div class="col-12 col-sm-6 px-4 pt-3">
-        <fieldset>
-            <legend>Usages :</legend>
-            <div class="form-check">
-                <label for="Collectif" class="form-check-label">Collectif : </label>
-                <input type="checkbox" name="Collectif" id="Collectif" class="form-check-input" value="Collectif">
+        <div class="row">
+            <div class="col">
+                <fieldset>
+                    <legend>Usages :</legend>
+                    <div class="form-check">
+                        <label for="Collectif" class="form-check-label">Collectif : </label>
+                        <input type="checkbox" name="Collectif" id="Collectif" class="form-check-input" value="Collectif">
+                    </div>
+                    <div class="form-check">
+                        <label for="Individuel" class="form-check-label">Individuel : </label>
+                        <input type="checkbox" name="Individuel" id="Individuel" class="form-check-input" value="Individuel">
+                    </div>
+                    <div class="form-check">
+                        <label for="Hotel" class="form-check-label">Hôtel : </label>
+                        <input type="checkbox" name="Hotel" id="Hotel" class="form-check-input" value="Hotel">
+                    </div>
+                </fieldset>
             </div>
-            <div class="form-check">
-                <label for="Individuel" class="form-check-label">Individuel : </label>
-                <input type="checkbox" name="Individuel" id="Individuel" class="form-check-input" value="Individuel">
+            <div class="col">
+                <label for="Usage_EA" class="form-label">Usages Entrées d'Air : </label>
+                <input type="text" name="Usage_EA" id="Usage_EA" class="form-control">
             </div>
-            <div class="form-check">
-                <label for="Hotel" class="form-check-label">Hôtel : </label>
-                <input type="checkbox" name="Hotel" id="Hotel" class="form-check-input" value="Hotel">
-            </div>
-        </fieldset>
+        </div>
+        <div class="col">
+        </div>
     </div>
 
     <div class="col-12 col-sm-6 px-4 pt-3">

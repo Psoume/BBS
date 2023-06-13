@@ -15,7 +15,7 @@ $nbr_rows = $_POST['nbrEqpmt'];
                 <th scope='col'>QmaxLimite (m<sup>3</sup>/h)</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="table_Bouche_tbody">
             <?php
             for($i=1;$i<=$nbr_rows;$i++)
             {
@@ -26,3 +26,4 @@ $nbr_rows = $_POST['nbrEqpmt'];
     </table>
     </div>
 <button type="button" class="btn btn-dark" onclick="newEquipement('Bouche')">Ajouter</button>
+<button type='button' class="" onclick="deleteInput('table_Bouche_tbody',0)" >Supprimer le dernier équipement</button>

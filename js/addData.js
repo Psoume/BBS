@@ -4,7 +4,7 @@
 
 function addDataGeneralites(xml){
     // Generalites
-    var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application'];
+    var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application','Usage_EA'];
     fillFields(xml, fields, fields, 'text');
     fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
     var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
@@ -13,10 +13,9 @@ function addDataGeneralites(xml){
 
 function addDataAT(AT,indexAT)
 {
-var fields = ['REF_AT','LIBELLE','Dp1','Dp2','R_f'];
+var fields = ['REF_AT','LIBELLE','Type_Avis_Technique','Dp1','Dp2','R_f'];
 fillFields(AT, fields, formatFieldsAT(fields,indexAT), 'text');
-var radioFields = ['HYGRO_A','HYGRO_B1','HYGRO_B2','GAZ','Presence_EA_Fixes','Presence_EA_Autoreglables','Optimisation'];
-fillFields(AT, radioFields, formatFieldsAT(radioFields,indexAT), 'radio');
+
 }
 
 function addDataConfig(Config,indexAT,indexConfig)

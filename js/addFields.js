@@ -234,10 +234,14 @@ function updateATName(indexAT)
     titreAT.innerHTML = newValue;
 }
 
-function updateConfigName(indexAT,indexConfig)
+function updateConfigName(indexAT,indexConfig,opti=false)
 {
     var buttonConfig = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab");
     var newValue = "Config"+indexConfig+" (T"+document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Type_Logement").value+")";
+    if(opti)
+    {
+        newValue += "(Opti)";
+    }
     buttonConfig.innerHTML = newValue;
 }
 
@@ -264,4 +268,58 @@ function resetTitleAT(){
     var inputDiv = document.getElementById('titleATInputDiv');
     inputDiv.setAttribute('hidden', 'true');
     h2.removeAttribute('hidden');
+}
+
+function toggleSingEA(indexAT,indexConfig,abled)
+{
+    if (abled)
+    {
+        document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Module_1").disabled = false;
+        document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Module_2").disabled = false;
+    }
+    else
+    {
+        document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Module_1").disabled = true;
+        document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Module_2").disabled = true;
+    }
+}
+
+function deleteInput(containerID,limit)
+{
+    var container = document.getElementById(containerID);
+    if(container.children.length > limit)
+    {
+        if(container.lastChild.value!=="")
+        {
+            if(confirm("voulez-vous vraiment supprimer cette ligne ? Risque de perte de données")==true)
+            {
+                container.lastChild.remove();
+            }
+        } 
+        else{container.lastChild.remove();}
+    }
+}
+
+function checkCodeRoom(Eqpmt,code)
+{
+    var liste = [];
+    var i = 1;
+
+    while (document.getElementById(Eqpmt+i+"_Code") !== null)
+    {
+        liste.push(document.getElementById(Eqpmt+i+"_Code").value);
+        i++;
+    }
+
+    console.log(liste);
+    if(liste.includes(code.value))
+    {
+        code.classList.remove("border-danger");
+        code.classList.remove("border");
+    }
+    else
+    {
+        code.classList.add("border-danger");
+        code.classList.add("border");
+    }
 }
