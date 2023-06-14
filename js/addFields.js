@@ -14,8 +14,10 @@ function addField(idHTML,type,idContainer)
     container.appendChild(input);
 }
 
-function addLabelledField(idHTML,type,container,bsClass,labelContent)
+function addFieldSolution(idHTML,type,container,bsClass,labelContent)
 {
+    var col = document.createElement('div');
+    col.setAttribute('class','col');
     var input = document.createElement("input");
     input.type = type;
     input.id=idHTML;
@@ -26,8 +28,10 @@ function addLabelledField(idHTML,type,container,bsClass,labelContent)
     lab.setAttribute('for',idHTML);
     lab.innerHTML = labelContent;
 
-    container.appendChild(lab);
-    container.appendChild(input);
+    col.appendChild(lab);
+    col.appendChild(input);
+
+    container.appendChild(col)
 }
 
 
@@ -217,15 +221,90 @@ function solutionsNewconfig()
     //tbody
     for (var i=1; i<=tbody.children.length; i++)
     {
+        // inputs
         var tr = tbody.children[i-1]
         var td = document.createElement('td');
-        addLabelledField("Solution"+i+"_Config"+indexConfig+"_Solution_Libelle",'text',td,'form-control','Libelle :');
-        addLabelledField("Solution"+i+"_Config"+indexConfig+"_Code",'text',td,'form-control','Code :');
-        addLabelledField("Solution"+i+"_Config"+indexConfig+"_Nombre",'number',td,'form-control','Nombre :');
+        td.id = "Solution"+i+"_Config"+indexConfig+"_1";
+        var row = document.createElement('div');
+        row.setAttribute('class','row g-0');
+        addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Solution_Libelle_1",'text',row,'form-control','Libelle:');
+        addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Code_1",'text',row,'form-control','Code:');
+        addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Nombre_1",'number',row,'form-control','Nombre:');
+        td.appendChild(row);
+        // buttons
+        row = document.createElement('div');
+        row.setAttribute('class','row');
+        col = document.createElement('div');
+        col.setAttribute('class','col');
+        var button = document.createElement('button');
+        button.setAttribute('class','btn btn-sm btn-dark');
+        button.type = 'button';
+        button.innerHTML = 'Ajouter';
+        button.setAttribute('onclick',"newSolution(this,"+i+","+indexConfig+")");
+        col.appendChild(button);
+        row.appendChild(col);
+        col = document.createElement('div');
+        col.setAttribute('class','col');
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.innerHTML = 'Supprimer';
+        button.setAttribute('onclick',"removeSolution("+i+","+indexConfig+")");
+        col.appendChild(button);
+        row.appendChild(col);
+        td.appendChild(row);
+        //
         tr.appendChild(td);
-
     }
 }
+
+function solutionsRemoveconfig()
+{
+    var tbody = document.getElementById('table_Solution').children[1];
+    var thead = document.getElementById('table_Solution').children[0];
+    var indexElement = parseInt(thead.children[0].children.length-2);
+
+    //Thead
+    thead.children[0].children[indexElement].remove();
+    //Tbody
+    for (i=0;i<tbody.children.length;i++)
+    {
+        tbody.children[i].lastElementChild.remove();
+    }
+}
+
+function newSolution(button,indexEqpmt,indexConfig)
+{
+    var container = document.getElementById('Solution'+indexEqpmt+'_Config'+indexConfig+'_1');
+    var indexSolution = container.children.length;
+    var row = document.createElement('div');
+    row.setAttribute('class','row g-0');
+    row.id = 'Solution'+indexEqpmt+'_Config'+indexConfig+'_'+indexSolution;
+    var fields = ['Solution_Libelle','Code','Nombre'];
+    var fieldsType = ['text','text','number'];
+    for(i=0;i<3;i++)
+    {
+        var col = document.createElement('div');
+        col.setAttribute('class','col-4 mt-2');
+        var input = document.createElement('input');
+        input.setAttribute('class','form-control');
+        input.type = fieldsType[i];
+        input.id = 'Solution'+indexEqpmt+'_Config'+indexConfig+'_'+fields[i]+'_'+indexSolution;
+        input.name = 'Solution'+indexEqpmt+'_Config'+indexConfig+'_'+fields[i]+'_'+indexSolution;
+        col.appendChild(input);
+        row.appendChild(col);
+    }
+    container.insertBefore(row,button.parentElement.parentElement);
+}
+
+function removeSolution(indexEqpmt,indexConfig)
+{
+    container = document.getElementById('Solution'+indexEqpmt+'_Config'+indexConfig+'_1');
+    if (container.children.length > 1)
+    {
+        container.lastChild.previousSibling.remove();
+    }
+}
+
 
 function updateATName(indexAT)
 {
@@ -287,16 +366,18 @@ function toggleSingEA(indexAT,indexConfig,abled)
 function deleteInput(containerID,limit)
 {
     var container = document.getElementById(containerID);
+    var element = container.children.item(parseInt(container.children.length-1));
+    console.log(element.value);
     if(container.children.length > limit)
     {
-        if(container.lastChild.value!=="")
+        if((element.value !== 'undefined' && element.value!=="") ||(element.value == 'undefined') )
         {
             if(confirm("voulez-vous vraiment supprimer cette ligne ? Risque de perte de données")==true)
             {
-                container.lastChild.remove();
+                element.remove();
             }
         } 
-        else{container.lastChild.remove();}
+        else{element.remove();}
     }
 }
 

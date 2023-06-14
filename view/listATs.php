@@ -59,7 +59,7 @@ foreach($scandir as $fichier){
         <label class="form-label" for="importXML">Ou importer un fichier :</label>
             <div class="row">
                 <div class="col-10 col-sm-8 col-xl-6">
-                    <input class="form-control" type="file" id="importXML" name="importXML" accept="application/xml">
+                    <input required class="form-control" type="file" id="importXML" name="importXML" accept="application/xml">
                 </div>
                 <div class="col-6 col-sm-2">
                     <input class='btn btn-success border-0 float-start' type='submit' value='Importer'>

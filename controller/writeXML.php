@@ -302,7 +302,7 @@ while(isset($_POST['Solution'.$i.'_Code_Solution'])) // Solution i
     $Type_Solution = $Solutions->addChild('Type_Solution');
     addTag($Type_Solution,'Solution'.$i.'_Code_Solution','Code_Solution','text',false);
     $j=1;
-    while(isset($_POST['Solution'.$i.'_Config'.$j.'_Solution_Libelle'])) //Config j
+    while(isset($_POST['Solution'.$i.'_Config'.$j.'_Solution_Libelle']) && $_POST['Solution'.$i.'_Config'.$j.'_Solution_Libelle']!="") //Config j
     {
         $Config_Solution = $Type_Solution->addChild('Config_Solution');
         addTag($Config_Solution,'Solution'.$i.'_Config'.$j.'_Solution_Libelle','Solution_Libelle','text',false);

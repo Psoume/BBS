@@ -13,7 +13,10 @@ $nbr_cols = $_POST['nbrConfig'];
                     echo "<th>Config".$j."</th>";
                 }
             ?>
-            <th><button type="button" onclick="solutionsNewconfig()">Ajouter</button></th>
+            <th>
+                <button type="button" class='btn btn-success mb-1' onclick="solutionsNewconfig()">Ajouter</button>
+                <button type="button" onclick="solutionsRemoveconfig()">Supprimer</button>
+            </th>
         </tr>
     </thead>
     <tbody id='table_Solution_tbody'>
@@ -25,6 +28,6 @@ $nbr_cols = $_POST['nbrConfig'];
     ?>
     </tbody>
 </table>
-<button type="button" class="btn btn-dark" onclick="newEquipement('Solution')">Ajouter</button>
-<button type='button' class="" onclick="deleteInput('table_Solution_tbody',0)" >Supprimer le dernier équipement</button>
+<button type="button" class="btn btn-success me-2" onclick="newEquipement('Solution')">Ajouter un équipement</button>
+<button type='button' class="" onclick="deleteInput('table_Solution_tbody',0)" >Supprimer</button>
 

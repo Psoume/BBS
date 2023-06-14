@@ -25,5 +25,5 @@ $nbr_rows = $_POST['nbrEqpmt'];
         </tbody>
     </table>
     </div>
-<button type="button" class="btn btn-dark" onclick="newEquipement('Bouche')">Ajouter</button>
-<button type='button' class="" onclick="deleteInput('table_Bouche_tbody',0)" >Supprimer le dernier équipement</button>
+<button type="button" class="btn btn-success me-2" onclick="newEquipement('Bouche')">Ajouter un équipement</button>
+<button type='button' onclick="deleteInput('table_Bouche_tbody',0)" >Supprimer</button>
