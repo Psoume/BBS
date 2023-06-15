@@ -62,13 +62,17 @@ function addDataEqpmt(Eqpmt,EqpmtXML)
                 break;
 
             case 'Solution':
-                // fillField(xml, 'Code_Solution', Eqpmt+indexEqpmt+'_Code_Solution','text');
+                fillField(xml, 'Code_Solution', Eqpmt+indexEqpmt+'_Code_Solution','text');
                 var fields=[];
                 for(var j=1;j<xml.children.length;j++)
                 {
-                    // fillField(xml.children[j],'Solution_Libelle',Eqpmt+indexEqpmt+'_Config'+j+'_Solution_Libelle');
-                    // fillField(xml.children[j],'Code',Eqpmt+indexEqpmt+'_Config'+j+'_Code');
-                    // fillField(xml.children[j],'Nombre',Eqpmt+indexEqpmt+'_Config'+j+'_Nombre');
+                    fillField(xml.children[j],'Solution_Libelle',Eqpmt+indexEqpmt+'_Config'+j+'_Solution_Libelle');
+                    for(k=1;k<xml.children[j].children.length;k++)
+                    {
+                        var xmlEntree = xml.children[j].children[k];
+                        fillField(xmlEntree,'Code',Eqpmt+indexEqpmt+'_Config'+j+'_Code_'+k);
+                        fillField(xmlEntree,'Nombre',Eqpmt+indexEqpmt+'_Config'+j+'_Nombre_'+k);
+                    }
                 }
                 break;
 

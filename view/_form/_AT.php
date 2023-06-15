@@ -16,10 +16,13 @@ $indexAT = $_POST['indexAT'];
             <select name="AT<?php echo $indexAT; ?>_Type_Avis_Technique" id="AT<?php echo $indexAT; ?>_Type_Avis_Technique" class="form-select">
                 <option value="" selected>Choisir un type d'avis technique</option>
                 <option value="Hygro_A">HYGRO A</option>
-                <option value="Hygro_B">HYGRO B1</option>
-                <option value="Hygro_B">HYGRO B2</option>
                 <option value="Hygro_B">HYGRO B</option>
-                <option value="HygroGaz">GAZ</option>
+                <option value="Hygro_B1">HYGRO B1</option>
+                <option value="Hygro_B2">HYGRO B2</option>
+                <option value="Autoreglable">Autoréglable</option>
+                <option value="Autoreglable_Gaz">Autoréglable GAZ</option>
+                <option value="Sans_precision">Sans Précision</option>
+
             </select>
             <div class='mt-5'>
                 <span>Ne remplir la partie "Type d'entrées d'air" que si au moins une configuration a des entrées d'air de type fixe.</span>

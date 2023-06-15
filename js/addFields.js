@@ -17,7 +17,9 @@ function addField(idHTML,type,idContainer)
 function addFieldSolution(idHTML,type,container,bsClass,labelContent)
 {
     var col = document.createElement('div');
-    col.setAttribute('class','col');
+    if(labelContent =='Libelle:')
+    {col.setAttribute('class','col-12');}
+    else{col.setAttribute('class','col');}
     var input = document.createElement("input");
     input.type = type;
     input.id=idHTML;
@@ -227,7 +229,7 @@ function solutionsNewconfig()
         td.id = "Solution"+i+"_Config"+indexConfig+"_1";
         var row = document.createElement('div');
         row.setAttribute('class','row g-0');
-        addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Solution_Libelle_1",'text',row,'form-control','Libelle:');
+        addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Solution_Libelle",'text',row,'form-control','Libelle:');
         addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Code_1",'text',row,'form-control','Code:');
         addFieldSolution("Solution"+i+"_Config"+indexConfig+"_Nombre_1",'number',row,'form-control','Nombre:');
         td.appendChild(row);
@@ -279,12 +281,12 @@ function newSolution(button,indexEqpmt,indexConfig)
     var row = document.createElement('div');
     row.setAttribute('class','row g-0');
     row.id = 'Solution'+indexEqpmt+'_Config'+indexConfig+'_'+indexSolution;
-    var fields = ['Solution_Libelle','Code','Nombre'];
-    var fieldsType = ['text','text','number'];
-    for(i=0;i<3;i++)
+    var fields = ['Code','Nombre'];
+    var fieldsType = ['text','number'];
+    for(i=0;i<2;i++)
     {
         var col = document.createElement('div');
-        col.setAttribute('class','col-4 mt-2');
+        col.setAttribute('class','col mt-2');
         var input = document.createElement('input');
         input.setAttribute('class','form-control');
         input.type = fieldsType[i];
@@ -299,7 +301,7 @@ function newSolution(button,indexEqpmt,indexConfig)
 function removeSolution(indexEqpmt,indexConfig)
 {
     container = document.getElementById('Solution'+indexEqpmt+'_Config'+indexConfig+'_1');
-    if (container.children.length > 1)
+    if (container.children.length > 2)
     {
         container.lastChild.previousSibling.remove();
     }

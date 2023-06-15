@@ -47,15 +47,15 @@
                 <fieldset>
                     <legend>Usages :</legend>
                     <div class="form-check">
-                        <label for="Collectif" class="form-check-label">Collectif : </label>
+                        <label for="Collectif" class="form-check-label">Collectif</label>
                         <input type="checkbox" name="Collectif" id="Collectif" class="form-check-input" value="Collectif">
                     </div>
                     <div class="form-check">
-                        <label for="Individuel" class="form-check-label">Individuel : </label>
+                        <label for="Individuel" class="form-check-label">Individuel</label>
                         <input type="checkbox" name="Individuel" id="Individuel" class="form-check-input" value="Individuel">
                     </div>
                     <div class="form-check">
-                        <label for="Hotel" class="form-check-label">Hôtel : </label>
+                        <label for="Hotel" class="form-check-label">Hôtel</label>
                         <input type="checkbox" name="Hotel" id="Hotel" class="form-check-input" value="Hotel">
                     </div>
                 </fieldset>
@@ -73,19 +73,19 @@
         <fieldset>
         <legend>Caractéristiques :</legend>
             <div class="form-check">
-                <label for="Double_Flux" class="form-check-label">Double Flux : </label>
+                <label for="Double_Flux" class="form-check-label">Double Flux</label>
                 <input type="checkbox" name="Double_Flux" id="Double_Flux" class="form-check-input" value="Double_Flux">
             </div>
             <div class="form-check">
-                <label for="Autoréglable" class="form-check-label">Autoréglable : </label>
+                <label for="Autoréglable" class="form-check-label">Autoréglable</label>
                 <input type="checkbox" name="Autoréglable" id="Autoréglable" class="form-check-input" value="Autoréglable">
             </div>
             <div class="form-check">
-                <label for="Hygroreglable" class="form-check-label">Hygroreglable : </label>
+                <label for="Hygroreglable" class="form-check-label">Hygroreglable</label>
                 <input type="checkbox" name="Hygroreglable" id="Hygroreglable" class="form-check-input" value="Hygroreglable">
             </div>
             <div class="form-check">
-                <label for="Basse_Pression" class="form-check-label">Basse Pression : </label>
+                <label for="Basse_Pression" class="form-check-label">Basse Pression</label>
                 <input type="checkbox" name="Basse_Pression" id="Basse_Pression" class="form-check-input" value="Basse_Pression">
             </div>
         </fieldset>
