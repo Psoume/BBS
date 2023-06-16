@@ -114,30 +114,47 @@ function FormatFieldsEqpmts($fields,$eqpmt,$i)
 function TypeEA($parent,$indexAT)
 {
     $j = 1;
-    $fixe = false;
+    $fixe = $auto = false;
     while (isset($_POST['AT'.$indexAT.'Config'.$j.'_Type_Logement']))
     {
-        if(isset($_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']=='Sing_EA_Fixe')
+        if(isset($_POST['AT'.$indexAT.'Config'.$j.'_EA_Fixes']))
         {
             $fixe=true;
-            break;
+        }
+        elseif(isset($_POST['AT'.$indexAT.'Config'.$j.'_EA_Autoréglables']))
+        {
+            $auto=true;
         }
         $j++;
     }
-    if($fixe)
+
+    if ($fixe && $auto)
+    {
+        $parent->addChild('Presence_EA','Mixte');
+        $parent->addChild('Presence_EA_Fixes','true');
+        $parent->addChild('Presence_EA_Autoreglables','true');
+    }
+    elseif($fixe)
     {
         $parent->addChild('Presence_EA','Fixe');
         $parent->addChild('Presence_EA_Fixes','true');
         $parent->addChild('Presence_EA_Autoreglables','false');
     }
-    else
+    elseif($auto)
     {
         $parent->addChild('Presence_EA','Autoréglable');
         $parent->addChild('Presence_EA_Fixes','false');
         $parent->addChild('Presence_EA_Autoreglables','true');
-        $fields = ['Dp1','Dp2','R_f'];
-        addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'number',false);
     }
+    else 
+    {
+        $parent->addChild('Presence_EA','Sans');
+        $parent->addChild('Presence_EA_Fixes','false');
+        $parent->addChild('Presence_EA_Autoreglables','false');
+    }
+
+    $fields = ['Dp1','Dp2','R_f'];
+    addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'number',false);
 }
 
 function Optimisation($indexAT)
@@ -217,22 +234,17 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         $fields = ['Config_Optimisee','Changement_Bouche'];
         addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
         // SINGULARITE EA
-        addTag($Singularites,'AT'.$i.'Config'.$j.'_Singularite_EA','Singularite_EA','bool',false);
+        if(isset($_POST['AT'.$i.'Config'.$j.'_EA_Fixes']) && isset ($_POST['AT'.$i.'Config'.$j.'_EA_Autoréglables']))
+        { $Singularites->addChild('Singularite_EA', 'Sing_EA_Mixte'); }
+        elseif(isset ($_POST['AT'.$i.'Config'.$j.'_EA_Fixes']))
+        { $Singularites->addChild('Singularite_EA', 'Sing_EA_Fixe'); }
+        elseif(isset ($_POST['AT'.$i.'Config'.$j.'_EA_Autoréglables']))
+        { $Singularites->addChild('Singularite_EA', 'Sing_EA_Autoréglable'); }
+        else 
+        { $Singularites->addChild('Singularite_EA', 'Sing_EA_Sans'); }
 
-        if(isset($_POST['AT'.$i.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$i.'Config'.$j.'_Singularite_EA']=='Sing_EA_Autoréglable')
-        {
-            $Singularites->addChild('EA_Fixes', 'false');
-            $Singularites->addChild('EA_Autoréglables', 'true');
-        }
-        elseif(isset($_POST['AT'.$i.'Config'.$j.'_Singularite_EA']) && $_POST['AT'.$i.'Config'.$j.'_Singularite_EA']=='Sing_EA_Fixe')
-        {
-            $Singularites->addChild('EA_Fixes', 'true');
-            $Singularites->addChild('EA_Autoréglables', 'false');
-        }
-        else {
-            $Singularites->addChild('EA_Fixes', 'false');
-            $Singularites->addChild('EA_Autoréglables', 'false');
-        }
+        $fields = ['EA_Fixes','EA_Autoréglables'];
+        addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
 
         $fields = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Cellier','Nb_Sde'];
         addTags($CONFIG,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
@@ -306,9 +318,15 @@ while(isset($_POST['Solution'.$i.'_Code_Solution'])) // Solution i
     {
         $Config_Solution = $Type_Solution->addChild('Config_Solution');
         addTag($Config_Solution,'Solution'.$i.'_Config'.$j.'_Solution_Libelle','Solution_Libelle','text',false);
-        $Entree = $Config_Solution->addChild('Entree');
-        addTag($Entree,'Solution'.$i.'_Config'.$j.'_Code','Code','text',false);
-        addTag($Entree,'Solution'.$i.'_Config'.$j.'_Nombre','Nombre','number',false);
+        $k = 1;
+        while(isset($_POST['Solution'.$i.'_Config'.$j.'_Code_'.$k]))
+        {
+            $Entree = $Config_Solution->addChild('Entree');
+            addTag($Entree,'Solution'.$i.'_Config'.$j.'_Code_'.$k,'Code','text',false);
+            addTag($Entree,'Solution'.$i.'_Config'.$j.'_Nombre_'.$k,'Nombre','number',false);
+            $k++;
+        }
+        
         $j++;
     }
     $i++;

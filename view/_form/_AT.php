@@ -22,18 +22,18 @@ $indexAT = $_POST['indexAT'];
                 <option value="Autoreglable">Autoréglable</option>
                 <option value="Autoreglable_Gaz">Autoréglable GAZ</option>
                 <option value="Sans_precision">Sans Précision</option>
-
             </select>
-            <div class='mt-5'>
-                <span>Ne remplir la partie "Type d'entrées d'air" que si au moins une configuration a des entrées d'air de type fixe.</span>
-            </div>
 
         </div>
 
         <div class='col-12 col-sm-6 px-4'>
 
         <fieldset>
-            <legend>Type d'entrées d'air :</legend>
+            <legend>
+                <img data-bs-toggle="tooltip" data-bs-title="Ne remplir la partie 'Type d'entrées d'air' que si au moins une configuration a des entrées d'air de type fixe." src="./css/bootstrap-icons/info-circle.svg" alt="Bootstrap" width="18" height="18">
+                Type d'entrées d'air :
+            </legend>
+
             <label for="AT<?php echo $indexAT; ?>_Dp1" class="form-label">Dp1 :</label>
             <div class="input-group pe-5">
                 <input type="number" name="AT<?php echo $indexAT; ?>_Dp1" id="AT<?php echo $indexAT; ?>_Dp1" class="form-control " step="any">

@@ -41,25 +41,14 @@ $indexConfig = $_POST['indexConfig'];
             <legend>Singularités Entrées d'Air:</legend>
 
                 <div class="form-check">
-                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Autoréglable" class="form-check-label">Fixes</label>
-                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',false'; ?>)"type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Autoréglable" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="Sing_EA_Fixe">
+                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-label">Fixes</label>
+                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',false'; ?>)"type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="Sing_EA_Fixe">
                 </div>
 
                 <div class="form-check">
-                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Fixe" class="form-check-label">Autoréglables</label>
-                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',true'; ?>)" type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Fixe" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Autoréglable">
+                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-label">Autoréglables</label>
+                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',true'; ?>)" type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Autoréglable">
                 </div>
-
-                <div class="form-check">
-                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Mixte" class="form-check-label">Mixtes</label>
-                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',true'; ?>)" type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Mixte" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Mixte">
-                </div>
-
-                <div class="form-check">
-                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Sans" class="form-check-label">Sans</label>
-                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',true'; ?>)" type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sing_EA_Sans" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Sans">
-                </div>
-
         </fieldset>
     </div>
 

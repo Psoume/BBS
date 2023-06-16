@@ -258,78 +258,34 @@
                     </LOCAUX>
                 </CONFIG>
                 <CONFIG>
-                    <Type_Logement>2</Type_Logement>
+                    <Type_Logement />
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
+                        <Singularite_EA>false</Singularite_EA>
                         <EA_Fixes>false</EA_Fixes>
-                        <EA_Autoréglables>true</EA_Autoréglables>
+                        <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>
-                    <Nb_Sdb_WC>0</Nb_Sdb_WC>
-                    <Nb_Sdb>1</Nb_Sdb>
-                    <Nb_WC>1</Nb_WC>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
                     <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
+                    <Nb_Sde />
                     <DEBIT_RT>
                         <Cdeps>
-                            <Cdep>1.20</Cdep>
-                            <Cdep>1.11</Cdep>
+                            <Cdep />
                         </Cdeps>
-                        <Qv_Rep>50.3</Qv_Rep>
-                        <Smea_Existant>90.0</Smea_Existant>
-                        <Module_1>90</Module_1>
-                        <Module_2>76.5</Module_2>
-                        <Qsupp_Sdb>22.5</Qsupp_Sdb>
-                        <Qsupp_WC>5.6</Qsupp_WC>
-                        <Qsupp_Sdb_WC>6.5</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
                         <Qsupp_Sde />
                     </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC02</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain>
-                        <Salle_de_bain_supp>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_EA60</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_EA30</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
+                    <LOCAUX />
                 </CONFIG>
                 <CONFIG>
                     <Type_Logement>3</Type_Logement>
@@ -554,378 +510,154 @@
                     </LOCAUX>
                 </CONFIG>
                 <CONFIG>
-                    <Type_Logement>4</Type_Logement>
+                    <Type_Logement />
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
+                        <Singularite_EA>false</Singularite_EA>
                         <EA_Fixes>false</EA_Fixes>
-                        <EA_Autoréglables>true</EA_Autoréglables>
+                        <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>
-                    <Nb_Sdb_WC>0</Nb_Sdb_WC>
-                    <Nb_Sdb>1</Nb_Sdb>
-                    <Nb_WC>1</Nb_WC>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
                     <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
+                    <Nb_Sde />
                     <DEBIT_RT>
                         <Cdeps>
-                            <Cdep>1.10</Cdep>
-                            <Cdep>1.06</Cdep>
+                            <Cdep />
                         </Cdeps>
-                        <Qv_Rep>74.4</Qv_Rep>
-                        <Smea_Existant>135.0</Smea_Existant>
-                        <Module_1>135.0</Module_1>
-                        <Module_2>114.7</Module_2>
-                        <Qsupp_Sdb>22.5</Qsupp_Sdb>
-                        <Qsupp_WC>5.6</Qsupp_WC>
-                        <Qsupp_Sdb_WC>6.5</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
-                        <Qsupp_Sde />
-                    </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain>
-                        <Salle_de_bain_supp>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_EA45</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_EA30</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
-                </CONFIG>
-                <CONFIG>
-                    <Type_Logement>5</Type_Logement>
-                    <Singularités>
-                        <Config_Optimisee>false</Config_Optimisee>
-                        <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
-                        <EA_Fixes>false</EA_Fixes>
-                        <EA_Autoréglables>true</EA_Autoréglables>
-                    </Singularités>
-                    <Nb_Sdb_WC>1</Nb_Sdb_WC>
-                    <Nb_Sdb>0</Nb_Sdb>
-                    <Nb_WC>0</Nb_WC>
-                    <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
-                    <DEBIT_RT>
-                        <Cdeps>
-                            <Cdep>1.07</Cdep>
-                            <Cdep>1.04</Cdep>
-                        </Cdeps>
-                        <Qv_Rep>77.2</Qv_Rep>
-                        <Smea_Existant>165.0</Smea_Existant>
-                        <Module_1>165.0</Module_1>
-                        <Module_2>140.2</Module_2>
-                        <Qsupp_Sdb>5.5</Qsupp_Sdb>
-                        <Qsupp_WC>5.6</Qsupp_WC>
-                        <Qsupp_Sdb_WC>15.5</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
-                        <Qsupp_Sde />
-                    </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC>
-                            <Code>HT04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_EA45</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_EA30</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
-                </CONFIG>
-                <CONFIG>
-                    <Type_Logement>5</Type_Logement>
-                    <Singularités>
-                        <Config_Optimisee>false</Config_Optimisee>
-                        <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
-                        <EA_Fixes>false</EA_Fixes>
-                        <EA_Autoréglables>true</EA_Autoréglables>
-                    </Singularités>
-                    <Nb_Sdb_WC>0</Nb_Sdb_WC>
-                    <Nb_Sdb>1</Nb_Sdb>
-                    <Nb_WC>1</Nb_WC>
-                    <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
-                    <DEBIT_RT>
-                        <Cdeps>
-                            <Cdep>1.10</Cdep>
-                            <Cdep>1.06</Cdep>
-                        </Cdeps>
-                        <Qv_Rep>76.8</Qv_Rep>
-                        <Smea_Existant>165.0</Smea_Existant>
-                        <Module_1>165.0</Module_1>
-                        <Module_2>140.2</Module_2>
-                        <Qsupp_Sdb>22.5</Qsupp_Sdb>
-                        <Qsupp_WC>5.6</Qsupp_WC>
-                        <Qsupp_Sdb_WC>6.5</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
-                        <Qsupp_Sde />
-                    </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain>
-                        <Salle_de_bain_supp>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_EA45</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_EA30</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
-                </CONFIG>
-                <CONFIG>
-                    <Type_Logement>6</Type_Logement>
-                    <Singularités>
-                        <Config_Optimisee>false</Config_Optimisee>
-                        <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
-                        <EA_Fixes>false</EA_Fixes>
-                        <EA_Autoréglables>true</EA_Autoréglables>
-                    </Singularités>
-                    <Nb_Sdb_WC>2</Nb_Sdb_WC>
-                    <Nb_Sdb>0</Nb_Sdb>
-                    <Nb_WC>0</Nb_WC>
-                    <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
-                    <DEBIT_RT>
-                        <Cdeps>
-                            <Cdep>1.07</Cdep>
-                            <Cdep>1.05</Cdep>
-                        </Cdeps>
-                        <Qv_Rep>112.6</Qv_Rep>
-                        <Smea_Existant>155.0</Smea_Existant>
-                        <Module_1>155.0</Module_1>
-                        <Module_2>131.7</Module_2>
-                        <Qsupp_Sdb>5.5</Qsupp_Sdb>
-                        <Qsupp_WC>5.6</Qsupp_WC>
-                        <Qsupp_Sdb_WC>15.5</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
-                        <Qsupp_Sde />
-                    </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC>
-                            <Code>HT04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC>
-                        <Salle_de_bain_WC2>
-                            <Code>HT04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC2>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_EA45</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_EA30</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
-                </CONFIG>
-                <CONFIG>
-                    <Type_Logement>6</Type_Logement>
-                    <Singularités>
-                        <Config_Optimisee>false</Config_Optimisee>
-                        <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Autoréglable</Singularite_EA>
-                        <EA_Fixes>false</EA_Fixes>
-                        <EA_Autoréglables>true</EA_Autoréglables>
-                    </Singularités>
-                    <Nb_Sdb_WC>1</Nb_Sdb_WC>
-                    <Nb_Sdb>1</Nb_Sdb>
-                    <Nb_WC>1</Nb_WC>
-                    <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
-                    <DEBIT_RT>
-                        <Cdeps>
-                            <Cdep>1.09</Cdep>
-                            <Cdep>1.06</Cdep>
-                        </Cdeps>
-                        <Qv_Rep>94.8</Qv_Rep>
-                        <Smea_Existant>155.0</Smea_Existant>
-                        <Module_1>155.0</Module_1>
-                        <Module_2>131.7</Module_2>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
                         <Qsupp_Sdb />
-                        <Qsupp_WC>5.6</Qsupp_WC>
-                        <Qsupp_Sdb_WC>15.5</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
                         <Qsupp_Sde />
                     </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC>
-                            <Code>HT04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain>
-                            <Code>HB03</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_EA45</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_EA30</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
+                    <LOCAUX />
+                </CONFIG>
+                <CONFIG>
+                    <Type_Logement />
+                    <Singularités>
+                        <Config_Optimisee>false</Config_Optimisee>
+                        <Changement_Bouche>false</Changement_Bouche>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
+                        <EA_Autoréglables>false</EA_Autoréglables>
+                    </Singularités>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
+                    <Nb_Cellier />
+                    <Nb_Sde />
+                    <DEBIT_RT>
+                        <Cdeps>
+                            <Cdep />
+                        </Cdeps>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
+                        <Qsupp_Sde />
+                    </DEBIT_RT>
+                    <LOCAUX />
+                </CONFIG>
+                <CONFIG>
+                    <Type_Logement />
+                    <Singularités>
+                        <Config_Optimisee>false</Config_Optimisee>
+                        <Changement_Bouche>false</Changement_Bouche>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
+                        <EA_Autoréglables>false</EA_Autoréglables>
+                    </Singularités>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
+                    <Nb_Cellier />
+                    <Nb_Sde />
+                    <DEBIT_RT>
+                        <Cdeps>
+                            <Cdep />
+                        </Cdeps>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
+                        <Qsupp_Sde />
+                    </DEBIT_RT>
+                    <LOCAUX />
+                </CONFIG>
+                <CONFIG>
+                    <Type_Logement />
+                    <Singularités>
+                        <Config_Optimisee>false</Config_Optimisee>
+                        <Changement_Bouche>false</Changement_Bouche>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
+                        <EA_Autoréglables>false</EA_Autoréglables>
+                    </Singularités>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
+                    <Nb_Cellier />
+                    <Nb_Sde />
+                    <DEBIT_RT>
+                        <Cdeps>
+                            <Cdep />
+                        </Cdeps>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
+                        <Qsupp_Sde />
+                    </DEBIT_RT>
+                    <LOCAUX />
+                </CONFIG>
+                <CONFIG>
+                    <Type_Logement />
+                    <Singularités>
+                        <Config_Optimisee>false</Config_Optimisee>
+                        <Changement_Bouche>false</Changement_Bouche>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
+                        <EA_Autoréglables>false</EA_Autoréglables>
+                    </Singularités>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
+                    <Nb_Cellier />
+                    <Nb_Sde />
+                    <DEBIT_RT>
+                        <Cdeps>
+                            <Cdep />
+                        </Cdeps>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
+                        <Qsupp_Sde />
+                    </DEBIT_RT>
+                    <LOCAUX />
                 </CONFIG>
                 <CONFIG>
                     <Type_Logement>6</Type_Logement>
@@ -1245,9 +977,6 @@
                 <Presence_EA>Fixe</Presence_EA>
                 <Presence_EA_Fixes>true</Presence_EA_Fixes>
                 <Presence_EA_Autoreglables>false</Presence_EA_Autoreglables>
-                <Dp1 />
-                <Dp2 />
-                <R_f />
             </Type-EA>
             <Optimisation>false</Optimisation>
             <NB_CONFIG>16</NB_CONFIG>
@@ -1322,34 +1051,73 @@
                     </LOCAUX>
                 </CONFIG>
                 <CONFIG>
-                    <Type_Logement />
+                    <Type_Logement>1</Type_Logement>
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Sans</Singularite_EA>
-                        <EA_Fixes>false</EA_Fixes>
+                        <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
+                        <EA_Fixes>true</EA_Fixes>
                         <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>
-                    <Nb_Sdb_WC />
-                    <Nb_Sdb />
-                    <Nb_WC />
+                    <Nb_Sdb_WC>0</Nb_Sdb_WC>
+                    <Nb_Sdb>1</Nb_Sdb>
+                    <Nb_WC>1</Nb_WC>
                     <Nb_Cellier />
-                    <Nb_Sde />
+                    <Nb_Sde>0</Nb_Sde>
                     <DEBIT_RT>
                         <Cdeps>
-                            <Cdep />
+                            <Cdep>1.38</Cdep>
+                            <Cdep>1.23</Cdep>
                         </Cdeps>
-                        <Qv_Rep />
-                        <Smea_Existant />
+                        <Qv_Rep>33.7</Qv_Rep>
+                        <Smea_Existant>43.5</Smea_Existant>
                         <Module_1 />
                         <Module_2 />
-                        <Qsupp_Sdb />
-                        <Qsupp_WC />
-                        <Qsupp_Sdb_WC />
-                        <Qsupp_Cellier />
+                        <Qsupp_Sdb>9.6</Qsupp_Sdb>
+                        <Qsupp_WC>5.7</Qsupp_WC>
+                        <Qsupp_Sdb_WC>6.7</Qsupp_Sdb_WC>
+                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
                         <Qsupp_Sde />
                     </DEBIT_RT>
-                    <LOCAUX />
+                    <LOCAUX>
+                        <Cuisine>
+                            <Code>HC02</Code>
+                            <Qvrep>0</Qvrep>
+                        </Cuisine>
+                        <Salle_de_bain_WC_supp>
+                            <Code>HT05</Code>
+                            <Qvrep>0</Qvrep>
+                        </Salle_de_bain_WC_supp>
+                        <Salle_de_bain>
+                            <Code>HB02</Code>
+                            <Qvrep>0</Qvrep>
+                        </Salle_de_bain>
+                        <Salle_de_bain_supp>
+                            <Code>HB02</Code>
+                            <Qvrep>0</Qvrep>
+                        </Salle_de_bain_supp>
+                        <WC_Unique>
+                            <Code>TW</Code>
+                            <Qvrep>0</Qvrep>
+                        </WC_Unique>
+                        <WC_Multiple>
+                            <Code>TW</Code>
+                            <Qvrep>0</Qvrep>
+                        </WC_Multiple>
+                        <Salle_eau_cellier>
+                            <Code>HB01</Code>
+                            <Qvrep>0</Qvrep>
+                        </Salle_eau_cellier>
+                        <Salle_eau_cellier_supp>
+                            <Code>HB01</Code>
+                            <Qvrep>0</Qvrep>
+                        </Salle_eau_cellier_supp>
+                        <Salon>
+                            <Entree_Solution>
+                                <Code>SOL_T1</Code>
+                            </Entree_Solution>
+                        </Salon>
+                    </LOCAUX>
                 </CONFIG>
                 <CONFIG>
                     <Type_Logement>2</Type_Logement>
@@ -1870,156 +1638,64 @@
                     </LOCAUX>
                 </CONFIG>
                 <CONFIG>
-                    <Type_Logement>5</Type_Logement>
+                    <Type_Logement />
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
-                        <EA_Fixes>true</EA_Fixes>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
                         <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>
-                    <Nb_Sdb_WC>0</Nb_Sdb_WC>
-                    <Nb_Sdb>1</Nb_Sdb>
-                    <Nb_WC>1</Nb_WC>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
                     <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
+                    <Nb_Sde />
                     <DEBIT_RT>
                         <Cdeps>
-                            <Cdep>1.14</Cdep>
-                            <Cdep>1.09</Cdep>
+                            <Cdep />
                         </Cdeps>
-                        <Qv_Rep>63.0</Qv_Rep>
-                        <Smea_Existant>134.5</Smea_Existant>
+                        <Qv_Rep />
+                        <Smea_Existant />
                         <Module_1 />
                         <Module_2 />
-                        <Qsupp_Sdb>9.6</Qsupp_Sdb>
-                        <Qsupp_WC>5.7</Qsupp_WC>
-                        <Qsupp_Sdb_WC>6.7</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
                         <Qsupp_Sde />
                     </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain>
-                            <Code>HB02</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain>
-                        <Salle_de_bain_supp>
-                            <Code>HB02</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
+                    <LOCAUX />
                 </CONFIG>
                 <CONFIG>
-                    <Type_Logement>6</Type_Logement>
+                    <Type_Logement />
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
-                        <EA_Fixes>true</EA_Fixes>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
                         <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>
-                    <Nb_Sdb_WC>2</Nb_Sdb_WC>
-                    <Nb_Sdb>0</Nb_Sdb>
-                    <Nb_WC>0</Nb_WC>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
                     <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
+                    <Nb_Sde />
                     <DEBIT_RT>
                         <Cdeps>
-                            <Cdep>1.12</Cdep>
-                            <Cdep>1.07</Cdep>
+                            <Cdep />
                         </Cdeps>
-                        <Qv_Rep>97.7</Qv_Rep>
-                        <Smea_Existant>158.3</Smea_Existant>
+                        <Qv_Rep />
+                        <Smea_Existant />
                         <Module_1 />
                         <Module_2 />
-                        <Qsupp_Sdb>5.7</Qsupp_Sdb>
-                        <Qsupp_WC>5.7</Qsupp_WC>
-                        <Qsupp_Sdb_WC>15.6</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
                         <Qsupp_Sde />
                     </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC>
-                        <Salle_de_bain_WC2>
-                            <Code>HT04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC2>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
+                    <LOCAUX />
                 </CONFIG>
                 <CONFIG>
                     <Type_Logement>6</Type_Logement>
@@ -2096,167 +1772,71 @@
                     </LOCAUX>
                 </CONFIG>
                 <CONFIG>
-                    <Type_Logement>6</Type_Logement>
+                    <Type_Logement />
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
-                        <EA_Fixes>true</EA_Fixes>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
                         <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>
-                    <Nb_Sdb_WC>0</Nb_Sdb_WC>
-                    <Nb_Sdb>2</Nb_Sdb>
-                    <Nb_WC>1</Nb_WC>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
                     <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
+                    <Nb_Sde />
                     <DEBIT_RT>
                         <Cdeps>
-                            <Cdep>1.13</Cdep>
-                            <Cdep>1.08</Cdep>
+                            <Cdep />
                         </Cdeps>
-                        <Qv_Rep>98.0</Qv_Rep>
-                        <Smea_Existant>157.9</Smea_Existant>
+                        <Qv_Rep />
+                        <Smea_Existant />
                         <Module_1 />
                         <Module_2 />
-                        <Qsupp_Sdb>9.6</Qsupp_Sdb>
-                        <Qsupp_WC>5.7</Qsupp_WC>
-                        <Qsupp_Sdb_WC>6.7</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
                         <Qsupp_Sde />
                     </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain>
-                            <Code>HB02</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain>
-                        <Salle_de_bain2>
-                            <Code>HB04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain2>
-                        <Salle_de_bain_supp>
-                            <Code>HB02</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
-                </CONFIG>
-                <CONFIG>
-                    <Type_Logement>7</Type_Logement>
-                    <Singularités>
-                        <Config_Optimisee>false</Config_Optimisee>
-                        <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Fixe</Singularite_EA>
-                        <EA_Fixes>true</EA_Fixes>
-                        <EA_Autoréglables>false</EA_Autoréglables>
-                    </Singularités>
-                    <Nb_Sdb_WC>2</Nb_Sdb_WC>
-                    <Nb_Sdb>0</Nb_Sdb>
-                    <Nb_WC>0</Nb_WC>
-                    <Nb_Cellier />
-                    <Nb_Sde>0</Nb_Sde>
-                    <DEBIT_RT>
-                        <Cdeps>
-                            <Cdep>1.12</Cdep>
-                            <Cdep>1.07</Cdep>
-                        </Cdeps>
-                        <Qv_Rep>99.8</Qv_Rep>
-                        <Smea_Existant>189.7</Smea_Existant>
-                        <Module_1 />
-                        <Module_2 />
-                        <Qsupp_Sdb>5.7</Qsupp_Sdb>
-                        <Qsupp_WC>5.7</Qsupp_WC>
-                        <Qsupp_Sdb_WC>15.6</Qsupp_Sdb_WC>
-                        <Qsupp_Cellier>5.0</Qsupp_Cellier>
-                        <Qsupp_Sde />
-                    </DEBIT_RT>
-                    <LOCAUX>
-                        <Cuisine>
-                            <Code>HC05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Cuisine>
-                        <Salle_de_bain_WC>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC>
-                        <Salle_de_bain_WC2>
-                            <Code>HT04</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC2>
-                        <Salle_de_bain_WC_supp>
-                            <Code>HT05</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_WC_supp>
-                        <Salle_de_bain_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_de_bain_supp>
-                        <WC_Unique>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Unique>
-                        <WC_Multiple>
-                            <Code>TW</Code>
-                            <Qvrep>0</Qvrep>
-                        </WC_Multiple>
-                        <Salle_eau_cellier>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier>
-                        <Salle_eau_cellier_supp>
-                            <Code>HB01</Code>
-                            <Qvrep>0</Qvrep>
-                        </Salle_eau_cellier_supp>
-                        <Salon>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Salon>
-                        <Chambre>
-                            <Entree_Solution>
-                                <Code>SOL_HY</Code>
-                            </Entree_Solution>
-                        </Chambre>
-                    </LOCAUX>
+                    <LOCAUX />
                 </CONFIG>
                 <CONFIG>
                     <Type_Logement />
                     <Singularités>
                         <Config_Optimisee>false</Config_Optimisee>
                         <Changement_Bouche>false</Changement_Bouche>
-                        <Singularite_EA>Sing_EA_Sans</Singularite_EA>
+                        <Singularite_EA>false</Singularite_EA>
+                        <EA_Fixes>false</EA_Fixes>
+                        <EA_Autoréglables>false</EA_Autoréglables>
+                    </Singularités>
+                    <Nb_Sdb_WC />
+                    <Nb_Sdb />
+                    <Nb_WC />
+                    <Nb_Cellier />
+                    <Nb_Sde />
+                    <DEBIT_RT>
+                        <Cdeps>
+                            <Cdep />
+                        </Cdeps>
+                        <Qv_Rep />
+                        <Smea_Existant />
+                        <Module_1 />
+                        <Module_2 />
+                        <Qsupp_Sdb />
+                        <Qsupp_WC />
+                        <Qsupp_Sdb_WC />
+                        <Qsupp_Cellier />
+                        <Qsupp_Sde />
+                    </DEBIT_RT>
+                    <LOCAUX />
+                </CONFIG>
+                <CONFIG>
+                    <Type_Logement />
+                    <Singularités>
+                        <Config_Optimisee>false</Config_Optimisee>
+                        <Changement_Bouche>false</Changement_Bouche>
+                        <Singularite_EA>false</Singularite_EA>
                         <EA_Fixes>false</EA_Fixes>
                         <EA_Autoréglables>false</EA_Autoréglables>
                     </Singularités>

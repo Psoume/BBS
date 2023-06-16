@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Saisie d'avis techniques de ventilation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/themes/default/style.min.css" />
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css.map">
@@ -35,6 +36,9 @@ function Loader()
   }
   ?>
 
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
 
   <script type="text/javascript" src="./js/controlXML.js"></script>
   <script type="text/javascript" src="./js/addFields.js"></script>
@@ -42,6 +46,7 @@ function Loader()
   <script type="text/javascript" src="./js/loadXML.js"></script>
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js.map"></script>
+
 
 
 </body>
