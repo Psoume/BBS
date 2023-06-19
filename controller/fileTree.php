@@ -13,11 +13,16 @@ function genererArborescence($chemin) {
 
         $cheminComplet = $chemin . '/' . $item;
         $element = array(
-            'text' => $item
+            'text' => $item,
+            'icon' => ""
         );
 
         if (is_dir($cheminComplet)) {
             $element['children'] = genererArborescence($cheminComplet);
+            $element['icon'] = "bi bi-folder-fill text-warning";
+        }
+        else{
+            $element['icon'] = "bi bi-file-earmark text-dark";
         }
 
         $structure[] = $element;

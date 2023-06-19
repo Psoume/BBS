@@ -58,20 +58,29 @@ function deleteXML(filename) {
 $(function () {
     $('#arborescence').jstree({
         'core': {
+            "check_callback" : true,
             'data': {
                 'url': "./controller/fileTree.php",
                 'dataType': 'json',
                 'data': function (node) {
                     return { 'id': node.id };
-                }                
-            }
+                }              
+            }            
         },
-        'plugins': ['state']
+        "plugins": ["state","dnd"]  
     })
 
     $('#chooseXML').on('click', function() {
-        var selectedNode = $('#arborescence').jstree('get_selected', true)[0].text;
-        chooseXML(selectedNode);
+        var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
+        var parentNode = selectedNode.parent;
+        var path = selectedNode.text;
+        while (parentNode !=='#')
+        {
+            selectedNode = $('#arborescence').jstree().get_node(parentNode);
+            parentNode = selectedNode.parent;
+            path = selectedNode.text + "/" +path ;
+        }
+        chooseXML(path);
     });
 
     $('#deleteXML').on('click', function() {

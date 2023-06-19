@@ -1,6 +1,6 @@
 <a href="./index.php" class="btn btn-outline-dark float-end me-5">Revenir à l'accueil</a>
 <form method='post' action='./controller/writeXML.php'>
-    <h2 id='titleAT'><img onclick='editTitleAT()' src="./css/bootstrap-icons/pencil-square.svg" alt="Bootstrap" width="32" height="32"></h2>
+    <h2 id='titleAT'><i class="bi bi-pencil-square" onclick='editTitleAT()'></i></h2>
     <div class='row w-50' hidden='true' id='titleATInputDiv'>
         <div class="col"><input id='titleATInput' class=' form-control' name='fileName'></input></div>
         <div class="col">

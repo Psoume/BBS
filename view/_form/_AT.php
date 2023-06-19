@@ -30,7 +30,7 @@ $indexAT = $_POST['indexAT'];
 
         <fieldset>
             <legend>
-                <img data-bs-toggle="tooltip" data-bs-title="Ne remplir la partie 'Type d'entrées d'air' que si au moins une configuration a des entrées d'air de type fixe." src="./css/bootstrap-icons/info-circle.svg" alt="Bootstrap" width="18" height="18">
+                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-title="Ne remplir la partie 'Type d'entrées d'air' que si au moins une configuration a des entrées d'air de type fixe."></i>
                 Type d'entrées d'air :
             </legend>
 
