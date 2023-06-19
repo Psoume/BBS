@@ -4,7 +4,7 @@
 
 function loadXML(at) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/data/XML/" + at);
+    xhr.open("GET", "/data/" + at);
     xhr.onerror = function () {
         alert("La requête a échouée");
     };
