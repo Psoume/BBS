@@ -151,7 +151,8 @@ $(function () {
     .on('rename_node.jstree', function (e, data) {
         $.get('./controller/fileTree.php?operation=rename_node', { 'id' : data.node.id, 'text' : data.text })
             .done(function (d) {
-                data.instance.set_id(data.node, d.id);
+                data.instance.set_id(data.node, d.id.replace(" ",""));
+                data.instance.set_text(data.node, data.node.text.replace(" ",""));
             })
             .fail(function () {
                 data.instance.refresh();

@@ -101,6 +101,7 @@ class fs
 	}
 	public function create($id, $name, $mkdir = false) {
 		$dir = $this->path($id);
+		$name = str_replace(' ','',$name);
 		if(preg_match('([^ a-zа-я-_0-9.]+)ui', $name) || !strlen($name)) {
 			throw new Exception('Nom invalide: ' . $name);
 		}
@@ -130,7 +131,7 @@ class fs
 			if(is_file($new) || is_dir($new)) { throw new Exception('Path already exists: ' . $new); }
 			rename($dir, $new);
 		}
-		return array('id' => $this->id($new));
+		return array('id' => $this->id(str_replace(" ","",$new)));
 	}
 	public function remove($id) {
 		$dir = $this->path($id);
@@ -197,7 +198,7 @@ if(isset($_GET['operation'])) {
 				break;
 			case 'rename_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$rslt = $fs->rename($node, isset($_GET['text']) ? $_GET['text'] : '');
+				$rslt = $fs->rename($node, isset($_GET['text']) ? str_replace(" ","",$_GET['text']) : '');
 				break;
 			case 'delete_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
