@@ -4,7 +4,6 @@
 
 function loadXML(at) {
     let xhr = new XMLHttpRequest();
-
     xhr.open("GET", "/data/XML/" + at);
     xhr.onerror = function () {
         alert("La requête a échouée");
@@ -19,12 +18,9 @@ function loadXML(at) {
             var xml = xhr.responseXML; // le fichier XML choisi
             // PREMIERE PAGE
             loadGeneralites(xml,'list-generalites');
-            
         }
     };
     xhr.send();
-    
-    
 }
 // PREMIERE PAGE : GENERALITES
 function loadGeneralites(xml,IdParent) {

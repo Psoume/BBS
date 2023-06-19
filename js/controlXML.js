@@ -67,30 +67,32 @@ $(function () {
                 }              
             }            
         },
-        "plugins": ["state","dnd"]  
+        "plugins": ["state","dnd","contextmenu"]  
     })
 
-    $('#chooseXML').on('click', function() {
-        var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
-        var parentNode = selectedNode.parent;
-        var path = selectedNode.text;
-        while (parentNode !=='#')
-        {
-            selectedNode = $('#arborescence').jstree().get_node(parentNode);
-            parentNode = selectedNode.parent;
-            path = selectedNode.text + "/" +path ;
-        }
-        chooseXML(path);
-    });
 
-    $('#deleteXML').on('click', function() {
-        var selectedNode = $('#arborescence').jstree('get_selected', true)[0].text;
-        deleteXML(selectedNode);
-    });
 
-    $('#createXMLFromFile').on('click', function() {
-        var selectedNode = $('#arborescence').jstree('get_selected', true)[0].text;
-        createXML(selectedNode);
-    });
+});
 
+$('#chooseXML').on('click', function() {
+    var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
+    var parentNode = selectedNode.parent;
+    var path = selectedNode.text;
+    while (parentNode !=='#')
+    {
+        selectedNode = $('#arborescence').jstree().get_node(parentNode);
+        parentNode = selectedNode.parent;
+        path = selectedNode.text + "/" +path ;
+    }
+    chooseXML(path);
+});
+
+$('#deleteXML').on('click', function() {
+    var selectedNode = $('#arborescence').jstree('get_selected', true)[0].text;
+    deleteXML(selectedNode);
+});
+
+$('#createXMLFromFile').on('click', function() {
+    var selectedNode = $('#arborescence').jstree('get_selected', true)[0].text;
+    createXML(selectedNode);
 });
