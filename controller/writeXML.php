@@ -349,13 +349,15 @@ while(isset($_POST['Extracteur'.$i.'_Libelle_Cdep']))
 
 $File_Name = $_POST['fileName'];
 
-$xml->asXML("../data/XML/".$File_Name);
+$xml->asXML("../data/".$File_Name);
     
 
 switch ($return)
 {
     case 'false':
-        echo "<a href='../index.php?'>Revenir à l'accueil</a>";
+        
+        echo "<a href='../index.php?'>Revenir à l'accueil</a><br/>";
+        echo "<a href='../index.php?AT=".$File_Name."'>Revenir au fichier</a><br/><br/>";
         echo "<a href='/data/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
         break;
     case 'true':

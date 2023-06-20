@@ -16,7 +16,7 @@
             <label for="Num_AT_Ancien_1">Anciens numéros : </label>
             <input class="form-control" type="text" name="Num_AT_Ancien_1" id="Num_AT_Ancien_1">
         </div>
-        <button type='button' class="" onclick="deleteInput('NumATAncienField',2)" >Supprimer le dernier</button>
+        <button type='button' class="btn btn-light border border-dark mt-1 btn-sm" onclick="deleteInput('NumATAncienField',2)" >Supprimer le dernier</button>
         <button type="button" class="btn btn-primary border border-dark mt-1 float-end" onclick="addField('Num_AT_Ancien','text','NumATAncienField')">+</button>
     </div>
 

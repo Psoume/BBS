@@ -32,7 +32,7 @@ $indexConfig = $_POST['indexConfig'];
             <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1">Cdeps :</label>
             <input class='form-control' type="text" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep_1" >
         </div>
-        <button type='button' onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField',2)" >Supprimer le dernier</button>
+        <button type='button' class="btn btn-light border border-dark mt-1 btn-sm" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField',2)" >Supprimer le dernier</button>
         <button type='button' class=" d-block btn btn-primary border border-dark my-1 float-end" onclick="addField('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Cdep','number','AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_CdepField')">+</button>
     </div>
 
@@ -216,7 +216,7 @@ $indexConfig = $_POST['indexConfig'];
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="addRoom('Humide','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce humide</button>
-<button type='button' class="" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Humide_tbody',0)" >Supprimer la dernière pièce</button>
+<button type='button' class="btn btn-light border border-dark" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Humide_tbody',0)" >Supprimer la dernière pièce</button>
 
 <h3>Pièces Sèches</h3>
 <table class="table table-sm table-bordered" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec">
@@ -236,4 +236,4 @@ $indexConfig = $_POST['indexConfig'];
     </tbody>
 </table>
 <button type="button" class="btn btn-dark" onclick="addRoom('Sec','<?php echo $indexAT; ?>','<?php echo $indexConfig; ?>')">Ajouter une pièce sèche</button>
-<button type='button' class="" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec_tbody',0)" >Supprimer la dernière pièce</button>
+<button type='button' class="btn btn-light border border-dark" onclick="deleteInput('AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Sec_tbody',0)" >Supprimer la dernière pièce</button>

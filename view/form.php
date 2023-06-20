@@ -41,16 +41,16 @@
                     <!--EQUIPEMENTS NAV -->
                     <ul class="nav nav-pills" id="nav_eqpmt">
                         <li class='nav-item '>
-                            <button type='button' id='bouches-tab' class='nav-link active' data-bs-toggle='tab' data-bs-target='#bouches-tab-pane'>Bouches</button>
+                            <button type='button' id='bouches-tab' class='nav-link active border border-dark mx-2' data-bs-toggle='tab' data-bs-target='#bouches-tab-pane'>Bouches</button>
                         </li>
                         <li class='nav-item'>
-                            <button type='button' id='entrees-tab' class='nav-link' data-bs-toggle='tab' data-bs-target='#entrees-tab-pane'>Entrées</button>
+                            <button type='button' id='entrees-tab' class='nav-link border border-dark mx-2' data-bs-toggle='tab' data-bs-target='#entrees-tab-pane'>Entrées</button>
                         </li>
                         <li class='nav-item'>
-                            <button type='button' id='solutions-tab' class='nav-link' data-bs-toggle='tab' data-bs-target='#solutions-tab-pane'>Solutions</button>
+                            <button type='button' id='solutions-tab' class='nav-link border border-dark mx-2' data-bs-toggle='tab' data-bs-target='#solutions-tab-pane'>Solutions</button>
                         </li>
                         <li class='nav-item'>
-                            <button type='button' id='extracteurs-tab' class='nav-link' data-bs-toggle='tab' data-bs-target='#extracteurs-tab-pane'>Extracteurs</button>
+                            <button type='button' id='extracteurs-tab' class='nav-link border border-dark mx-2' data-bs-toggle='tab' data-bs-target='#extracteurs-tab-pane'>Extracteurs</button>
                         </li>
                     </ul> 
                     <!-- EQUIPEMENTS CONTENT -->
