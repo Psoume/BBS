@@ -6,18 +6,12 @@ function chooseXML(at) {
 // création d'un nouveau XML
 // On va chercher base.xml et on l'enregistre comme name.xml
 function createXML(fromFile=null) {
-    if (fromFile !== null) {
-        var fileName = prompt(
-            "Quel nom voulez-vous donner au nouveau fichier ?",
-            "exemple.xml"
-        );
-    } else {
+    if (fromFile == null) {
         var fromFile = "base.xml";
-        var fileName = prompt(
-            "Quel nom voulez-vous donner au nouveau fichier ?",
-            "exemple.xml"
-        );
     }
+    var fileName = prompt(
+        "Quel nom voulez-vous donner au nouveau fichier ?",
+        "exemple.xml");
     if (fileName !== null && fileName !== "") {
         let xhr = new XMLHttpRequest();
         xhr.open(
@@ -29,29 +23,27 @@ function createXML(fromFile=null) {
         };
         xhr.onload = function () {
             fileName = xhr.responseText;
-            chooseXML(fileName);
+            if(fileName != null)
+            {
+                chooseXML(fileName);
+            }
+            
         };
     }
 }
 
 function deleteXML(filename) {
-    if (
-        confirm(
-            "Voulez-vous vraiment supprimer le fichier " +
-            filename +
-            " ? Cette action est irréversible"
-        ) == true
-    ) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", "controller/deleteXML.php?name=" + filename);
-        xhr.send();
-        xhr.onerror = function () {
-            alert("La requête a échouée");
-        };
-        xhr.onload = function () {
-            window.location.href = "/";
-        };
-    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "controller/deleteXML.php?name=" + filename);
+    xhr.send();
+    xhr.onerror = function () {
+        alert("La requête a échouée");
+    };
+    xhr.onload = function () {
+        window.location.href = "/";
+    };
+    
 }
 
 
@@ -133,10 +125,14 @@ $(function () {
     })
 
     .on('delete_node.jstree', function (e, data) {
-        $.get('./controller/fileTree.php?operation=delete_node', { 'id' : data.node.id })
+        if(confirm("Voulez-vous vraiment supprimer ce fichier ? Cette action est irréversible")==true)
+        {
+            $.get('./controller/fileTree.php?operation=delete_node', { 'id' : data.node.id })
             .fail(function () {
                 data.instance.refresh();
             });
+        }
+        else {window.location.reload();}
     })
     
     .on('create_node.jstree', function (e, data) {
@@ -238,10 +234,18 @@ $('#chooseXML').on('click', function() {
 $('#deleteXML').on('click', function() {
     var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
     $('#arborescence').jstree().delete_node(selectedNode);
-    $.get('./controller/fileTree.php?operation=delete_node', { 'id' : selectedNode.id })
+    $.get('./controller/fileTree.php?operation=delete_node', { 'id' : selectedNode.id })    
 });
 
 $('#createXMLFromFile').on('click', function() {
-    var selectedNode = $('#arborescence').jstree('get_selected', true)[0].text;
-    createXML(selectedNode);
+    var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
+    var parentNode = selectedNode.parent;
+    var path = selectedNode.text;
+    while (parentNode !=='#')
+    {
+        selectedNode = $('#arborescence').jstree().get_node(parentNode);
+        parentNode = selectedNode.parent;
+        path = selectedNode.text + "/" +path ;
+    }
+    createXML(path);
 });
