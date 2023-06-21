@@ -4,10 +4,13 @@
 
 function addDataGeneralites(xml){
     // Generalites
-    var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application','Usage_EA'];
+    var fields = ['Titre_AT','Titulaire','Code_Titulaire', 'Industriel', 
+    'Code_Industriel', 'Num_AT','Type_Extraction','Date_Application','Date_Fin_Application',
+    'Usage_EA'];
     fillFields(xml, fields, fields, 'text');
     fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
-    var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
+    var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux',
+    'Autoréglable','Hygroreglable','Basse_Pression'];
     fillFields(xml, checkboxFields, checkboxFields, 'checkbox');
 }
 

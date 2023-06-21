@@ -32,10 +32,6 @@ function addTag($parent,$namePOST,$nameXML,$type,$is_bool){
             $value = $_POST[$namePOST] ;
             $parent->addChild($nameXML, $value);
             break;
-        case 'number':
-            $value = $_POST[$namePOST] ;
-            $parent->addChild($nameXML, $value);
-            break;
         case 'bool':
             $value = resolveCheckbox($namePOST,$is_bool);
             $parent->addChild($nameXML, $value);
@@ -50,7 +46,6 @@ function addTag($parent,$namePOST,$nameXML,$type,$is_bool){
             }
             break;
     }
-    
 }
 
 
@@ -156,7 +151,7 @@ function TypeEA($parent,$indexAT)
     }
 
     $fields = ['Dp1','Dp2','R_f'];
-    addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'number',false);
+    addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'text',false);
 }
 
 function Optimisation($indexAT)
@@ -176,7 +171,6 @@ function Optimisation($indexAT)
 
 //GENERALITES
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><Avis_Technique_Ventilation/>');
-$xml->addAttribute('encoding', 'UTF-8');
 $fields= ['Titre_AT' , 'Titulaire' , 'Code_Titulaire' , 'Industriel' , 'Code_Industriel' , 'Num_AT'];
 addTags($xml,$fields,$fields,'text',false);
 $Liste_AT_Anciens = $xml->addChild('Liste_AT_Ancien');
@@ -230,7 +224,7 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
     while (isset($_POST['AT'.$i.'Config'.$j.'_Type_Logement']))
     {
         $CONFIG = $CONFIGS->addChild('CONFIG');
-        addTag($CONFIG,'AT'.$i.'Config'.$j.'_Type_Logement','Type_Logement','number',false);
+        addTag($CONFIG,'AT'.$i.'Config'.$j.'_Type_Logement','Type_Logement','text',false);
         //SINGULARITES
         $Singularites = $CONFIG->addChild('Singularités');
         $fields = ['Config_Optimisee','Changement_Bouche'];
@@ -249,12 +243,12 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         addTags($Singularites,FormatFieldsConfig($fields,$i,$j),$fields,'bool',true);
 
         $fields = ['Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Cellier','Nb_Sde'];
-        addTags($CONFIG,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
+        addTags($CONFIG,FormatFieldsConfig($fields,$i,$j),$fields,'text',false);
         $DEBIT_RT = $CONFIG->addChild('DEBIT_RT');
         $Cdeps = $DEBIT_RT->addChild('Cdeps');
         addTag($Cdeps,'AT'.$i.'Config'.$j.'_Cdep','Cdep','array',false);
         $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier','Qsupp_Sde'];
-        addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'number',false);
+        addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'text',false);
         // LOCAUX
         $LOCAUX = $CONFIG->addChild('LOCAUX');
         $k = 1;
@@ -292,7 +286,7 @@ while(isset($_POST['Bouche'.$i.'_Code']))
     $References = $Type_Bouche->addChild('References');
     addTag($References,'Bouche'.$i.'_Reference','Reference','array',false);
     $fields = ['Qmin','QminF','QminLimite','QmaxF','QmaxLimite'];
-    addTags($Type_Bouche,FormatFieldsEqpmts($fields,'Bouche',$i),$fields,'number',false);
+    addTags($Type_Bouche,FormatFieldsEqpmts($fields,'Bouche',$i),$fields,'text',false);
     $i++;
 }
 //Entrees
@@ -305,7 +299,7 @@ while(isset($_POST['Entree'.$i.'_Code']))
     $References = $Type_Entree->addChild('References');
     addTag($References,'Entree'.$i.'_Reference','Reference','array',false);
     $fields = ['EA_min','EA_max'];
-    addTags($Type_Entree,FormatFieldsEqpmts($fields,'Entree',$i),$fields,'number',false);
+    addTags($Type_Entree,FormatFieldsEqpmts($fields,'Entree',$i),$fields,'text',false);
     $i++;
 }
 // SOLUTIONS
@@ -325,7 +319,7 @@ while(isset($_POST['Solution'.$i.'_Code_Solution'])) // Solution i
         {
             $Entree = $Config_Solution->addChild('Entree');
             addTag($Entree,'Solution'.$i.'_Config'.$j.'_Code_'.$k,'Code','text',false);
-            addTag($Entree,'Solution'.$i.'_Config'.$j.'_Nombre_'.$k,'Nombre','number',false);
+            addTag($Entree,'Solution'.$i.'_Config'.$j.'_Nombre_'.$k,'Nombre','text',false);
             $k++;
         }
         
@@ -342,13 +336,12 @@ while(isset($_POST['Extracteur'.$i.'_Libelle_Cdep']))
     $References = $Type_Extracteur->addChild('References');
     addTag($References,'Extracteur'.$i.'_Reference','Reference','array',false);
     $fields = ['EA_min','EA_max'];
-    addTag($Type_Extracteur,'Extracteur'.$i.'_N_Cdep','N_Cdep','number',false);
+    addTag($Type_Extracteur,'Extracteur'.$i.'_N_Cdep','N_Cdep','text',false);
     addTag($Type_Extracteur,'Extracteur'.$i.'_Libelle_Cdep','Libelle_Cdep','text',false);
     $i++;
 }
 
 $File_Name = $_POST['fileName'];
-
 $xml->asXML("../data/".$File_Name);
     
 
@@ -358,7 +351,7 @@ switch ($return)
         
         echo "<a href='../index.php?'>Revenir à l'accueil</a><br/>";
         echo "<a href='../index.php?AT=".$File_Name."'>Revenir au fichier</a><br/><br/>";
-        echo "<a href='/data/XML/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
+        echo "<a href='/data/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
         break;
     case 'true':
         header("Location: ../index.php?AT=".$File_Name);
