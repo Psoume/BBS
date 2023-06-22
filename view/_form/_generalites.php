@@ -44,25 +44,13 @@
     <div class="col-12 col-sm-6 px-4 pt-3">
         <div class="row">
             <div class="col">
-                <fieldset>
-                    <legend>Usages :</legend>
-                    <div class="form-check">
-                        <label for="Collectif" class="form-check-label">Collectif</label>
-                        <input type="checkbox" name="Collectif" id="Collectif" class="form-check-input" value="Collectif">
-                    </div>
-                    <div class="form-check">
-                        <label for="Individuel" class="form-check-label">Individuel</label>
-                        <input type="checkbox" name="Individuel" id="Individuel" class="form-check-input" value="Individuel">
-                    </div>
-                    <div class="form-check">
-                        <label for="Hotel" class="form-check-label">Hôtel</label>
-                        <input type="checkbox" name="Hotel" id="Hotel" class="form-check-input" value="Hotel">
-                    </div>
-                </fieldset>
-            </div>
-            <div class="col">
-                <label for="Usage_EA" class="form-label">Usages Entrées d'Air : </label>
-                <input type="text" name="Usage_EA" id="Usage_EA" class="form-control">
+                <legend for="Usage_EA" class="form-label">Usage : </legend>
+                <select name="Usage_EA" id="Usage_EA" class="form-select">
+                    <option value="" selected>Choisir un usage</option>
+                    <option value="Collectif">Collectif</option>
+                    <option value="Individuel">Individuel</option>
+                    <option value="Hotel">Hôtel</option>
+                </select>
             </div>
         </div>
         <div class="col">

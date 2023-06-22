@@ -9,8 +9,7 @@ function addDataGeneralites(xml){
     'Usage_EA'];
     fillFields(xml, fields, fields, 'text');
     fillArrayField(xml, 'Num_AT_Ancien', 'Num_AT_Ancien', 'text');
-    var checkboxFields = ['Collectif','Individuel','Hotel','Double_Flux',
-    'Autoréglable','Hygroreglable','Basse_Pression'];
+    var checkboxFields = ['Double_Flux','Autoréglable','Hygroreglable','Basse_Pression'];
     fillFields(xml, checkboxFields, checkboxFields, 'checkbox');
 }
 

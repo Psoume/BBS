@@ -76,6 +76,7 @@ $(function () {
         },
         'contextmenu' : {
             'items' : function(node) {
+                var tree = $('#arborescence').jstree(true);
                 var tmp = $.jstree.defaults.contextmenu.items();
                 delete tmp.ccp.action;
                 delete tmp.ccp;
@@ -100,7 +101,7 @@ $(function () {
                         "action"			: function (data) {
                             var inst = $.jstree.reference(data.reference),
                                 obj = inst.get_node(data.reference);
-                            inst.create_node(obj, { type : "file" }, "last", function (new_node) {
+                                inst.create_node(obj, { type : "file" }, "last", function (new_node) {
                                 setTimeout(function () { inst.edit(new_node); },0);
                             });
                         }
@@ -134,7 +135,7 @@ $(function () {
         }
         else {window.location.reload();}
     })
-    
+
     .on('create_node.jstree', function (e, data) {
         $.get('./controller/fileTree.php?operation=create_node', { 'type' : data.node.type, 'id' : data.node.parent, 'text' : data.node.text })
             .done(function (d) {
@@ -144,6 +145,7 @@ $(function () {
                 data.instance.refresh();
             });
     })
+    
     .on('rename_node.jstree', function (e, data) {
         $.get('./controller/fileTree.php?operation=rename_node', { 'id' : data.node.id, 'text' : data.text })
             .done(function (d) {
@@ -234,7 +236,6 @@ $('#chooseXML').on('click', function() {
 $('#deleteXML').on('click', function() {
     var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
     $('#arborescence').jstree().delete_node(selectedNode);
-    $.get('./controller/fileTree.php?operation=delete_node', { 'id' : selectedNode.id })    
 });
 
 $('#createXMLFromFile').on('click', function() {

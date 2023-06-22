@@ -13,8 +13,9 @@
         <aside class="col-12 col-md-3 col-xl-2 px-0">
             <div class="list-group" id="list-tab">
                 <a class="list-group-item list-group-item-action active border-bottom border-right border-dark text-center" id="list-generalites-list" data-bs-toggle="list" href="#list-generalites" aria-controls="list-generalites">Généralités</a>
-                <a class="list-group-item list-group-item-action border-bottom border-right border-dark text-center" id="list-ats-list" data-bs-toggle="list" href="#list-ats" aria-controls="list-ats">Avis Techniques</a>
                 <a class="list-group-item list-group-item-action border-bottom border-right border-dark text-center" id="list-equipements-list" data-bs-toggle="list" href="#list-equipements" aria-controls="list-equipements">Équipements</a>
+                <a class="list-group-item list-group-item-action border-bottom border-right border-dark text-center" id="list-ats-list" data-bs-toggle="list" href="#list-ats" aria-controls="list-ats">Avis Techniques</a>
+
             </div>
         </aside>
 

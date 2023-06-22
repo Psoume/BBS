@@ -37,48 +37,50 @@ $indexConfig = $_POST['indexConfig'];
     </div>
 
     <div class='col-12 col-sm-6 px-4 mt-4'>
-        <fieldset>
-            <legend>Singularités Entrées d'Air:</legend>
-
-                <div class="form-check">
-                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-label">Fixes</label>
-                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',false'; ?>)"type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Fixes" class="form-check-input" value="Sing_EA_Fixe">
-                </div>
-
-                <div class="form-check">
-                    <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-label">Autoréglables</label>
-                    <input onchange="toggleSingEA(<?php echo $indexAT.','.$indexConfig.',true'; ?>)" type="checkbox" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_EA_Autoréglables" class="form-check-input" value="Sing_EA_Autoréglable">
-                </div>
-        </fieldset>
+        <legend for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA">Singularités Entrées d'Air :</legend>
+        <select name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Singularite_EA" class="form-select">
+            <option value="" selected>Choisir un type d'entrées d'air</option>
+            <option value="Sing_EA_Fixe">Fixes</option>
+            <option value="Sing_EA_Autoréglable">Autoréglables</option>
+            <option value="Sing_EA_Mixte">Mixtes</option>
+            <option value="Sing_EA_Sans">Sans</option>
+        </select>
     </div>
 
     <div class='col-12 col-sm-6 px-4 mt-4'>
         <div class='row'>
-            <div class="col-12 col-lg-6">
-                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qv_Rep" class="form-label">Qv_Rep :</label>
+            <div class="col-12 col-lg-12">
+                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qv_Rep" class="form-label">Qv Rep :</label>
                 <div class="input-group">
                     <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qv_Rep" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qv_Rep" class="form-control" step="any">
                     <span class="input-group-text">m<sup>3</sup>/h</span>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_Existant" class="form-label">Smea_Existant :</label>
+                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_Existant" class="form-label">Smea Existant :</label>
                 <div class="input-group">
                     <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_Existant" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_Existant" class="form-control" step="any">
+                    <span class="input-group-text">m<sup>3</sup>/h</span>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_RT2012" class="form-label">Smea RT2012 :</label>
+                <div class="input-group">
+                    <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_RT2012" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Smea_RT2012" class="form-control" step="any">
                     <span class="input-group-text">m<sup>3</sup>/h</span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-lg-6">
-                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_1" class="form-label">Module_1 :</label>
+                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_1" class="form-label">Module 1 :</label>
                 <div class="input-group">
                     <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_1" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_1" class="form-control" step="any">
                     <span class="input-group-text">m<sup>3</sup>/h</span>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_2" class="form-label">Module_2 :</label>
+                <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_2" class="form-label">Module 2 :</label>
                 <div class="input-group">
                     <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_2" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Module_2" class="form-control" step="any">
                     <span class="input-group-text">m<sup>3</sup>/h</span>
@@ -88,7 +90,7 @@ $indexConfig = $_POST['indexConfig'];
     </div>
 
 
-    <div class='col-12 col-sm-6 px-4 mt-4'>
+    <div class='col-12 col-sm-5 px-2 mt-4'>
         <table class='table table-sm table-bordered border-dark'>
             <thead class='table-dark'>
                 <tr>
@@ -129,41 +131,40 @@ $indexConfig = $_POST['indexConfig'];
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Sde" class="form-control" step="any">
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Cellier" class="form-label">Cellier</label>
-                    </td>
-                    <td>
-                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Cellier" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Nb_Cellier" class="form-control" step="any">
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
         
-    <div class='col-12 col-sm-6 px-4 mt-4'>
+    <div class='col-12 col-sm-7 px-2 mt-4'>
         <table class='table table-sm table-bordered border-dark'>
             <thead class='table-dark'>
                 <tr>
                     <th></th>
-                    <th scope='col'>Débits supplémentaires (m<sup>3</sup>/h)</th>
+                    <th scope='col'>Bouches supplémentaires (m<sup>3</sup>/h)</th>
+                    <th scope='col'>Entrées d'air (m<sup>3</sup>/h)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb_WC" class="form-label">Sdb avec WC</label>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb_WC" class="form-label">Salle de bain avec WC</label>
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb_WC" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb_WC" class="form-control" step="any">
                     </td>
+                    <td>
+                        <input disabled type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_Sdb_WC" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_Sdb_WC" class="form-control" step="any">
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb" class="form-label">Sdb sans WC</label>
+                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb" class="form-label">Salle de bain sans WC</label>
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sdb" class="form-control" step="any">
+                    </td>
+                    <td>
+                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_Sdb" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_Sdb" class="form-control" step="any">
                     </td>
                 </tr>
                 <tr>
@@ -173,13 +174,8 @@ $indexConfig = $_POST['indexConfig'];
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_WC" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_WC" class="form-control" step="any">
                     </td>
-                </tr>
-                <tr>
                     <td>
-                        <label for="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sde" class="form-label">Salle d'eau</label>
-                    </td>
-                    <td>
-                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sde" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Sde" class="form-control" step="any">
+                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_WC" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_WC" class="form-control" step="any">
                     </td>
                 </tr>
                 <tr>
@@ -188,6 +184,9 @@ $indexConfig = $_POST['indexConfig'];
                     </td>
                     <td>
                         <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Cellier" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_Qsupp_Cellier" class="form-control" step="any">
+                    </td>
+                    <td>
+                        <input type="number" name="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_Cellier" id="AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_SmeaMoins_Cellier" class="form-control" step="any">
                     </td>
                 </tr>
             </tbody>

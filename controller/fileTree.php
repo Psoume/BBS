@@ -101,6 +101,7 @@ class fs
 	}
 	public function create($id, $name, $mkdir = false) {
 		$dir = $this->path($id);
+		echo $name;
 		$name = str_replace(' ','',$name);
 		if(preg_match('([^ a-zа-я-_0-9.]+)ui', $name) || !strlen($name)) {
 			throw new Exception('Nom invalide: ' . $name);
@@ -109,8 +110,7 @@ class fs
 			mkdir($dir . DIRECTORY_SEPARATOR . $name);
 		}
 		else {
-			file_put_contents($dir . DIRECTORY_SEPARATOR . $name.'.xml', '<?xml version="1.0" encoding="utf-8"?>
-            <Avis_Technique_Ventilation></Avis_Technique_Ventilation>');
+			file_put_contents($dir . DIRECTORY_SEPARATOR . $name.'.xml', fopen("../data/base.xml","r"));
 		}
 		return array('id' => $this->id($dir . DIRECTORY_SEPARATOR . $name));
 	}
@@ -194,8 +194,7 @@ if(isset($_GET['operation'])) {
 				break;
 			case 'create_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$rslt = $fs->create($node, isset($_GET['text']) ? $_GET['text'] : '', (!isset($_GET['type']) || $_GET['type'] !== 'file'));
-				break;
+				$rslt = $fs->create($node, isset($_GET['text']) ? $_GET['text'] : '', (!isset($_GET['type']) || $_GET['type'] !== 'file'));				break;
 			case 'rename_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
 				$rslt = $fs->rename($node, isset($_GET['text']) ? str_replace(" ","",$_GET['text']) : '');
