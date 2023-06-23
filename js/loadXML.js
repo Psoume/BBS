@@ -52,7 +52,7 @@ function loadATS(xml) {
 function loadAT(AT,i)
 {
     var indexAT = parseInt(i + 1);
-    if (AT.getElementsByTagName("REF_AT")[0].textContent !== "")
+    if (typeof(AT.getElementsByTagName("REF_AT")[0]) !== "undefined")
     {
         var buttonHTML = AT.getElementsByTagName("REF_AT")[0].textContent;
     }
@@ -62,8 +62,8 @@ function loadAT(AT,i)
 
 function loadConfigs(AT,indexAT){
     var j = 0; //on itere sur les configs.
-    while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined" && AT.getElementsByTagName("CONFIG")[j] !== null) 
-    {   
+    while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
+    {   console.log(j);
         var configXML = AT.getElementsByTagName("CONFIGS")[0].children[j];
         loadConfig(indexAT,j,configXML);
         j++;
