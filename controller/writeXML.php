@@ -267,7 +267,7 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         $DEBIT_RT = $CONFIG->addChild('DEBIT_RT');
         $Cdeps = $DEBIT_RT->addChild('Cdeps');
         addTag($Cdeps,'AT'.$i.'Config'.$j.'_Cdep','Cdep','array',false);
-        $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Cellier','SmeaMoins_Sdb','SmeaMoins_WC','SmeaMoins_Cellier'];
+        $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Cellier', 'Qsupp_Sdb_WC','SmeaMoins_Sdb','SmeaMoins_WC','SmeaMoins_Cellier','SmeaMoins_Sdb_WC'];
         addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'text',false);
         // LOCAUX
         $LOCAUX = $CONFIG->addChild('LOCAUX');

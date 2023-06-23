@@ -235,11 +235,11 @@ function solutionsNewconfig()
         td.appendChild(row);
         // buttons
         row = document.createElement('div');
-        row.setAttribute('class','row');
+        row.setAttribute('class','row mt-2');
         col = document.createElement('div');
         col.setAttribute('class','col');
         var button = document.createElement('button');
-        button.setAttribute('class','btn btn-sm btn-dark');
+        button.setAttribute('class','w-100 mt-1 btn btn-sm btn-primary border border-dark');
         button.type = 'button';
         button.innerHTML = 'Ajouter';
         button.setAttribute('onclick',"newSolution(this,"+i+","+indexConfig+")");
@@ -248,6 +248,7 @@ function solutionsNewconfig()
         col = document.createElement('div');
         col.setAttribute('class','col');
         var button = document.createElement('button');
+        button.setAttribute('class','w-100 mt-1 btn btn-sm btn-light border border-dark');
         button.type = 'button';
         button.innerHTML = 'Supprimer';
         button.setAttribute('onclick',"removeSolution("+i+","+indexConfig+")");
@@ -266,12 +267,19 @@ function solutionsRemoveconfig()
     var indexElement = parseInt(thead.children[0].children.length-2);
 
     //Thead
-    thead.children[0].children[indexElement].remove();
-    //Tbody
-    for (i=0;i<tbody.children.length;i++)
+    if(indexElement>1)
     {
-        tbody.children[i].lastElementChild.remove();
+        if(confirm("voulez-vous vraiment supprimer cette configuration ?")==true)
+        {
+            thead.children[0].children[indexElement].remove();
+            //Tbody
+            for (i=0;i<tbody.children.length;i++)
+            {
+                tbody.children[i].lastElementChild.remove();
+            }
+        }
     }
+
 }
 
 function newSolution(button,indexEqpmt,indexConfig)
@@ -315,10 +323,11 @@ function updateATName(indexAT)
     titreAT.innerHTML = newValue;
 }
 
-function updateConfigName(indexAT,indexConfig,opti=false)
+function updateConfigName(indexAT,indexConfig)
 {
     var buttonConfig = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab");
     var newValue = "Config"+indexConfig+" (T"+document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Type_Logement").value+")";
+    var opti = document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Config_Optimisee").checked;
     if(opti)
     {
         newValue += "(Opti)";
@@ -339,7 +348,7 @@ function saveTitleAT(){
     var inputDiv = document.getElementById('titleATInputDiv');
     var input = document.getElementById('titleATInput');
     var newTitle = input.value;
-    h2.innerHTML = newTitle + "<img onclick='editTitleAT()' src='./css/bootstrap-icons/pencil-square.svg' alt='edit' width='32' height='32'></img>";
+    h2.innerHTML = newTitle + "<i class='bi bi-pencil-square' onclick='editTitleAT()'></i>";
     inputDiv.setAttribute('hidden', 'true');
     h2.removeAttribute('hidden');
 }
@@ -374,7 +383,7 @@ function deleteInput(containerID,limit)
     {
         if((element.value !== 'undefined' && element.value!=="") ||(element.value == 'undefined') )
         {
-            if(confirm("voulez-vous vraiment supprimer cette ligne ? Risque de perte de données")==true)
+            if(confirm("voulez-vous vraiment supprimer cette entrée ?")==true)
             {
                 element.remove();
             }

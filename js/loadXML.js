@@ -63,7 +63,7 @@ function loadAT(AT,i)
 function loadConfigs(AT,indexAT){
     var j = 0; //on itere sur les configs.
     while (typeof AT.getElementsByTagName("CONFIG")[j] !== "undefined") 
-    {   console.log(j);
+    {   
         var configXML = AT.getElementsByTagName("CONFIGS")[0].children[j];
         loadConfig(indexAT,j,configXML);
         j++;

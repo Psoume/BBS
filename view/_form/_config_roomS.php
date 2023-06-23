@@ -1,4 +1,6 @@
 <?php
+
+
 if(isset($_POST['indexPiece']))
 {
     $i = $_POST['indexPiece'];
@@ -10,7 +12,9 @@ if(isset($_POST['indexPiece']))
 <tr>
     <th scope='row'>
         <select class='form-select' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Name_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Name_<?php echo $i; ?>' type='text'>
-            <?php include("./_config_roomS_select.php") ;?>
+            <option selected>Nom de la pièce</option>
+            <option value="Salon">Salon</option>
+            <option value="Chambre">Chambre</option>
         </select>
     </th>
     <td>

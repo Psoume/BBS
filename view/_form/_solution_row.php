@@ -27,8 +27,8 @@ if(isset($_POST['nbr_cols']))
             echo "<label for='Solution".$i."_Config".$j."_Nombre_1'>Nombre:</label>";
             echo "<input class='form-control' id='Solution".$i."_Config".$j."_Nombre_1' type='number' name='Solution".$i."_Config".$j."_Nombre_1'>";
             echo "</div></div>";
-            echo "<div class='row mt-1'><div class='col'><button type='button' class='btn btn-sm btn-dark' onclick='newSolution(this,".$i.",".$j.")'>Ajouter</button>
-            </div><div class='col'><button type='button' onclick='removeSolution(".$i.",".$j.")' >Supprimer</button></div>";
+            echo "<div class='row mt-2'><div class='col'><button type='button' class='w-100 mt-1 btn btn-sm btn-primary border border-dark' onclick='newSolution(this,".$i.",".$j.")'>Ajouter</button>
+            </div><div class='col'><button class='w-100 mt-1 btn btn-sm btn-light border border-dark' type='button' onclick='removeSolution(".$i.",".$j.")' >Supprimer</button></div>";
             echo "</td>";
         }
         ?>

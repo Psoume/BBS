@@ -14,8 +14,9 @@ if(isset($_POST['index']))
             <input class='form-control' id="Entree<?php echo $i ;?>_Reference_1" name="Entree<?php echo $i ;?>_Reference_1" type="text">
             <p hidden></p>        
         </div>
-        <button type="button" onclick="addField('Entree<?php echo $i ;?>_Reference','text','Entree<?php echo $i ;?>_ReferenceField')">+</button></td>
-        </td>
+        <button class="w-25 mt-1 btn btn-sm btn-primary border border-dark" type="button" onclick="addField('Entree<?php echo $i ;?>_Reference','text','Entree<?php echo $i ;?>_ReferenceField')">+</button>
+        <button class="w-25 mt-1 btn btn-sm btn-light border border-dark" type="button" onclick="deleteInput('Entree<?php echo $i ;?>_ReferenceField',2)">-</button></td>    
+    </td>
     <td>
         <input class='form-control' id="Entree<?php echo $i ;?>_EA_min" name="Entree<?php echo $i ;?>_EA_min" type="number">
     </td>
