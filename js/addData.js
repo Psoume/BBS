@@ -24,7 +24,7 @@ function addDataConfig(Config,indexAT,indexConfig)
 {
     var fields = ['Type_Logement','Nb_Sdb_WC','Nb_Sdb','Nb_WC','Nb_Sde','Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Sdb_WC','Qsupp_Cellier'];
     fillFields(Config, fields, formatFieldsConfig(fields,indexAT,indexConfig), 'text');
-    var checkboxFields = ['Config_Optimisee','Changement_Bouche','EA_Fixes','EA_Autoréglables'];
+    var checkboxFields = ['Config_Optimisee','Changement_Bouche'];
     fillFields(Config, checkboxFields, formatFieldsConfig(checkboxFields,indexAT,indexConfig), 'checkbox');
     fillArrayField(Config, 'Cdep', "AT"+indexAT+"Config"+indexConfig+"_Cdep", 'text');
     var fields = ['Name','Code','Qvrep'];

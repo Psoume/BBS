@@ -52,7 +52,6 @@ $(function () {
         'core': {
             'data': {
                 'url': "./controller/fileTree.php?operation=get_node",
-                'dataType': 'json',
                 'data': function (node) {
                     return { 'id': node.id };
                 }              
@@ -71,12 +70,11 @@ $(function () {
                 'stripes' : true
             }  
         },
-        'sort' : function(a, b) {
-            return this.get_type(a) === this.get_type(b) ? (this.get_text(a) > this.get_text(b) ? 1 : -1) : (this.get_type(a) >= this.get_type(b) ? 1 : -1);
-        },
+        // 'sort' : function(a, b) {
+        //     return this.get_type(a) === this.get_type(b) ? (this.get_text(a) > this.get_text(b) ? 1 : -1) : (this.get_type(a) >= this.get_type(b) ? 1 : -1);
+        // },
         'contextmenu' : {
             'items' : function(node) {
-                var tree = $('#arborescence').jstree(true);
                 var tmp = $.jstree.defaults.contextmenu.items();
                 delete tmp.ccp.action;
                 delete tmp.ccp;
@@ -102,7 +100,7 @@ $(function () {
                             var inst = $.jstree.reference(data.reference),
                                 obj = inst.get_node(data.reference);
                                 inst.create_node(obj, { type : "file" }, "last", function (new_node) {
-                                setTimeout(function () { inst.edit(new_node); },0);
+                                setTimeout(function () { inst.edit(new_node);},0);
                             });
                         }
                     }
@@ -119,7 +117,7 @@ $(function () {
         },
         'unique' : {
             'duplicate' : function (name, counter) {
-                return name + ' ' + counter;
+                return name + '_' + counter;
             }
         },
         "plugins": ['state','dnd','sort','types','contextmenu','unique']
@@ -150,7 +148,7 @@ $(function () {
         $.get('./controller/fileTree.php?operation=rename_node', { 'id' : data.node.id, 'text' : data.text })
             .done(function (d) {
                 data.instance.set_id(data.node, d.id.replace(" ",""));
-                data.instance.set_text(data.node, data.node.text.replace(" ",""));
+                // data.instance.set_text(data.node, data.node.text.replace(" ",""));
             })
             .fail(function () {
                 data.instance.refresh();
@@ -166,56 +164,6 @@ $(function () {
                 data.instance.refresh();
             });
     })
-    .on('copy_node.jstree', function (e, data) {
-        $.get('./controller/fileTree.php?operation=copy_node', { 'id' : data.original.id, 'parent' : data.parent })
-            .done(function (d) {
-                //data.instance.load_node(data.parent);
-                data.instance.refresh();
-            })
-            .fail(function () {
-                data.instance.refresh();
-            });
-    })
-    .on('changed.jstree', function (e, data) {
-        if(data && data.selected && data.selected.length) {
-            $.get('?operation=get_content&id=' + data.selected.join(':'), function (d) {
-                if(d && typeof d.type !== 'undefined') {
-                    $('#data .content').hide();
-                    switch(d.type) {
-                        case 'text':
-                        case 'txt':
-                        case 'md':
-                        case 'htaccess':
-                        case 'log':
-                        case 'sql':
-                        case 'php':
-                        case 'js':
-                        case 'json':
-                        case 'css':
-                        case 'html':
-                            $('#data .code').show();
-                            $('#code').val(d.content);
-                            break;
-                        case 'png':
-                        case 'jpg':
-                        case 'jpeg':
-                        case 'bmp':
-                        case 'gif':
-                            $('#data .image img').one('load', function () { $(this).css({'marginTop':'-' + $(this).height()/2 + 'px','marginLeft':'-' + $(this).width()/2 + 'px'}); }).attr('src',d.content);
-                            $('#data .image').show();
-                            break;
-                        default:
-                            $('#data .default').html(d.content).show();
-                            break;
-                    }
-                }
-            });
-        }
-        else {
-            $('#data .content').hide();
-            $('#data .default').html('Select a file from the tree.').show();
-        }
-    });
 });
 
 

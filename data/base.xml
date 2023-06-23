@@ -72,43 +72,6 @@
             <Qsupp_Cellier></Qsupp_Cellier>
           </DEBIT_RT>
           <LOCAUX>
-            <Cuisine>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </Cuisine>
-            <Salle_de_bain_WC>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </Salle_de_bain_WC>
-            <Salle_de_bain_WC_supp>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </Salle_de_bain_WC_supp>
-            <Salle_de_bain_supp>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </Salle_de_bain_supp>
-            <WC_Unique>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </WC_Unique>
-            <WC_Multiple>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </WC_Multiple>
-            <Salle_eau_cellier>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </Salle_eau_cellier>
-            <Salle_eau_cellier_supp>
-              <Code></Code>
-              <Qvrep></Qvrep>
-            </Salle_eau_cellier_supp>
-            <Salon>
-              <Entree_Solution>
-                <Code></Code>
-              </Entree_Solution>
-            </Salon>
           </LOCAUX>
         </CONFIG>
       </CONFIGS>

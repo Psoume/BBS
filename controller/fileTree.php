@@ -101,8 +101,6 @@ class fs
 	}
 	public function create($id, $name, $mkdir = false) {
 		$dir = $this->path($id);
-		echo $name;
-		$name = str_replace(' ','',$name);
 		if(preg_match('([^ a-zа-я-_0-9.]+)ui', $name) || !strlen($name)) {
 			throw new Exception('Nom invalide: ' . $name);
 		}
@@ -110,7 +108,7 @@ class fs
 			mkdir($dir . DIRECTORY_SEPARATOR . $name);
 		}
 		else {
-			file_put_contents($dir . DIRECTORY_SEPARATOR . $name.'.xml', fopen("../data/base.xml","r"));
+			file_put_contents($dir . DIRECTORY_SEPARATOR . $name, fopen("../data/base.xml","r"));
 		}
 		return array('id' => $this->id($dir . DIRECTORY_SEPARATOR . $name));
 	}
@@ -131,7 +129,7 @@ class fs
 			if(is_file($new) || is_dir($new)) { throw new Exception('Path already exists: ' . $new); }
 			rename($dir, $new);
 		}
-		return array('id' => $this->id(str_replace(" ","",$new)));
+		return array('id' => $this->id($new));
 	}
 	public function remove($id) {
 		$dir = $this->path($id);
@@ -158,25 +156,6 @@ class fs
 		rename($dir, $new);
 		return array('id' => $this->id($new));
 	}
-	public function copy($id, $par) {
-		$dir = $this->path($id);
-		$par = $this->path($par);
-		$new = explode(DIRECTORY_SEPARATOR, $dir);
-		$new = array_pop($new);
-		$new = $par . DIRECTORY_SEPARATOR . $new;
-		if(is_file($new) || is_dir($new)) { throw new Exception('Path already exists: ' . $new); }
-
-		if(is_dir($dir)) {
-			mkdir($new);
-			foreach(array_diff(scandir($dir), array(".", "..")) as $f) {
-				$this->copy($this->id($dir . DIRECTORY_SEPARATOR . $f), $this->id($new));
-			}
-		}
-		if(is_file($dir)) {
-			copy($dir, $new);
-		}
-		return array('id' => $this->id($new));
-	}
 }
 
 if(isset($_GET['operation'])) {
@@ -194,10 +173,11 @@ if(isset($_GET['operation'])) {
 				break;
 			case 'create_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$rslt = $fs->create($node, isset($_GET['text']) ? $_GET['text'] : '', (!isset($_GET['type']) || $_GET['type'] !== 'file'));				break;
+				$rslt = $fs->create($node, isset($_GET['text']) ? $_GET['text'] : '', (!isset($_GET['type']) || $_GET['type'] !== 'file'));				
+				break;
 			case 'rename_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$rslt = $fs->rename($node, isset($_GET['text']) ? str_replace(" ","",$_GET['text']) : '');
+				$rslt = $fs->rename($node, isset($_GET['text']) ? $_GET['text'] : '');
 				break;
 			case 'delete_node':
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
@@ -207,11 +187,6 @@ if(isset($_GET['operation'])) {
 				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
 				$parn = isset($_GET['parent']) && $_GET['parent'] !== '#' ? $_GET['parent'] : '/';
 				$rslt = $fs->move($node, $parn);
-				break;
-			case 'copy_node':
-				$node = isset($_GET['id']) && $_GET['id'] !== '#' ? $_GET['id'] : '/';
-				$parn = isset($_GET['parent']) && $_GET['parent'] !== '#' ? $_GET['parent'] : '/';
-				$rslt = $fs->copy($node, $parn);
 				break;
 			default:
 				throw new Exception('Unsupported operation: ' . $_GET['operation']);
