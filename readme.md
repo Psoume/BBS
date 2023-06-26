@@ -1,0 +1,3 @@
+# OUTIL DE SAISIE D'AVIS TECHNIQUES DE VENTILATION POUR LE LOGICIEL CLIMAWIN 
+
+Ce projet est une application web développée dans le cadre d'un stage au sein de l'entreprise BBS Slama. J'ai développé cet outil pour faciliter la transformation des avis techniques de ventilation, documents officiels au format PDF contenant de nombreuses informations sur les systèmes de ventilation mis sur le marché par les fabricants, en un format XML attendu par le logiciel ClimaWin pour effectuer des calculs d'émissions thermiques.
