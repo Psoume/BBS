@@ -27,7 +27,9 @@ if(isset($_POST['indexPiece']))
         </select>
     </th>
     <td>
-        <input onchange="checkCodeRoom('Bouche',this)" class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' type='text'>
+        <input onchange = "checkCodeRoom('Bouche',this)" onclick="datalist('Bouche','datalistCodeBouches')" list="datalistCodeBouches" class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Code_<?php echo $i; ?>' type='text'>
+        <datalist id = 'datalistCodeBouches'>
+        </datalist>
     </td>
     <td>
         <input class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Qvrep_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxH_Qvrep_<?php echo $i; ?>' type='number' step="0.01">

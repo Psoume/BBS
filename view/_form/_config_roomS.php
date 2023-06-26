@@ -18,6 +18,8 @@ if(isset($_POST['indexPiece']))
         </select>
     </th>
     <td>
-        <input onchange="checkCodeRoom('Entree',this)" class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' type='text'>
+        <input onchange="checkCodeRoom('Solution',this)" onclick="datalist('Solution','datalistCodeSolutions')" list="datalistCodeSolutions" class='form-control' name='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' id='AT<?php echo $indexAT; ?>Config<?php echo $indexConfig; ?>_LocauxS_Code_<?php echo $i; ?>' type='text'>
+        <datalist id = 'datalistCodeSolutions'>
+        </datalist>
     </td>
 </tr>

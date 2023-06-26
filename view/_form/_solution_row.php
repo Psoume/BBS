@@ -11,7 +11,7 @@ if(isset($_POST['nbr_cols']))
 
 <tr>
     <td>
-        <input class='form-control' id="Solution<?php echo $i; ?>_Code_Solution" name="Solution<?php echo $i; ?>_Code_Solution" type="text">
+        <input class='form-control' id="Solution<?php echo $i; ?>_Code" name="Solution<?php echo $i; ?>_Code_Solution" type="text">
     </td>
         <?php
         for ($j=1;$j<=$nbr_cols;$j++)

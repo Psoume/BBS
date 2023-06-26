@@ -64,7 +64,7 @@ function addDataEqpmt(Eqpmt,EqpmtXML)
                 break;
 
             case 'Solution':
-                fillField(xml, 'Code_Solution', Eqpmt+indexEqpmt+'_Code_Solution','text');
+                fillField(xml, 'Code_Solution', Eqpmt+indexEqpmt+'_Code','text');
                 var fields=[];
                 for(var j=1;j<xml.children.length;j++)
                 {

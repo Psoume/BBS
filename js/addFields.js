@@ -320,13 +320,19 @@ function updateATName(indexAT)
 {
     var titreAT = document.getElementById("AT"+indexAT+"-tab");
     var newValue = document.getElementById("AT"+indexAT+"_REF_AT").value;
+    if (newValue==""){newValue = "AT"+indexAT;}
     titreAT.innerHTML = newValue;
 }
 
 function updateConfigName(indexAT,indexConfig)
 {
     var buttonConfig = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab");
-    var newValue = "Config"+indexConfig+" (T"+document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Type_Logement").value+")";
+    if (document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Type_Logement").value !== "")
+    {
+        var newValue = "Config"+indexConfig+" (T"+document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Type_Logement").value+")";
+    }
+    else { var newValue = "Config"+indexConfig;}
+
     var opti = document.getElementById("AT"+indexAT+"Config"+indexConfig+"_Config_Optimisee").checked;
     if(opti)
     {
@@ -378,7 +384,6 @@ function deleteInput(containerID,limit)
 {
     var container = document.getElementById(containerID);
     var element = container.children.item(parseInt(container.children.length-1));
-    console.log(element.value);
     if(container.children.length > limit)
     {
         if((element.value !== 'undefined' && element.value!=="") ||(element.value == 'undefined') )
@@ -392,7 +397,23 @@ function deleteInput(containerID,limit)
     }
 }
 
-function checkCodeRoom(Eqpmt,code)
+function datalist(Eqpmt,datalistID)
+{
+    var datalist = document.getElementById(datalistID);
+    var options = "";
+    var i = 1;    
+
+    while (document.getElementById(Eqpmt+i+"_Code") !== null)
+    {
+        var code = document.getElementById(Eqpmt+i+"_Code").value;
+        options += "<option value='"+code+"'>";
+        i++;
+    }
+    datalist.innerHTML = options;
+}
+
+
+function checkCodeRoom(Eqpmt,input)
 {
     var liste = [];
     var i = 1;
@@ -403,15 +424,14 @@ function checkCodeRoom(Eqpmt,code)
         i++;
     }
 
-    console.log(liste);
-    if(liste.includes(code.value))
+    if(liste.includes(input.value))
     {
-        code.classList.remove("border-danger");
-        code.classList.remove("border");
+        input.classList.remove("border-danger");
+        input.classList.remove("border");
     }
     else
     {
-        code.classList.add("border-danger");
-        code.classList.add("border");
+        input.classList.add("border-danger");
+        input.classList.add("border");
     }
 }

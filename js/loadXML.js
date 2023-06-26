@@ -52,7 +52,7 @@ function loadATS(xml) {
 function loadAT(AT,i)
 {
     var indexAT = parseInt(i + 1);
-    if (typeof(AT.getElementsByTagName("REF_AT")[0]) !== "undefined")
+    if (AT.getElementsByTagName("REF_AT")[0].textContent !== "")
     {
         var buttonHTML = AT.getElementsByTagName("REF_AT")[0].textContent;
     }
