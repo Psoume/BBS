@@ -122,7 +122,10 @@ function fillField(xml, nameXML, idHTML, type,position=0)
     {
         var value = xml.getElementsByTagName(nameXML)[position].textContent;
     }
-    else{ value="";}
+    else
+    { 
+        value="";
+    }
     
     var input = document.getElementById(idHTML);
     if(type=='checkbox' || type=='radio')

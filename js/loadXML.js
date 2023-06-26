@@ -12,7 +12,7 @@ function loadXML(at) {
         if (xhr.responseXML != null) {
             
             container = document.getElementById("titleAT");
-            container.insertAdjacentHTML('afterbegin' ,at.split(/(\\|\/)/g).pop());    
+            container.insertAdjacentHTML('afterbegin' ,at.split(/(\\|\/)/g).pop());//récupère la dernière partie de la chaine 
             container = document.getElementById("titleATInput");
             container.value = at;
             var xml = xhr.responseXML; // le fichier XML choisi
