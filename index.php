@@ -9,11 +9,11 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Saisie d'avis techniques de ventilation</title>
-  <link rel="stylesheet" href="./css/bootstrap-icons/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/themes/default/style.min.css" />
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/bootstrap.min.css.map">
+  <link rel="stylesheet" href="css/bootstrap-icons/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/themes/default/style.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css.map">
 </head>
 
 <?php

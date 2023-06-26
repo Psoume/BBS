@@ -1,6 +1,6 @@
 // Choix du fichier XML parmi ceux disponibles
 function chooseXML(at) {
-    window.location.href = "?AT=" + at;
+    window.location.href = "index.php?AT=" + at;
 }
 
 // création d'un nouveau XML
@@ -15,7 +15,7 @@ function createXML(fromFile=null) {
     if (fileName !== null && fileName !== "") {
         let xhr = new XMLHttpRequest();
         xhr.open(
-            "GET","controller/createXML.php?fileName=" +fileName +"&fromFile=" +fromFile
+            "GET","./controller/createXML.php?fileName=" +fileName +"&fromFile=" +fromFile
         );
         xhr.send();
         xhr.onerror = function () {
@@ -25,6 +25,7 @@ function createXML(fromFile=null) {
             fileName = xhr.responseText;
             if(fileName != null)
             {
+                console.log(fileName);
                 chooseXML(fileName);
             }
             
@@ -35,10 +36,10 @@ function createXML(fromFile=null) {
 function deleteXML(filename) {
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "controller/deleteXML.php?name=" + filename);
+    xhr.open("GET", "./controller/deleteXML.php?name=" + filename);
     xhr.send();
     xhr.onerror = function () {
-        alert("La requête a échouée");
+        alert("La requête a échoué");
     };
     xhr.onload = function () {
         window.location.href = "/";

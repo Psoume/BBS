@@ -4,7 +4,7 @@
 
 function loadXML(at) {
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/data/" + at);
+    xhr.open("GET", "data/" + at);
     xhr.onerror = function () {
         alert("La requête a échouée");
     };
@@ -27,7 +27,7 @@ function loadGeneralites(xml,IdParent) {
     var parent = document.getElementById(IdParent);
     
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/_generalites.php", true); 
+    xhr.open('POST', "view/_form/_generalites.php", true);
     xhr.onload = function () {
         parent.innerHTML = xhr.responseText;
         addDataGeneralites(xml);
@@ -109,7 +109,7 @@ function loadPieces(indexAT,indexConfig,configXML=null){
     data.append('nbrPiecesHumides', piecesHumides.length);
     data.append('nbrPiecesSeches', piecesSeches.length);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/"+"_config.php", true); 
+    xhr.open('POST', "view/_form/"+"_config.php", true);
     xhr.onload = function () 
     {
         var config = document.getElementById("AT"+indexAT+"Config"+indexConfig+"-tab-pane");
@@ -165,7 +165,7 @@ function loadEquipement(Eqpmt,fileName,idContainer,EqpmtXML)
     }
     
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/"+fileName, true); 
+    xhr.open('POST', "view/_form/"+fileName, true);
     xhr.onload = function () {
         divEqpmt.innerHTML = xhr.responseText;  
         addDataEqpmt(Eqpmt,EqpmtXML); 

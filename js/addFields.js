@@ -85,7 +85,7 @@ function addAT(containerNavID,referenceNavButtonID,containerContentID,buttonHTML
     var data = new FormData();
     data.append('indexAT', indexAT);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/"+"_AT.php", true); 
+    xhr.open('POST', "view/_form/"+"_AT.php", true);
 
     xhr.onload = function () 
     {
@@ -174,7 +174,7 @@ function newEquipement(Eqpmt){
     if(Eqpmt=='Solution')
     {data.append('nbr_cols', parseInt(container.children[0].children.length-1));}
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/_"+Eqpmt.toLowerCase()+'_row.php', true); // false car on veut le faire de façon synchrone
+    xhr.open('POST', "view/_form/_"+Eqpmt.toLowerCase()+'_row.php', true); // false car on veut le faire de façon synchrone
     xhr.onload = function () {
         container.insertAdjacentHTML('beforeend' ,xhr.responseText);     
     };
@@ -202,7 +202,7 @@ function addRoom(roomType,indexAT,indexConfig)
     data.append('indexConfig', indexConfig);
     data.append('indexPiece', indexPiece);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/view/_form/"+fileName, true); 
+    xhr.open('POST', "view/_form/"+fileName, true);
     xhr.onload = function () 
     {
         tbody.insertAdjacentHTML('beforeend' ,xhr.responseText);   

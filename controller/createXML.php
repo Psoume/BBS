@@ -3,20 +3,12 @@ $fromFile = $_GET['fromFile'];
 
 $fileName = "XML/".str_replace(" ","",htmlspecialchars($_GET['fileName']));
 
-
     if ($fromFile=='base.xml') {
-        $xml = simplexml_load_file('../data/base.xml');
-        $xml->asXML("../data/".$fileName);
+       $xml = simplexml_load_file(__DIR__.'/../data/base.xml');
     }
-    
     else{
-        $xml = simplexml_load_file("../data/".$fromFile);
-        $xml->asXML("../data/".$fileName);
+        $xml = simplexml_load_file(__DIR__."/../data/".$fromFile);
     }
-    echo $fileName;
+   $xml->asXML(__DIR__."/../data/".$fileName);
 
-
-
-
-
-?>
+   echo $fileName;
