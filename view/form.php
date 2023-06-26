@@ -1,13 +1,8 @@
-<a href="./index.php" class="btn btn-outline-dark float-end me-5">Revenir à l'accueil</a>
 <form method='post' action='./controller/writeXML.php'>
-    <h2 class="mx-5" id='titleAT'><i class="bi bi-pencil-square" onclick='editTitleAT()'></i></h2>
-    <div class='row w-50' hidden='true' id='titleATInputDiv'>
-        <div class="col"><input id='titleATInput' class=' form-control' name='fileName'></input></div>
-        <div class="col">
-            <button onclick='saveTitleAT()' type='button' class='btn btn-success'>ok</button>
-            <button onclick='resetTitleAT()' type='button' class='btn btn-danger'>X</button>
-        </div>
-    </div>
+    <input formaction='./controller/writeXML.php?return=home' href="./index.php" class="btn btn-outline-dark float-end me-5" type="submit" value="Revenir à l'accueil">
+    <h2 class="mx-5" id='titleAT'></h2>
+    <input hidden='true' id='titleATInput' class='form-control' name='fileName'>
+
 
     <div class="container-md row border border-dark mx-auto my-5 px-1 py-1 bg-secondary-subtle">
         <aside class="col-12 col-md-3 col-xl-2 px-0">
@@ -67,8 +62,8 @@
                     </div>
                 </div>    
             </div>
-            <input formaction='./controller/writeXML.php?return=false' class='btn btn-primary float-end' type="submit" value="Télécharger le XML"></input>
-            <input formaction='./controller/writeXML.php?return=true' class='btn btn-secondary float-end me-2' type="submit" value="Sauvegarder"></input>
+            <input formaction='./controller/writeXML.php?return=none' class='btn btn-primary float-end' type="submit" value="Télécharger le XML"></input>
+            <input formaction='./controller/writeXML.php?return=file' class='btn btn-secondary float-end me-2' type="submit" value="Sauvegarder"></input>
         </section>
     </div>
     

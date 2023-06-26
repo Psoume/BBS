@@ -367,14 +367,18 @@ $xml->asXML("../data/".$File_Name);
 
 switch ($return)
 {
-    case 'false':
+    case 'none':
         
         echo "<a href='../index.php?'>Revenir à l'accueil</a><br/>";
         echo "<a href='../index.php?AT=".$File_Name."'>Revenir au fichier</a><br/><br/>";
         echo "<a href='/data/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";
         break;
-    case 'true':
+    case 'file':
         header("Location: ../index.php?AT=".$File_Name);
+        die();
+        break;
+    case 'home':
+        header("Location: ../index.php");
         die();
         break;
 }

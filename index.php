@@ -52,8 +52,6 @@ function Loader()
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js.map"></script>
 
-
-
 </body>
 
 </html>

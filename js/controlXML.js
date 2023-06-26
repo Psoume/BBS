@@ -125,7 +125,7 @@ $(function () {
     })
 
     .on('delete_node.jstree', function (e, data) {
-        if(confirm("Voulez-vous vraiment supprimer ce fichier ? Cette action est irréversible")==true)
+        if(confirm("Voulez-vous vraiment supprimer "+data.node.text+" ? Cette action est irréversible")==true)
         {
             $.get('./controller/fileTree.php?operation=delete_node', { 'id' : data.node.id })
             .fail(function () {
@@ -199,3 +199,4 @@ $('#createXMLFromFile').on('click', function() {
     }
     createXML(path);
 });
+

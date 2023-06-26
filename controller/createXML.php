@@ -9,6 +9,10 @@ $fileName = "XML/".str_replace(" ","",htmlspecialchars($_GET['fileName']));
     else{
         $xml = simplexml_load_file(__DIR__."/../data/".$fromFile);
     }
-   $xml->asXML(__DIR__."/../data/".$fileName);
+    if(!is_file(__DIR__."/../data/".$fileName))
+    {
+        $xml->asXML(__DIR__."/../data/".$fileName);
+    }
+   
 
    echo $fileName;

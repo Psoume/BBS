@@ -341,30 +341,6 @@ function updateConfigName(indexAT,indexConfig)
     buttonConfig.innerHTML = newValue;
 }
 
-function editTitleAT()
-{
-    var h2 = document.getElementById('titleAT');
-    var inputDiv = document.getElementById('titleATInputDiv');
-    h2.setAttribute('hidden', 'true');
-    inputDiv.removeAttribute('hidden');
-}
-
-function saveTitleAT(){
-    var h2 = document.getElementById('titleAT');
-    var inputDiv = document.getElementById('titleATInputDiv');
-    var input = document.getElementById('titleATInput');
-    var newTitle = input.value;
-    h2.innerHTML = newTitle + "<i class='bi bi-pencil-square' onclick='editTitleAT()'></i>";
-    inputDiv.setAttribute('hidden', 'true');
-    h2.removeAttribute('hidden');
-}
-
-function resetTitleAT(){
-    var h2 = document.getElementById('titleAT');
-    var inputDiv = document.getElementById('titleATInputDiv');
-    inputDiv.setAttribute('hidden', 'true');
-    h2.removeAttribute('hidden');
-}
 
 function toggleSingEA(indexAT,indexConfig,abled)
 {

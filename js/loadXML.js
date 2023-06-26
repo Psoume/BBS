@@ -15,9 +15,11 @@ function loadXML(at) {
             container.insertAdjacentHTML('afterbegin' ,at.split(/(\\|\/)/g).pop());//récupère la dernière partie de la chaine 
             container = document.getElementById("titleATInput");
             container.value = at;
-            var xml = xhr.responseXML; // le fichier XML choisi
+
+            // fichier XML 
+            var xml = xhr.responseXML; 
             // PREMIERE PAGE
-            loadGeneralites(xml,'list-generalites');
+            loadGeneralites(xml,'list-generalites');            
         }
     };
     xhr.send();
