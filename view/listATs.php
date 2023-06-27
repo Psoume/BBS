@@ -9,6 +9,7 @@
         <div class="my-3">
             <button class="btn btn-sm btn-success mx-2" id="chooseXML" type="button">Traiter</button>
             <button class="btn btn-sm btn-secondary mx-2" id="createXMLFromFile" type="button">Créer à partir de </button> 
+            <button class="btn btn-sm btn-secondary mx-2" id="renameXML" type="button">Renommer</button>
             <button class="btn btn-sm btn-danger mx-2" id="deleteXML" type="button">Effacer</button>
         </div>
         

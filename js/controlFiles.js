@@ -33,20 +33,6 @@ function createXML(fromFile=null) {
     }
 }
 
-function deleteXML(filename) {
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "./controller/deleteXML.php?name=" + filename);
-    xhr.send();
-    xhr.onerror = function () {
-        alert("La requête a échoué");
-    };
-    xhr.onload = function () {
-        window.location.href = "/";
-    };
-    
-}
-
 
 $(function () {
     $('#arborescence').jstree({
@@ -138,6 +124,7 @@ $(function () {
     .on('create_node.jstree', function (e, data) {
         $.get('./controller/fileTree.php?operation=create_node', { 'type' : data.node.type, 'id' : data.node.parent, 'text' : data.node.text })
             .done(function (d) {
+                console.log(data);
                 data.instance.set_id(data.node, d.id);
             })
             .fail(function () {
@@ -185,6 +172,12 @@ $('#chooseXML').on('click', function() {
 $('#deleteXML').on('click', function() {
     var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
     $('#arborescence').jstree().delete_node(selectedNode);
+});
+
+$('#renameXML').on('click', function() {
+    var selectedNode = $('#arborescence').jstree('get_selected', true)[0];
+    var newName = prompt("Comment souhaitez-vous renommer le fichier ?");
+    $('#arborescence').jstree().rename_node(selectedNode,newName);
 });
 
 $('#createXMLFromFile').on('click', function() {

@@ -45,8 +45,8 @@ function Loader()
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
 
-  <script type="text/javascript" src="./js/controlXML.js"></script>
-  <script type="text/javascript" src="./js/addFields.js"></script>
+  <script type="text/javascript" src="./js/controlFiles.js"></script>
+  <script type="text/javascript" src="./js/handleFields.js"></script>
   <script type="text/javascript" src="./js/addData.js"></script>
   <script type="text/javascript" src="./js/loadXML.js"></script>
   <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>
