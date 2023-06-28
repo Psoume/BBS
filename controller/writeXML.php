@@ -198,9 +198,8 @@ addTag($Caracteristiques,'Type_Extraction','Type_Extraction','text',false);
 // ATS
 $xml->addChild('NB_AT', NB_AT());
 $ATS = $xml->addChild('ATS');
-$i = 1;
 
-while (isset($_POST['AT'.$i.'_REF_AT'])) 
+for($i=1;$i<=NB_AT();$i++)
 {
     $AT = $ATS->addChild('AT');
     $fields = ['REF_AT','LIBELLE','Type_Avis_Technique'];
@@ -235,9 +234,9 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
     // CONFIGS
     $AT->addChild('NB_CONFIG', NB_CONFIG($i));
     $CONFIGS = $AT->addChild('CONFIGS');
-    $j = 1;
-    while (isset($_POST['AT'.$i.'Config'.$j.'_Type_Logement']))
+    for ($j=1;$j<=NB_CONFIG($i);$j++)
     {
+        echo $_POST['AT'.$i.'Config'.$j.'_Type_Logement'];
         $CONFIG = $CONFIGS->addChild('CONFIG');
         addTag($CONFIG,'AT'.$i.'Config'.$j.'_Type_Logement','Type_Logement','text',false);
         //SINGULARITES
@@ -271,27 +270,25 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'text',false);
         // LOCAUX
         $LOCAUX = $CONFIG->addChild('LOCAUX');
-        $k = 1;
-        while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k]))
-        {
-            $name = $_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k];
-            $piece =  $LOCAUX->addChild($name);
-            addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Code_'.$k,'Code','text',false);
-            addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Qvrep_'.$k,'Qvrep','text',false);
-            $k++;
-        }
-        $k = 1;
-        while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k]))
-        {
-            $name = $_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k];
-            $piece =  $LOCAUX->addChild($name);
-            $Entree_Solution = $piece->addChild('Entree_Solution');
-            addTag($Entree_Solution,'AT'.$i.'Config'.$j.'_LocauxS_Code_'.$k,'Code','text',false);
-            $k++;
-        }
-        $j++;
+        // $k = 1;
+        // while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k]))
+        // {
+        //     $name = $_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k];
+        //     $piece =  $LOCAUX->addChild($name);
+        //     addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Code_'.$k,'Code','text',false);
+        //     addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Qvrep_'.$k,'Qvrep','text',false);
+        //     $k++;
+        // }
+        // $k = 1;
+        // while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k]))
+        // {
+        //     $name = $_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k];
+        //     $piece =  $LOCAUX->addChild($name);
+        //     $Entree_Solution = $piece->addChild('Entree_Solution');
+        //     addTag($Entree_Solution,'AT'.$i.'Config'.$j.'_LocauxS_Code_'.$k,'Code','text',false);
+        //     $k++;
+        // }
     }
-    $i++;
 }
 
 // EQUIPEMENTS 
