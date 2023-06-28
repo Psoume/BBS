@@ -12,7 +12,6 @@
             <button class="btn btn-sm btn-secondary mx-2" id="renameXML" type="button">Renommer</button>
             <button class="btn btn-sm btn-danger mx-2" id="deleteXML" type="button">Effacer</button>
         </div>
-        
     </div>
 
     <div class="col-12 col-sm-6 col-lg-4 my-2">
@@ -41,6 +40,4 @@
             </form>
         </div>
     </div>
-
-
 </div>
