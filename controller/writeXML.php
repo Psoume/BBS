@@ -112,13 +112,13 @@ function TypeEA_AT($parent,$indexAT)
 {
     $j = 1;
     $fixe = $auto = false;
-    while (isset($_POST['AT'.$indexAT.'Config'.$j.'_Type_Logement']))
+    while (isset($_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']))
     {
-        if(isset($_POST['AT'.$indexAT.'Config'.$j.'_EA_Fixes']))
+        if($_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']=="Sing_EA_Fixe")
         {
             $fixe=true;
         }
-        elseif(isset($_POST['AT'.$indexAT.'Config'.$j.'_EA_Autoréglables']))
+        elseif($_POST['AT'.$indexAT.'Config'.$j.'_Singularite_EA']=="Sing_EA_Autoréglable")
         {
             $auto=true;
         }
@@ -150,8 +150,12 @@ function TypeEA_AT($parent,$indexAT)
         $parent->addChild('Presence_EA_Autoreglables','false');
     }
 
-    $fields = ['Dp1','Dp2','R_f'];
-    addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'text',false);
+    if ($auto)
+    {
+        $fields = ['Dp1','Dp2','R_f'];
+        addTags($parent,FormatFieldsAT($fields,$indexAT),$fields,'text',false);
+    }
+    
 }
 
 function Optimisation($indexAT)
@@ -267,7 +271,7 @@ while (isset($_POST['AT'.$i.'_REF_AT']))
         $DEBIT_RT = $CONFIG->addChild('DEBIT_RT');
         $Cdeps = $DEBIT_RT->addChild('Cdeps');
         addTag($Cdeps,'AT'.$i.'Config'.$j.'_Cdep','Cdep','array',false);
-        $fields = ['Qv_Rep','Smea_Existant','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC','Qsupp_Cellier', 'Qsupp_Sdb_WC','SmeaMoins_Sdb','SmeaMoins_WC','SmeaMoins_Cellier','SmeaMoins_Sdb_WC'];
+        $fields = ['Qv_Rep','Smea_Existant','Smea_RT2012','Module_1','Module_2','Qsupp_Sdb','Qsupp_WC', 'Qsupp_Sdb_WC','Qsupp_Cellier','SmeaMoins_Sdb','SmeaMoins_WC','SmeaMoins_Sdb_WC','SmeaMoins_Cellier'];
         addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'text',false);
         // LOCAUX
         $LOCAUX = $CONFIG->addChild('LOCAUX');
@@ -368,7 +372,6 @@ $xml->asXML("../data/".$File_Name);
 switch ($return)
 {
     case 'none':
-        
         echo "<a href='../index.php?'>Revenir à l'accueil</a><br/>";
         echo "<a href='../index.php?AT=".$File_Name."'>Revenir au fichier</a><br/><br/>";
         echo "<a href='/data/".$File_Name."' download='".$File_Name."'>Télécharger le fichier XML</a>";

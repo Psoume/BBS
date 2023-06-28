@@ -83,10 +83,8 @@ function loadConfig(indexAT,j,configXML=null){
 function loadPieces(indexAT,indexConfig,configXML=null){
     var piecesHumides = [];
     var piecesSeches = [];
-
     if(configXML !==null)
     {
-        // console.log(configXML.innerHTML);
         var pieces =configXML.getElementsByTagName("LOCAUX")[0].children;
 
         for (var k = 0; k < pieces.length; k++)
@@ -102,8 +100,6 @@ function loadPieces(indexAT,indexConfig,configXML=null){
         }
     }
 
-    // console.log(piecesSeches);
-    // console.log(piecesHumides);
 
     var data = new FormData();
     data.append('indexAT', indexAT);
@@ -147,7 +143,7 @@ function loadEquipements(xml) {
     // EXTRACTEURS
     loadEquipement("Extracteur","_extracteur.php", "extracteurs-tab-pane", extracteurs);
     // Remplissage des inputs
-    
+
 }
 
 function loadEquipement(Eqpmt,fileName,idContainer,EqpmtXML)

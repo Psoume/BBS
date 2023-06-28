@@ -1,5 +1,5 @@
 <form method='post' action='./controller/writeXML.php'>
-    <input formaction='./controller/writeXML.php?return=home' href="./index.php" class="btn btn-outline-dark float-end me-5" type="submit" value="Revenir à l'accueil">
+    <input formaction='./controller/writeXML.php?return=home' class="btn btn-outline-dark float-end me-5" type="submit" value="Revenir à l'accueil">
     <h2 class="mx-5" id='titleAT'></h2>
     <input hidden='true' id='titleATInput' class='form-control' name='fileName'>
 
