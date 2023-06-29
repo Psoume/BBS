@@ -274,24 +274,24 @@ for($i=1;$i<=NB_AT();$i++)
         addTags($DEBIT_RT,FormatFieldsConfig($fields,$i,$j),$fields,'text',false);
         // LOCAUX
         $LOCAUX = $CONFIG->addChild('LOCAUX');
-        // $k = 1;
-        // while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k]))
-        // {
-        //     $name = $_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k];
-        //     $piece =  $LOCAUX->addChild($name);
-        //     addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Code_'.$k,'Code','text',false);
-        //     addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Qvrep_'.$k,'Qvrep','text',false);
-        //     $k++;
-        // }
-        // $k = 1;
-        // while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k]))
-        // {
-        //     $name = $_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k];
-        //     $piece =  $LOCAUX->addChild($name);
-        //     $Entree_Solution = $piece->addChild('Entree_Solution');
-        //     addTag($Entree_Solution,'AT'.$i.'Config'.$j.'_LocauxS_Code_'.$k,'Code','text',false);
-        //     $k++;
-        // }
+        $k = 1;
+        while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k]))
+        {
+            $name = $_POST['AT'.$i.'Config'.$j.'_LocauxH_Name_'.$k];
+            $piece =  $LOCAUX->addChild($name);
+            addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Code_'.$k,'Code','text',false);
+            addTag($piece,'AT'.$i.'Config'.$j.'_LocauxH_Qvrep_'.$k,'Qvrep','text',false);
+            $k++;
+        }
+        $k = 1;
+        while(isset($_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k]))
+        {
+            $name = $_POST['AT'.$i.'Config'.$j.'_LocauxS_Name_'.$k];
+            $piece =  $LOCAUX->addChild($name);
+            $Entree_Solution = $piece->addChild('Entree_Solution');
+            addTag($Entree_Solution,'AT'.$i.'Config'.$j.'_LocauxS_Code_'.$k,'Code','text',false);
+            $k++;
+        }
     }
 }
 
