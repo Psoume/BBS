@@ -164,7 +164,6 @@ function addConfig(containerNavID,referenceNavButtonID,containerContentID,indexA
 
     div.setAttribute("tabindex", "0");
     containerContent.appendChild(div);
-    loadPieces(indexAT,indexConfig);
 }
 
 function newEquipement(Eqpmt){
