@@ -24,8 +24,7 @@ function createXML(fromFile=null) {
         xhr.onload = function () {
             fileName = xhr.responseText;
             if(fileName != null)
-            {
-                console.log(fileName);
+            {       
                 chooseXML(fileName);
             }
             

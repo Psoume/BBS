@@ -3,7 +3,7 @@ $fromFile = $_GET['fromFile'];
 
 $fileName = "XML/".str_replace(" ","",htmlspecialchars($_GET['fileName']));
 
-if (explode('.', $fileName)!=='xml')
+if (explode('.', $fileName)[1]!=='xml')
 {
     $fileName =  $fileName.".xml";
 }

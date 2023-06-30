@@ -129,7 +129,7 @@ function addAT(containerNavID,referenceNavButtonID,containerContentID,buttonHTML
 }
 
 
-function addConfig(containerNavID,referenceNavButtonID,containerContentID,indexAT,indexConfig=null)
+function addConfig(containerNavID,referenceNavButtonID,containerContentID,indexAT,indexConfig=null,configXML=null)
 {
     var containerNav = document.getElementById(containerNavID);
     var containerContent = document.getElementById(containerContentID);
@@ -164,6 +164,7 @@ function addConfig(containerNavID,referenceNavButtonID,containerContentID,indexA
 
     div.setAttribute("tabindex", "0");
     containerContent.appendChild(div);
+    loadPieces(indexAT,indexConfig,configXML)
 }
 
 function newEquipement(Eqpmt){

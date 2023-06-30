@@ -30,7 +30,10 @@ function addTag($parent,$namePOST,$nameXML,$type,$is_bool){
     {
         case 'text':
             $value = $_POST[$namePOST] ;
-            $parent->addChild($nameXML, $value);
+            if($value !=='')
+            {
+                $parent->addChild($nameXML, $value);
+            }
             break;
         case 'bool':
             $value = resolveCheckbox($namePOST,$is_bool);
@@ -41,7 +44,10 @@ function addTag($parent,$namePOST,$nameXML,$type,$is_bool){
             while(isset($_POST[$namePOST.'_'.$i]))
             {
                 $value = $_POST[$namePOST.'_'.$i];
-                $parent->addChild($nameXML, $value);
+                if($value !=='')
+                {
+                    $parent->addChild($nameXML, $value);
+                }
                 $i++;
             }
             break;

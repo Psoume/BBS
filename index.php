@@ -30,7 +30,6 @@ function Loader()
 <body onload="<?php echo Loader(); ?>">
 
   <h1 class="mx-5 my-3">Saisie d'avis techniques de ventilation</h1>
-
   <?php
 
   if (isset($_GET['AT'])) {

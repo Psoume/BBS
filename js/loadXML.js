@@ -75,8 +75,8 @@ function loadConfigs(AT,indexAT){
 function loadConfig(indexAT,j,configXML=null){
     
     var indexConfig = parseInt(j + 1);
-    addConfig("navConfigs_AT"+indexAT,"AT"+indexAT+"_addConfig","AT"+indexAT+"configs-content",indexAT,indexConfig);
-    loadPieces(indexAT,indexConfig,configXML);
+    addConfig("navConfigs_AT"+indexAT,"AT"+indexAT+"_addConfig","AT"+indexAT+"configs-content",indexAT,indexConfig,configXML);
+    // loadPieces(indexAT,indexConfig,configXML);
     }
 
 
@@ -118,8 +118,7 @@ function loadPieces(indexAT,indexConfig,configXML=null){
             var Locaux = configXML.getElementsByTagName('LOCAUX')[0];
             addDataRoom(Locaux,'LocauxH',piecesHumides,indexAT,indexConfig);
             addDataRoom(Locaux,'LocauxS',piecesSeches,indexAT,indexConfig); 
-            updateConfigName(indexAT,indexConfig); 
-            
+            updateConfigName(indexAT,indexConfig);   
         }
     };
     xhr.send(data);
